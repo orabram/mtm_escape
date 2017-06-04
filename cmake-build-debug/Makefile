@@ -122,6 +122,33 @@ mtm_escape/fast:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/build
 .PHONY : mtm_escape/fast
 
+company.obj: company.c.obj
+
+.PHONY : company.obj
+
+# target to build an object file
+company.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.obj
+.PHONY : company.c.obj
+
+company.i: company.c.i
+
+.PHONY : company.i
+
+# target to preprocess a source file
+company.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.i
+.PHONY : company.c.i
+
+company.s: company.c.s
+
+.PHONY : company.s
+
+# target to generate assembly for a file
+company.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.s
+.PHONY : company.c.s
+
 customer.obj: customer.c.obj
 
 .PHONY : customer.obj
@@ -239,6 +266,9 @@ help:
 	@echo ... mtm_escape
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... company.obj
+	@echo ... company.i
+	@echo ... company.s
 	@echo ... customer.obj
 	@echo ... customer.i
 	@echo ... customer.s

@@ -80,6 +80,12 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/company.c">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/company.h">
+			<Option target="mtm_escape"/>
+		</Unit>
 		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/customer.c">
 			<Option target="mtm_escape"/>
 		</Unit>
