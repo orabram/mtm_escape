@@ -1,0 +1,3 @@
+C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir
+C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/edit_cache.dir
+C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/rebuild_cache.dir
