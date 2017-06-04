@@ -4,22 +4,18 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "mtm_ex3.h"
-#include "escaperoom.h"
 
 typedef struct order{
     char* email;
     TechnionFaculty faculty;
     int id;
     int time;
-    unsigned int numppl;
+    unsigned int num_ppl;
 } *Order;
-
-#define EscapeRoom int //Temporary
-
 
 //Creates a new order.
 MtmErrorCode create_order(Order ord, char* email, TechnionFaculty faculty,
-                          int id, int time, unsigned int numppl);
+                          int id, int time, unsigned int num_ppl);
 
 //Copies an existing order
 MtmErrorCode copy_order(Order ord, Order new_ord);
@@ -44,8 +40,8 @@ MtmErrorCode order_set_faculty(Order ord, TechnionFaculty faculty);
 MtmErrorCode order_set_id(Order ord, int id);
 
 //Changes the room that was ordered(incorporates both set_id and set_faculty).
-MtmErrorCode order_set_new_room(Order ord, EscapeRoom escapy);
-
+/*MtmErrorCode order_set_new_room(Order ord, EscapeRoom escapy);
+*/
 //Changes the time that's left for the order.
 MtmErrorCode order_set_new_time(Order ord, int time);
 
@@ -54,7 +50,7 @@ MtmErrorCode order_set_new_time(Order ord, int time);
 MtmErrorCode order_day_passed(Order ord);
 
 //Changes the number of people in the reservation.
-MtmErrorCode order_set_numppl(Order ord, unsigned int numppl);
+MtmErrorCode order_set_numppl(Order ord, unsigned int num_ppl);
 
 //Returns the email address of the order in the given memory space.
 MtmErrorCode order_get_email(Order ord, char* email)
@@ -69,6 +65,6 @@ MtmErrorCode order_get_id(Order ord, int* id);
 MtmErrorCode order_get_time(Order ord, int* time);
 
 //Returns the number of peoples of the order in the given memory space.
-MtmErrorCode order_get_numppl(Order ord, unsigned int* numppl);;
+MtmErrorCode order_get_numppl(Order ord, unsigned int* num_ppl);;
 
 #endif

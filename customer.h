@@ -16,7 +16,7 @@ typedef struct customer{
 } *Customer;
 
 //Creates and returns a new instance of customer
-MtmErrorCode customer_create(Customer cust, char* email,
+MtmErrorCode create_customer(Customer cust, char* email,
                              TechnionFaculty faculty, int skill);
 
 //Receives a costumer and returns a copy of the original.
