@@ -65,6 +65,9 @@ MtmErrorCode order_get_id(Order ord, int* id);
 MtmErrorCode order_get_time(Order ord, int* time);
 
 //Returns the number of peoples of the order in the given memory space.
-MtmErrorCode order_get_numppl(Order ord, unsigned int* num_ppl);;
+MtmErrorCode order_get_num_ppl(Order ord, unsigned int* num_ppl);;
+
+//Destroys the order.
+MtmErrorCode order_remove(Order ord);
 
 #endif

@@ -15,7 +15,7 @@ typedef struct customer{
 
 } *Customer;
 
-//Creates and returns a new instance of customer
+//Creates and returns a new instance of customer. Resets OrderSet.
 MtmErrorCode create_customer(Customer cust, char* email,
                              TechnionFaculty faculty, int skill);
 
@@ -55,4 +55,10 @@ MtmErrorCode customer_already_booked(Order ord, Customer cust, bool* correct);
 
 //Removes an order from the set.
 MtmErrorCode customer_remove_order(Order ord, Customer cust);
+
+//Checks if the customers has any impending orders.
+MtmErrorCode customer_has_orders(Order ord, Customer cust, bool* correct);
+
+//Destroys the customer.
+MtmErrorCode customer_destroy(Customer cust);
 #endif
