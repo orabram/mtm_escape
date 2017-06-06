@@ -6,5 +6,5 @@ set(CMAKE_C_STANDARD 99)
 set(SOURCE_FILES main.c customer.h customer.c
         list.h list_mtm1.h mtm_ex3.h set.h
         order.h order.c escaperoom.c escaperoom.h
-        company.c company.h)
+        company.c company.h list_mtm1.c)
 add_executable(mtm_escape ${SOURCE_FILES})
