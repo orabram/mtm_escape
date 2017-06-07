@@ -7,7 +7,7 @@
 #include "escaperoom.h
 
 typedef struct company{
-    char* email;
+    char** email;
     TechnionFaculty faculty;
     Set escape_room_set;
 } *Company;

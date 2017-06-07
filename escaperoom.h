@@ -8,8 +8,12 @@
 
 typedef struct escaperoom *EscapeRoom;
 
-//Creates a new escape room. Resets OrdersSet.
-EscapeRoom create_escape_room(char* email, int id, int price,
+//Creates a new instance of EscapeRoom. Returns the object or null if a memory
+//issue happens.
+EscapeRoom create_escape_room();
+
+//Initilizes values a new escape room. Resets OrdersSet.
+MtmErrorCode initialize_escape_room(char* email, int id, int price,
                                 int num_ppl, char *working_hrs, int difficulty);
 
 //Copies an existing escape room.
@@ -38,7 +42,7 @@ MtmErrorCode escape_room_set_num_ppl(EscapeRoom escape, int num_ppl);
 MtmErrorCode escape_room_set_difficulty(EscapeRoom escape, int difficulty);
 
 //Changes the current price.
-MtmErrorCode escape_room_set_faculty(EscapeRoom escape, TechnionFaculty faculty);
+//MtmErrorCode escape_room_set_faculty(EscapeRoom escape, TechnionFaculty faculty);
 
 //Returns the email into the given variable.
 MtmErrorCode escape_room_get_email(EscapeRoom room, char* email);
@@ -59,8 +63,8 @@ MtmErrorCode escape_room_get_working_hrs(EscapeRoom room, char **working_hrs);
 MtmErrorCode escape_room_get_difficulty(EscapeRoom room, int* difficulty);
 
 //Returns the faculty into the given variable.
-MtmErrorCode escape_room_get_faculty(EscapeRoom room,
-                                     TechnionFaculty *faculty);
+//MtmErrorCode escape_room_get_faculty(EscapeRoom room,
+//                                     TechnionFaculty *faculty);
 
 //Calculates how recommended this room is to a specific party,
 // and stores the value in the given variable.

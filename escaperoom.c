@@ -6,14 +6,13 @@
 #include "escaperoom.h"
 
 struct escaperoom {
-    char* email;
+    char** email;
     int id;
     int price;
     int num_ppl;
     int open_hour;
     int close_hour;
     int difficulty;
-    TechnionFaculty faculty;
     Set OrdersSet;
 };
 

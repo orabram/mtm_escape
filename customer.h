@@ -1,5 +1,5 @@
-#ifndef CUSTUMER_H_
-#define CUSTUMER_H_
+#ifndef _CUSTUMER_H
+#define _CUSTUMER_H
 
 #include <stdio.h>
 #include <stdbool.h>
@@ -8,10 +8,10 @@
 #include "order.h"
 
 typedef struct customer{
-    char* email;
+    char** email;
     TechnionFaculty faculty;
     int skill_level;
-    Set OrderSet;
+    Set *OrderSet;
 
 } *Customer;
 
@@ -45,19 +45,19 @@ MtmErrorCode customer_get_skill(Customer cust, int* skill);
 MtmErrorCode customer_already_exists(Customer cust, char* email, bool* correct);
 
 //Adds a new order to the order set.
-MtmErrorCode customer_new_order(Order ord, Customer cust);
+MtmErrorCode customer_new_order(Order* ord, Customer cust);
 
 //Checks if the order already exists.
-MtmErrorCode customer_order_exists(Order ord, Customer cust, bool* correct);
+MtmErrorCode customer_order_exists(Order* ord, Customer cust, bool* correct);
 
 //Checks if the customer has any other orders at the time of the order.
-MtmErrorCode customer_already_booked(Order ord, Customer cust, bool* correct);
+MtmErrorCode customer_already_booked(Order* ord, Customer cust, bool* correct);
 
 //Removes an order from the set.
-MtmErrorCode customer_remove_order(Order ord, Customer cust);
+MtmErrorCode customer_remove_order(Order* ord, Customer cust);
 
 //Checks if the customers has any impending orders.
-MtmErrorCode customer_has_orders(Order ord, Customer cust, bool* correct);
+MtmErrorCode customer_has_orders(Order* ord, Customer cust, bool* correct);
 
 //Destroys the customer.
 MtmErrorCode customer_destroy(Customer cust);

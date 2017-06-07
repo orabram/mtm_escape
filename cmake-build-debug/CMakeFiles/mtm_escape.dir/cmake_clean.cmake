@@ -4,7 +4,7 @@ file(REMOVE_RECURSE
   "CMakeFiles/mtm_escape.dir/order.c.obj"
   "CMakeFiles/mtm_escape.dir/escaperoom.c.obj"
   "CMakeFiles/mtm_escape.dir/company.c.obj"
-  "CMakeFiles/mtm_escape.dir/list_mtm1.c.obj"
+  "CMakeFiles/mtm_escape.dir/escapetechnion.c.obj"
   "mtm_escape.pdb"
   "mtm_escape.exe"
   "mtm_escape.exe.manifest"
