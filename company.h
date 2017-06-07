@@ -15,6 +15,8 @@ typedef struct company{
 //Initializes a new company.
 MtmErrorCode create_company(Company comp, char* email, TechnionFaculty faculty);
 
+MtmErrorCode company_copy(Company comp);
+
 //Adds a room to the company.
 MtmErrorCode company_add_room(Company comp, EscapeRoom escape);
 

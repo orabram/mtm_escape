@@ -9,13 +9,7 @@
 
 #define FACULTIES_NUM 19
 
-typedef struct escapetechnion{
-    List CompanyList;
-    Set CustomersSet;
-    Set CustomerEmailsSet;
-    Set CompanyEmailsSet;
-    int faculties[FACULTIES_NUM];
-} *EscapeTechnion;
+typedef struct escapetechnion *EscapeTechnion;
 
 
 EscapeTechnion create_escapetechnion();
@@ -45,3 +39,5 @@ MtmErrorCode escapetechnion_recommended_room(char* email, int num_ppl);
 MtmErrorCode escapetechnion_reportday();
 
 MtmErrorCode escapetechnion_reportbest();
+
+#endif
