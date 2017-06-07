@@ -22,6 +22,8 @@ MtmErrorCode create_customer(Customer cust, char* email,
 //Receives a costumer and returns a copy of the original.
 MtmErrorCode customer_copy(Customer original_cust, Customer new_cust);
 
+MtmErrorCode customer_compare(Customer cust1, Customer cust2);
+
 //Receives a costumer and a new email address and updates it.
 //Will also update the email in every order that the customer currently has.
 MtmErrorCode customer_set_email(Customer cust, char* newmail);
