@@ -1,22 +1,27 @@
-#ifndef _CUSTUMER_H
-#define _CUSTUMER_H
+#ifndef CUSTOMER_H_
+#define CUSTOMER_H_
 
 #include <stdio.h>
 #include <stdbool.h>
 #include "mtm_ex3.h"
 #include "set.h"
 #include "order.h"
+#include "escaperoom.h"
 
 typedef struct customer{
     char** email;
     TechnionFaculty faculty;
     int skill_level;
     Set *OrderSet;
+    int orders_num;
 
 } *Customer;
 
+
+Customer create_customer();
+
 //Creates and returns a new instance of customer. Resets OrderSet.
-MtmErrorCode create_customer(Customer cust, char* email,
+MtmErrorCode initialize_customer(Customer cust, char* email,
                              TechnionFaculty faculty, int skill);
 
 //Receives a costumer and returns a copy of the original.
@@ -35,31 +40,35 @@ MtmErrorCode customer_set_faculty(Customer cust, TechnionFaculty newfac);
 MtmErrorCode customer_set_skill(Customer cust, int skill);
 
 //Returns the email address of the customer.
-MtmErrorCode customer_get_email(Customer cust, char* email);
+char* customer_get_email(Customer cust);
 
 //Returns the faculty of the customer.
-MtmErrorCode customer_get_faculty(Customer cust, TechnionFaculty* faculty);
+TechnionFaculty customer_get_faculty(Customer cust);
 
 //Returns the skill level of the customer.
-MtmErrorCode customer_get_skill(Customer cust, int* skill);
+int customer_get_skill(Customer cust);
 
 //Sets true if the email address is used by the customer.
 MtmErrorCode customer_already_exists(Customer cust, char* email, bool* correct);
 
 //Adds a new order to the order set.
-MtmErrorCode customer_new_order(Order* ord, Customer cust);
+MtmErrorCode customer_add_order(Order* ord, Customer cust);
+
+Order customer_get_order(Customer cust, int id);
 
 //Checks if the order already exists.
-MtmErrorCode customer_order_exists(Order* ord, Customer cust, bool* correct);
+bool customer_order_exists(Order* ord, Customer cust);
+
+int customer_get_orders_num(Customer cust);
 
 //Checks if the customer has any other orders at the time of the order.
-MtmErrorCode customer_already_booked(Order* ord, Customer cust, bool* correct);
+bool customer_already_booked(Order* ord, Customer cust);
 
 //Removes an order from the set.
 MtmErrorCode customer_remove_order(Order* ord, Customer cust);
 
 //Checks if the customers has any impending orders.
-MtmErrorCode customer_has_orders(Order* ord, Customer cust, bool* correct);
+bool customer_has_orders(Order* ord, Customer cust);
 
 //Destroys the customer.
 MtmErrorCode customer_destroy(Customer cust);

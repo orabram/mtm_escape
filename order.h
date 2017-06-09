@@ -13,8 +13,10 @@ typedef struct order{
     unsigned int num_ppl;
 } *Order;
 
+Order create_order();
+
 //Creates a new order.
-MtmErrorCode create_order(Order ord, char* email, TechnionFaculty faculty,
+MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
                           int id, int time, unsigned int num_ppl);
 
 //Copies an existing order
@@ -53,19 +55,21 @@ MtmErrorCode order_day_passed(Order ord);
 MtmErrorCode order_set_numppl(Order ord, unsigned int num_ppl);
 
 //Returns the email address of the order in the given memory space.
-MtmErrorCode order_get_email(Order ord, char* email)
+char* order_get_email(Order ord);
 
 //Returns the faculty of the order in the given memory space.
-MtmErrorCode order_get_faculty(Order ord, TechnionFaculty faculty);
+TechnionFaculty order_get_faculty(Order ord);
 
 //Returns the id of the order in the given memory space.
-MtmErrorCode order_get_id(Order ord, int* id);
+int order_get_id(Order ord);
 
 //Returns the time of the order in the given memory space.
-MtmErrorCode order_get_time(Order ord, int* time);
+int order_get_time(Order ord);
+
+int order_get_hour(Order ord);
 
 //Returns the number of peoples of the order in the given memory space.
-MtmErrorCode order_get_num_ppl(Order ord, unsigned int* num_ppl);;
+unsigned int order_get_num_ppl(Order ord);
 
 //Destroys the order.
 MtmErrorCode order_remove(Order ord);

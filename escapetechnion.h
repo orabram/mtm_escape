@@ -14,6 +14,8 @@ typedef struct escapetechnion *EscapeTechnion;
 
 EscapeTechnion create_escapetechnion();
 
+MtmErrorCode escapetechnion_set_output_channel(FILE* output_channel);
+
 //MtmErrorCode initialize_escapetechnion();
 
 MtmErrorCode escapetechnion_add_company(EscapeTechnion escape,
@@ -39,9 +41,9 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
                                          int time, int num_ppl);
 
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
-                                             int num_ppl);
+                                             unsigned int num_ppl);
 
-MtmErrorCode escapetechnion_reportday(EscapeTechnion escape);
+Order* escapetechnion_reportday(EscapeTechnion escape);
 
 MtmErrorCode escapetechnion_reportbest(EscapeTechnion escape);
 

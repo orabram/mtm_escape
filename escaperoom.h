@@ -45,22 +45,22 @@ MtmErrorCode escape_room_set_difficulty(EscapeRoom escape, int difficulty);
 //MtmErrorCode escape_room_set_faculty(EscapeRoom escape, TechnionFaculty faculty);
 
 //Returns the email into the given variable.
-MtmErrorCode escape_room_get_email(EscapeRoom room, char* email);
+char* escape_room_get_email(EscapeRoom room);
 
 //Returns the id into the given variable.
-MtmErrorCode escape_room_get_id(EscapeRoom room, int* id);
+int escape_room_get_id(EscapeRoom room);
 
 //Returns the price into the given variable.
-MtmErrorCode escape_room_get_price(EscapeRoom room, int* price);
+int escape_room_get_price(EscapeRoom room);
 
 //Returns the num_ppl into the given variable.
-MtmErrorCode escape_room_get_num_ppl(EscapeRoom room, int* num_ppl);
+int escape_room_get_num_ppl(EscapeRoom room);
 
 //Returns the working_hrs into the given variable.
-MtmErrorCode escape_room_get_working_hrs(EscapeRoom room, char **working_hrs);
+char* escape_room_get_working_hrs(EscapeRoom room);
 
 //Returns the difficulty into the given variable.
-MtmErrorCode escape_room_get_difficulty(EscapeRoom room, int* difficulty);
+int escape_room_get_difficulty(EscapeRoom room);
 
 //Returns the faculty into the given variable.
 //MtmErrorCode escape_room_get_faculty(EscapeRoom room,
@@ -83,6 +83,6 @@ MtmErrorCode escape_room_colliding_times(EscapeRoom room, Order order);
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order);
 
 //Destroys the room.
-MtmErrorCode escape_room_destroy(EscapeRoom room, Order order);
+MtmErrorCode escape_room_destroy(EscapeRoom room);
 
 #endif
