@@ -1,4 +1,4 @@
-#include <stdio.h>
+/*#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -101,11 +101,11 @@ MtmErrorCode get_room_difficulty(EscapeRoom room, int *difficulty)
     return MTM_SUCCESS;
 }
 
-/**
+
  * An auxiliary function for setting the working hours of the room
  * It receives working hours in a string format and sets the opening hour and
  * closing hour fields accordingly
- */
+
 static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
 {
     if (hrs == NULL)
@@ -120,4 +120,4 @@ static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
     room->close_hour = close_hrs;
     return MTM_SUCCESS;
 }
-
+*/

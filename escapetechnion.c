@@ -1,9 +1,15 @@
+
 #include <stdio.h>
 #include <stdlib.h>
-#include <assert.h>
+#include "mtm_ex3.h"
 #include "string.h"
 #include "escapetechnion.h"
+#include "company.h"
+#include "customer.h"
+#include "order.h"
+#include "escaperoom.h"
 #include <math.h>
+#include "set.h"
 
 
 #define MAX_RECOMMENDED 9999
@@ -14,16 +20,62 @@
 struct escapetechnion{
     Set CompanySet;
     Set CustomersSet;
-    Set CustomerEmailsSet;
-    Set CompanyEmailsSet;
+    //Set CustomerEmailsSet;
+    //Set CompanyEmailsSet;
     int orders_num;
-    int faculties[FACULTIES_NUM] = {0};
+    int faculties[FACULTIES_NUM];
     int days;
     FILE* output_channel;
 };
 
 /*This function receives an array of order objects and and EscapeTechnion object
  * and sorts the array according to the value and index of the items.*/
+
+static SetElement comp_copy(SetElement comp)
+{
+    return company_copy(comp);
+}
+
+static void comp_free(SetElement comp)
+{
+    company_destroy(comp);
+}
+static int comp_compare(SetElement comp1, SetElement comp2)
+{
+    return strcmp(company_get_email(comp1), company_get_email(comp2));
+}
+
+static SetElement cust_copy(SetElement cust)
+{
+    return customer_copy(cust);
+}
+
+static void cust_free(SetElement cust)
+{
+    customer_destroy(cust);
+}
+static int cust_compare(SetElement cust1, SetElement cust2)
+{
+    return strcmp(customer_get_email(cust1), customer_get_email(cust2));
+}
+
+static char* time_int_to_chr(int time)
+{
+    char* chrtime = malloc(5);
+    int digit1 = time / 1000, digit2 = time / 100 - digit1 * 10,
+            digit4 = time % 10, digit3 = time % 100 - digit4;
+    if(chrtime == NULL)
+    {
+        return NULL;
+    }
+    chrtime[0] = digit1 + '0';
+    chrtime[1] = digit2 + '0';
+    chrtime[2] = '-';
+    chrtime[3] = digit3 + '0';
+    chrtime[4] = digit4 + '0';
+    return chrtime;
+}
+
 static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
 {
     Order swap;
@@ -33,15 +85,15 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
         {
            /*Check if the current order is scheduled before or after the next
             * order*/
-            if (order_get_time(sortedord[i] > order_get_time((sortedord[i+1]))))
+            if (order_get_time(sortedord[i]) > order_get_time(sortedord[i+1]))
             {
                 swap = sortedord[j];
                 sortedord[j] = sortedord[j+1];
                 sortedord[j+1] = swap;
             }
             /*If they're similar, check which one has a smaller faculty id*/
-            else if(order_get_time(sortedord[i] ==
-                                   order_get_time((sortedord[i+1]))))
+            else if(order_get_time(sortedord[i]) ==
+                                   order_get_time(sortedord[i+1]))
             {
                 if(order_get_faculty(sortedord[i]) >
                         order_get_faculty(sortedord[i+1]))
@@ -70,41 +122,39 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
 
 /*Runs through the Company Set and finds a Company object which matches the
  * email address*/
-static MtmErrorCode find_company_in_set(Set set, char* email, Company comp)
+static Company find_company_in_set(Set set, char* email)
 {
-    char** temp_email;
+    Company comp;
+    char* temp_email;
     comp = setGetFirst(set);
     //Run through the set and look for a match.
     for(int i = 0; setGetSize(set); i++) {
         temp_email = company_get_email(comp);
-        if (temp_email == NULL) {
-            return MTM_OUT_OF_MEMORY;
-        }
         //If the two emails are identical, that means we've got a match.
-        if (!strcmp(*temp_email, email)) {
-            return MTM_SUCCESS;
+        if (!strcmp(temp_email, email)) {
+            return comp;
         }
         comp = setGetNext(set);
     }
+    return NULL;
 }
 
 //Will have to merge both find functions further fown the road.
-static MtmErrorCode find_customer_in_set(Set set, char* email, Customer cust)
+static Customer find_customer_in_set(Set set, char* email)
 {
-    char** temp_email;
+    Customer cust;
+    char* temp_email;
     cust = setGetFirst(set);
     //Run through the set and look for a match.
     for(int i = 0; setGetSize(set); i++) {
-        temp_email = company_get_email(cust);
-        if (temp_email == NULL) {
-            return MTM_OUT_OF_MEMORY;
-        }
+        temp_email = customer_get_email(cust);
         //If the two emails are identical, that means we've got a match.
-        if (!strcmp(*temp_email, email)) {
-            return MTM_SUCCESS;
+        if (!strcmp(temp_email, email)) {
+            return cust;
         }
         cust = setGetNext(set);
     }
+    return NULL;
 }
 /*Checks if the mail address is legal. Returns true or false according to
  * whether or not the email address is legal.*/
@@ -152,25 +202,29 @@ static int calculate_price(Order ord, EscapeTechnion escape)
 
 /*This function prints all the relevant information to the daily business
  * according to mtm_ex3.h*/
-static void print_day(EscapeTechnion escape, int num_of_events, Order* orders, int sum)
+static MtmErrorCode print_day(EscapeTechnion escape, int num_of_events, Order* orders, int sum)
 {
     EscapeRoom room;
     Customer cust;
-    MtmErrorCode code;
     mtmPrintDayHeader(escape->output_channel, escape->days, num_of_events);
     for(int i = 0; i < num_of_events; i++)
     {
         room = find_escape_room(escape->CompanySet, order_get_id(orders[i]),
                                 order_get_faculty(orders[i]));
-        code = find_customer_in_set(escape->CustomersSet,
-                                    order_get_email(orders[i]), cust);
+        cust = find_customer_in_set(escape->CustomersSet,
+                                    order_get_email(orders[i]));
+        if(cust == NULL)
+        {
+            return MTM_OUT_OF_MEMORY;
+        }
         mtmPrintOrder(escape->output_channel, order_get_email(orders[i]),
         customer_get_skill(cust), customer_get_faculty(cust),
-        escape_room_get_email(orders[i]), order_get_faculty(orders[i]),
+        escape_room_get_email(room), order_get_faculty(orders[i]),
         order_get_id(orders[i]), order_get_hour(orders[i]),
-        escape_room_get_difficulty(orders[i]), order_get_num_ppl(orders[i]), sum);
+        escape_room_get_difficulty(room), order_get_num_ppl(orders[i]), sum);
     }
     mtmPrintDayFooter(escape->output_channel, escape->days);
+    return MTM_SUCCESS;
 }
 
 /*This function prints all the relevant information to the daily business
@@ -186,6 +240,14 @@ static void print_winners(EscapeTechnion escape, int sum, int id1, int no1,
     mtmPrintFacultiesFooter(escape->output_channel);
 }
 
+static void reset_array(int* array, int len)
+{
+    for(int i = 0; i < len; i++)
+    {
+        array[i] = 0;
+    }
+}
+
 /*This function doesn't receive parameters, and is responsible
  * for creating EscapeTechnion objects. */
 EscapeTechnion create_escapetechnion(){
@@ -194,20 +256,20 @@ EscapeTechnion create_escapetechnion(){
     {
         return NULL;
     }
-    escape->CompanySet = setCreate(company_copy, company_destroy, company_compare);
+    escape->CompanySet = setCreate(comp_copy, comp_free, comp_compare);
     if (escape->CompanySet == NULL)
     {
         free(escape);
         return NULL;
     }
-    escape->CustomersSet = setCreate(customer_copy, customer_destroy, customer_compare);
+    escape->CustomersSet = setCreate(cust_copy, cust_free, cust_compare);
     if(escape->CustomersSet == NULL)
     {
         setClear(escape->CompanySet);
         free(escape);
         return NULL;
     }
-    escape->CompanyEmailsSet = setCreate(strcpy, free , strcmp);
+    /*escape->CompanyEmailsSet = setCreate(strcpy, free , strcmp);
     if(escape->CompanyEmailsSet == NULL)
     {
         setClear(escape->CustomersSet);
@@ -232,7 +294,8 @@ EscapeTechnion create_escapetechnion(){
         setClear(escape->CustomersSet);
         setClear(escape->CompanySet);
         free(escape);
-    }
+    }*/
+    reset_array(escape->faculties, FACULTIES_NUM);
     escape->days = 0;
     return escape;
 }
@@ -252,7 +315,7 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
         return code;
     }
     setAdd(escape->CompanySet, newcomp);
-    setAdd(escape->CompanyEmailsSet, email);
+    //setAdd(escape->CompanyEmailsSet, email);
     return MTM_SUCCESS;
 }
 
@@ -262,31 +325,24 @@ MtmErrorCode escapetechnion_destroy_company(EscapeTechnion escape, char* email)
     {
         return MTM_INVALID_PARAMETER;
     }
-    if(!setIsIn(escape->CompanyEmailsSet, email))
+    if(!setIsIn(escape->CompanySet, email))
     {
         return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
     }
-    MtmErrorCode code;
     Company tempcomp;
-    MtmErrorCode code;
-    char** temp_email;
     bool has_orders;
-    code = find_company_in_set(escape->CompanySet, email, tempcomp);
-    if(code != MTM_SUCCESS)
+    tempcomp = find_company_in_set(escape->CompanySet, email);
+    if(tempcomp == NULL)
     {
-        return code;
+        return MTM_OUT_OF_MEMORY;
     }
-    code = company_got_orders(tempcomp, &has_orders);
-    if(code != MTM_SUCCESS)
-    {
-        return code;
-    }
+    has_orders = company_got_orders(tempcomp);
     if(!has_orders)
     {
         return MTM_RESERVATION_EXISTS;
     }
     setRemove(escape->CompanySet, email);
-    setRemove(escape->CompanyEmailsSet, email);
+    //setRemove(escape->CompanyEmailsSet, email);
     company_destroy(tempcomp);
     return MTM_SUCCESS;
 
@@ -310,24 +366,19 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
         escape_room_destroy(room);
         return code;
     }
-    if(!setIsIn(escape->CompanyEmailsSet, email))
+    if(!setIsIn(escape->CompanySet, email))
     {
         escape_room_destroy(room);
         return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
     }
     Company tempcomp; //Could potentially cause troubles.
-    code = find_company_in_set(escape->CompanySet, email, tempcomp);
-    if(code != MTM_SUCCESS)
+    tempcomp = find_company_in_set(escape->CompanySet, email);
+    if(tempcomp == NULL)
     {
         escape_room_destroy(room);
-        return code;
+        return MTM_OUT_OF_MEMORY;
     }
-    code = company_contains(tempcomp, id, room_already_exists);
-    if(code != MTM_SUCCESS)
-    {
-        escape_room_destroy(room);
-        return code;
-    }
+    room_already_exists = company_room_exists(tempcomp, id);
     if(room_already_exists)
     {
         escape_room_destroy(room);
@@ -351,7 +402,6 @@ MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
     }
     Company tempcomp;
     TechnionFaculty temp_faculty;
-    char* temp_email;
     bool room_has_orders;
     MtmErrorCode code;
     tempcomp = setGetFirst(escape->CompanySet);
@@ -360,11 +410,7 @@ MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
         temp_faculty = company_get_faculty(tempcomp);
         if(faculty == temp_faculty)
         {
-            code = company_room_got_orders(tempcomp, id, room_has_orders);
-            if(code != MTM_SUCCESS)
-            {
-                return code;
-            }
+            room_has_orders = company_room_got_orders(tempcomp, id);
             if(room_has_orders)
             {
                 return MTM_RESERVATION_EXISTS;
@@ -392,13 +438,13 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
         customer_destroy(cust);
         return code;
     }
-    if(setIsIn(escape->CustomerEmailsSet, email))
+    if(setIsIn(escape->CustomersSet, email))
     {
         customer_destroy(cust);
         return MTM_EMAIL_ALREADY_EXISTS;
     }
     setAdd(escape->CustomersSet, cust);
-    setAdd(escape->CustomerEmailsSet, email);
+    //setAdd(escape->CustomerEmailsSet, email);
     return MTM_SUCCESS;
 }
 
@@ -408,18 +454,18 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
     {
         return MTM_INVALID_PARAMETER;
     }
-    if(!setIsIn(escape->CustomerEmailsSet, email))
+    if(!setIsIn(escape->CustomersSet, email))
     {
         return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
     }
     setRemove(escape->CustomersSet, email);
-    setRemove(escape->CustomerEmailsSet, email);
+    //setRemove(escape->CustomerEmailsSet, email);
     return MTM_SUCCESS;
 }
 
 MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty, int id,
-                                         int time, int num_ppl)
+                                         char* time, int num_ppl)
 {
     MtmErrorCode code;
     Order ord = create_order();
@@ -428,7 +474,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
     {
         return code;
     }
-    if(!setIsIn(escape->CustomerEmailsSet, email))
+    if(!setIsIn(escape->CustomersSet, email))
     {
         order_remove(ord);
         return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
@@ -440,11 +486,11 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         return MTM_ID_DOES_NOT_EXIST;
     }
     Customer cust;
-    code = find_customer_in_set(escape->CustomersSet, email, cust);
-    if(code != MTM_SUCCESS)
+    cust = find_customer_in_set(escape->CustomersSet, email);
+    if(cust == NULL)
     {
         order_remove(ord);
-        return code;
+        return MTM_OUT_OF_MEMORY;
     }
     if(customer_already_booked(&ord, cust))
     {
@@ -456,7 +502,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         order_remove(ord);
         return MTM_ROOM_NOT_AVAILABLE;
     }
-    code = escape_room_add_order(ord);
+    code = escape_room_add_order(room, ord);
     if(code != MTM_SUCCESS)
     {
         order_remove(ord);
@@ -479,7 +525,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     {
         return MTM_INVALID_PARAMETER;
     }
-    if(!setIsIn(escape->CustomerEmailsSet, email))
+    if(!setIsIn(escape->CustomersSet, email))
     {
         return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
     }
@@ -489,10 +535,10 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     }
     Customer cust;
     MtmErrorCode code;
-    code = find_customer_in_set(escape->CustomersSet, email, cust);
-    if(code != MTM_SUCCESS)
+    cust = find_customer_in_set(escape->CustomersSet, email);
+    if(cust == NULL)
     {
-        return code;
+        return MTM_OUT_OF_MEMORY;
     }
     Company comp;
     comp = setGetFirst(escape->CompanySet);
@@ -552,7 +598,12 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
         return MTM_NO_ROOMS_AVAILABLE;
     }
     Order ord = create_order();
-    code = initialize_order(ord, email, cur_faculty, min_room_id, time,
+    char* chrtime = time_int_to_chr(time);
+    if(chrtime == NULL)
+    {
+        return MTM_OUT_OF_MEMORY;
+    }
+    code = initialize_order(ord, email, cur_faculty, min_room_id, chrtime,
                             num_ppl);
     if(code != MTM_SUCCESS)
     {
@@ -570,7 +621,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     Order* sortedord = malloc(sizeof(Order) * (escape->orders_num));
     if(sortedord == NULL)
     {
-        return NULL;
+        return MTM_OUT_OF_MEMORY;
     }
     int orders_num, counter = 0, price, sum = 0;
     Order ord;
@@ -598,7 +649,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                         escape->faculties[faculty] += price;
                         sum += price;
                     }
-                    customer_remove_order(ord, cust);
+                    customer_remove_order(&ord, cust);
                 }
                 else
                 {
@@ -610,10 +661,9 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     }
     order_bubble_sort(sortedord, escape);
     escape->days++;
-    print_day(escape, counter, sum);
+    return print_day(escape, counter, sortedord, sum);
 }
-
-MtmErrorCode escapetechnion_reportbest(EscapeTechnion escape)
+void escapetechnion_reportbest(EscapeTechnion escape)
 {
     int no1 = MAX_RECOMMENDED, no2 = MAX_RECOMMENDED, no3 = MAX_RECOMMENDED;
     int id1, id2, id3, temp, sum = 0;

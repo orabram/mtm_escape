@@ -36,13 +36,13 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email);
 
 MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty, int id,
-                                         int time, int num_ppl);
+                                         char* time, int num_ppl);
 
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                                              unsigned int num_ppl);
 
-Order* escapetechnion_reportday(EscapeTechnion escape);
+MtmErrorCode escapetechnion_reportday(EscapeTechnion escape);
 
-MtmErrorCode escapetechnion_reportbest(EscapeTechnion escape);
+void escapetechnion_reportbest(EscapeTechnion escape);
 
 #endif

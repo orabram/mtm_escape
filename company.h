@@ -4,10 +4,11 @@
 #include <stdio.h>
 #include <stdbool.h>
 #include "set.h"
-#include "escaperoom.h
+#include "escaperoom.h"
+#include "mtm_ex3.h"
 
 typedef struct company{
-    char** email;
+    char* email;
     TechnionFaculty faculty;
     Set escape_room_set;
 } *Company;
@@ -18,9 +19,9 @@ Company create_company();
 MtmErrorCode initialize_company(Company comp, char* email,
                                 TechnionFaculty faculty);
 
-MtmErrorCode company_copy(Company comp);
+Company company_copy(Company comp);
 
-MtmErrorCode company_compare(Company comp);
+int company_compare(Company comp1, Company comp2);
 
 //Adds a room to the company.
 MtmErrorCode company_add_room(Company comp, EscapeRoom escape);
@@ -45,10 +46,10 @@ bool company_room_exists(Company comp, int id);
 int company_recommended_rooms(Company comp, unsigned int num_ppl, int skill,
                               int* id, int* time);
 
-MtmErrorCode company_room_got_orders(Company comp, int id, bool* correct);
+bool company_room_got_orders(Company comp, int id);
 
-MtmErrorCode company_got_orders(Company comp, bool* correct);
+bool company_got_orders(Company comp);
 
-MtmErrorCode company_destroy(Company comp);
+void company_destroy(Company comp);
 
 #endif

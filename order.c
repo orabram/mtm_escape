@@ -26,7 +26,7 @@ static int hour_to_int(char* time)
 
 static bool check_time(char* time)
 {
-    if(time == NULL || strlen(time) != 5 || time[2] != "-")
+    if(time == NULL || strlen(time) != 5 || time[2] != '-')
     {
         return false;
     }
@@ -58,7 +58,7 @@ static bool check_id(int id)
 
 static bool check_faculty(TechnionFaculty faculty)
 {
-    if(faculty > FACULTIES_NUM || faculty < 0)
+    if(faculty >= FACULTIES_NUM || faculty < 0)
     {
         return false;
     }
@@ -81,7 +81,7 @@ Order create_order()
 }
 
 MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
-int id, int time, unsigned int num_ppl)
+int id, char* time, unsigned int num_ppl)
 {
     if(ord == NULL || !check_time(time) || !check_email(email) || !check_id(id)
             || !check_faculty(faculty) || !check_num_ppl(num_ppl))
@@ -92,7 +92,7 @@ int id, int time, unsigned int num_ppl)
     ord->id = id;
     ord->faculty = faculty;
     ord->num_ppl = num_ppl;
-    ord->time = day_to_int(time) * 100 + day_to_int(hour_to_int());
+    ord->time = day_to_int(time) * 100 + hour_to_int(time);
     return MTM_SUCCESS;
 }
 
@@ -137,11 +137,10 @@ void order_day_passed(Order ord)
 
 
 //Destroys the order.
-MtmErrorCode order_remove(Order ord)
+void order_remove(Order ord)
 {
     free(ord->email);
     free(ord);
-    return MTM_SUCCESS;
 }
 
 

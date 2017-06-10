@@ -17,7 +17,7 @@ MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
 MtmErrorCode copy_order(Order ord, Order new_ord);
 
 //Creates a new order, but with different parameters than the original one.
-/*MtmErrorCode create_order_gen(Order ord, Customer cust, EscapeRoom escapy,
+MtmErrorCode create_order_gen(Order ord, Customer cust, EscapeRoom escapy,
                               int time, unsigned int numppl);
 
 //Changes the email address of the room.
@@ -36,7 +36,7 @@ MtmErrorCode order_set_faculty(Order ord, TechnionFaculty faculty);
 MtmErrorCode order_set_id(Order ord, int id);
 
 //Changes the room that was ordered(incorporates both set_id and set_faculty).
-/*MtmErrorCode order_set_new_room(Order ord, EscapeRoom escapy);
+MtmErrorCode order_set_new_room(Order ord, EscapeRoom escapy);
 
 //Changes the time that's left for the order.
 MtmErrorCode order_set_new_time(Order ord, int time);
@@ -67,6 +67,6 @@ unsigned int order_get_num_ppl(Order ord);
 void order_day_passed(Order ord);
 
 //Destroys the order.
-MtmErrorCode order_remove(Order ord);
+void order_remove(Order ord);
 
 #endif

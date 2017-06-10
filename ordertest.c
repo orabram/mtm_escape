@@ -1,10 +1,9 @@
 #include <stdio.h>
-#include "order.c"
+#include "order.h"
 #include <assert.h>
 
 int main(){
     Order ord1 = create_order();
-    Order ord2 = create_order();
     MtmErrorCode code;
     char* email = "simon@gmail.com";
     TechnionFaculty faculty = BIOLOGY;
@@ -44,5 +43,6 @@ int main(){
     assert(code == MTM_SUCCESS);
     order_day_passed(ord1);
     assert(order_get_time(ord1) == time);
+    order_remove(ord1);
     printf("%s", "All tests passed successfully. Congrats!");
 }

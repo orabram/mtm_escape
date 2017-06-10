@@ -9,7 +9,7 @@
 #include "escaperoom.h"
 
 typedef struct customer{
-    char** email;
+    char* email;
     TechnionFaculty faculty;
     int skill_level;
     Set *OrderSet;
@@ -25,9 +25,9 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
                              TechnionFaculty faculty, int skill);
 
 //Receives a costumer and returns a copy of the original.
-MtmErrorCode customer_copy(Customer original_cust, Customer new_cust);
+Customer customer_copy(Customer cust);
 
-MtmErrorCode customer_compare(Customer cust1, Customer cust2);
+int customer_compare(Customer cust1, Customer cust2);
 
 //Receives a costumer and a new email address and updates it.
 //Will also update the email in every order that the customer currently has.
@@ -71,5 +71,5 @@ MtmErrorCode customer_remove_order(Order* ord, Customer cust);
 bool customer_has_orders(Order* ord, Customer cust);
 
 //Destroys the customer.
-MtmErrorCode customer_destroy(Customer cust);
+void customer_destroy(Customer cust);
 #endif
