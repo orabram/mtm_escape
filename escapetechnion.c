@@ -8,7 +8,7 @@
 
 #define MAX_RECOMMENDED 9999
 #define ILLEGAL_PRICE -1
-
+#define FACULTIES_NUM 18
 
 
 struct escapetechnion{
@@ -22,6 +22,8 @@ struct escapetechnion{
     FILE* output_channel;
 };
 
+/*This function receives an array of order objects and and EscapeTechnion object
+ * and sorts the array according to the value and index of the items.*/
 static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
 {
     Order swap;
@@ -29,13 +31,16 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
     {
         for (int j = 0 ; j < escape->orders_num - i - 1; j++)
         {
+           /*Check if the current order is scheduled before or after the next
+            * order*/
             if (order_get_time(sortedord[i] > order_get_time((sortedord[i+1]))))
             {
                 swap = sortedord[j];
                 sortedord[j] = sortedord[j+1];
                 sortedord[j+1] = swap;
             }
-            else if(order_get_time(sortedord[i] >
+            /*If they're similar, check which one has a smaller faculty id*/
+            else if(order_get_time(sortedord[i] ==
                                    order_get_time((sortedord[i+1]))))
             {
                 if(order_get_faculty(sortedord[i]) >
@@ -45,6 +50,8 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
                     sortedord[j] = sortedord[j+1];
                     sortedord[j+1] = swap;
                 }
+                /*If that's also equal, compare their id in their respective
+                 * companies */
                 else if(order_get_faculty(sortedord[i]) ==
                         order_get_faculty(sortedord[i+1]))
                 {
@@ -61,6 +68,8 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
     }
 }
 
+/*Runs through the Company Set and finds a Company object which matches the
+ * email address*/
 static MtmErrorCode find_company_in_set(Set set, char* email, Company comp)
 {
     char** temp_email;
@@ -97,7 +106,8 @@ static MtmErrorCode find_customer_in_set(Set set, char* email, Customer cust)
         cust = setGetNext(set);
     }
 }
-
+/*Checks if the mail address is legal. Returns true or false according to
+ * whether or not the email address is legal.*/
 static bool check_email(char* email)
 {
     if(email == NULL || !strstr(email, "@"))
@@ -106,7 +116,8 @@ static bool check_email(char* email)
     }
     return true;
 }
-
+/*Finds and returns an escaperoom object based on the id and faculty given.
+ * Returns null if no match has been found.*/
 static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
 {
     Company comp;
@@ -114,7 +125,8 @@ static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
     EscapeRoom escape;
     for(int i = 0; i < setGetSize(set); i++)
     {
-        if(company_room_exists(comp, id))
+        if(company_get_faculty(comp) == faculty &&
+                company_room_exists(comp, id))
         {
             escape = company_get_room(comp, id);
             return escape;
@@ -124,6 +136,8 @@ static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
     return NULL;
 }
 
+/*Receives an Order and an EscapeTechnion object and calculates the price
+ * of the order. Returns ILLEGAL_PRICE if no room was found.*/
 static int calculate_price(Order ord, EscapeTechnion escape)
 {
     EscapeRoom room;
@@ -136,38 +150,44 @@ static int calculate_price(Order ord, EscapeTechnion escape)
     return(escape_room_get_price(room) * order_get_num_ppl(ord));
 }
 
+/*This function prints all the relevant information to the daily business
+ * according to mtm_ex3.h*/
 static void print_day(EscapeTechnion escape, int num_of_events, Order* orders, int sum)
 {
     EscapeRoom room;
     Customer cust;
     MtmErrorCode code;
-    mtmPrintDayHeader(escape.output_channel, escape->days, num_of_events);
+    mtmPrintDayHeader(escape->output_channel, escape->days, num_of_events);
     for(int i = 0; i < num_of_events; i++)
     {
         room = find_escape_room(escape->CompanySet, order_get_id(orders[i]),
                                 order_get_faculty(orders[i]));
         code = find_customer_in_set(escape->CustomersSet,
                                     order_get_email(orders[i]), cust);
-        mtmPrintOrder(escape.output_channel, order_get_email(orders[i]),
+        mtmPrintOrder(escape->output_channel, order_get_email(orders[i]),
         customer_get_skill(cust), customer_get_faculty(cust),
         escape_room_get_email(orders[i]), order_get_faculty(orders[i]),
         order_get_id(orders[i]), order_get_hour(orders[i]),
         escape_room_get_difficulty(orders[i]), order_get_num_ppl(orders[i]), sum);
     }
-    mtmPrintDayFooter(escape.output_channel, escape->days);
+    mtmPrintDayFooter(escape->output_channel, escape->days);
 }
 
+/*This function prints all the relevant information to the daily business
+ * according to mtm_ex3.h*/
 static void print_winners(EscapeTechnion escape, int sum, int id1, int no1,
                           int id2, int no2, int id3, int no3)
 {
     mtmPrintFacultiesHeader(escape->output_channel, FACULTIES_NUM, escape->days,
                             sum);
-    mtmPrintFaculty(escape.output_channel, id1, no1);
-    mtmPrintFaculty(escape.output_channel, id2, no2);
-    mtmPrintFaculty(escape.output_channel, id3, no3);
-    mtmPrintFacultiesFooter(escape.output_channel);
+    mtmPrintFaculty(escape->output_channel, id1, no1);
+    mtmPrintFaculty(escape->output_channel, id2, no2);
+    mtmPrintFaculty(escape->output_channel, id3, no3);
+    mtmPrintFacultiesFooter(escape->output_channel);
 }
 
+/*This function doesn't receive parameters, and is responsible
+ * for creating EscapeTechnion objects. */
 EscapeTechnion create_escapetechnion(){
     EscapeTechnion escape = malloc(sizeof(EscapeTechnion));
     if(escape == NULL)

@@ -7,8 +7,6 @@
 #include "customer.h"
 #include "list.h"
 
-#define FACULTIES_NUM 19
-
 typedef struct escapetechnion *EscapeTechnion;
 
 
