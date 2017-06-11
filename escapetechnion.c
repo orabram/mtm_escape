@@ -85,15 +85,14 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
         {
            /*Check if the current order is scheduled before or after the next
             * order*/
-            if (order_get_time(sortedord[i]) > order_get_time(sortedord[i+1]))
+            if (order_compare_time(sortedord[i], sortedord[i+1]))
             {
                 swap = sortedord[j];
                 sortedord[j] = sortedord[j+1];
                 sortedord[j+1] = swap;
             }
             /*If they're similar, check which one has a smaller faculty id*/
-            else if(order_get_time(sortedord[i]) ==
-                                   order_get_time(sortedord[i+1]))
+            else if(orders_equal_time(ortedord[i], sortedord[i+1]))
             {
                 if(order_get_faculty(sortedord[i]) >
                         order_get_faculty(sortedord[i+1]))
@@ -633,7 +632,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
             for(int j = 0; j < orders_num; j++)
             {
                 ord = customer_get_order(cust, j);
-                if(order_get_time(ord) < 100)
+                if(order_get_day(ord) == 0)
                 {
                     sortedord[counter] = ord;
                     counter++;

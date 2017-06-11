@@ -9,9 +9,10 @@ struct order{
     char* email;
     TechnionFaculty faculty;
     int id;
-    int time;
+    int day;
+    int hour;
     unsigned int num_ppl;
-} ;
+};
 
 static int day_to_int(char* time)
 {
@@ -65,7 +66,7 @@ static bool check_faculty(TechnionFaculty faculty)
     return true;
 }
 
-static bool check_num_ppl(unsigned int num_ppl)
+static bool check_num_ppl(int num_ppl)
 {
     if(num_ppl <= 0)
     {
@@ -81,18 +82,24 @@ Order create_order()
 }
 
 MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
-int id, char* time, unsigned int num_ppl)
+int id, char* time, int num_ppl)
 {
     if(ord == NULL || !check_time(time) || !check_email(email) || !check_id(id)
             || !check_faculty(faculty) || !check_num_ppl(num_ppl))
     {
         return MTM_INVALID_PARAMETER;
     }
-    ord->email = email;
+    free(ord->email);
+    ord->email = strdup(email);
+    if(ord->email == NULL)
+    {
+        return MTM_OUT_OF_MEMORY;
+    }
     ord->id = id;
     ord->faculty = faculty;
     ord->num_ppl = num_ppl;
-    ord->time = day_to_int(time) * 100 + hour_to_int(time);
+    ord->day = day_to_int(time);
+    ord->hour = hour_to_int(time);
     return MTM_SUCCESS;
 }
 
@@ -114,14 +121,40 @@ int order_get_id(Order ord)
 }
 
 //Returns the time of the order in the given memory space.
-int order_get_time(Order ord)
+int order_get_day(Order ord)
 {
-    return ord->time;
+    return ord->day;
 }
 
 int order_get_hour(Order ord)
 {
-    return (ord->time % 100);
+    return ord->hour;
+}
+
+bool order_compare_time(Order ord1, Order ord2)
+{
+    if(order_get_day(ord1)> order_get_day(ord2))
+    {
+        return true;
+    }
+    else if(order_get_day(ord1) == order_get_day(ord2))
+    {
+        if (order_get_hour(ord1) > order_get_day(ord2))
+        {
+            return true;
+        }
+    }
+    return false;
+}
+
+bool order_equal_time(Order ord1, Order ord2)
+{
+    if(order_get_day(ord1) == order_get_day(ord2) && order_get_hour(ord1) ==
+                                                     order_get_hour(ord2))
+    {
+        return true;
+    }
+    return false;
 }
 
 //Returns the number of peoples of the order in the given memory space.
@@ -132,7 +165,7 @@ unsigned int order_get_num_ppl(Order ord)
 
 void order_day_passed(Order ord)
 {
-    ord->time -= 100;
+    ord->day -= 1;
 }
 
 

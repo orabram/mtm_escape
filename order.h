@@ -11,7 +11,7 @@ Order create_order();
 
 //Creates a new order.
 MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
-                          int id, char* time, unsigned int num_ppl);
+                          int id, char* time, int num_ppl);
 /*
 //Copies an existing order
 MtmErrorCode copy_order(Order ord, Order new_ord);
@@ -55,9 +55,13 @@ TechnionFaculty order_get_faculty(Order ord);
 int order_get_id(Order ord);
 
 //Returns the time of the order in the given memory space.
-int order_get_time(Order ord);
+int order_get_day(Order ord);
 
 int order_get_hour(Order ord);
+
+bool order_compare_time(Order ord1, Order ord2);
+
+bool orders_equal_time(Order ord1, Order ord2);
 
 //Returns the number of peoples of the order in the given memory space.
 unsigned int order_get_num_ppl(Order ord);
