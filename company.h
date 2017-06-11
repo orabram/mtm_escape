@@ -7,11 +7,7 @@
 #include "escaperoom.h"
 #include "mtm_ex3.h"
 
-typedef struct company{
-    char* email;
-    TechnionFaculty faculty;
-    Set escape_room_set;
-} *Company;
+typedef struct company *Company;
 
 Company create_company();
 

@@ -82,6 +82,12 @@ MtmErrorCode escape_room_colliding_times(EscapeRoom room, Order order);
 //Removes an order.
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order);
 
+//Compares two rooms. Returns True if they are equal, and False if not.
+bool escape_room_compare(EscapeRoom room1, EscapeRoom room2);
+
+//Returns True if a reservation for this room exists, and False otherwise.
+bool escape_room_order_exists(EscapeRoom room);
+
 //Destroys the room.
 MtmErrorCode escape_room_destroy(EscapeRoom room);
 
