@@ -1,8 +1,10 @@
 #include "customer.h"
+#include "order.h"
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include "mtm_ex3.h"
+#include "set.h"
 
 #define FACULTIES_NUM UNKNOWN
 
@@ -45,7 +47,7 @@ static int ord_compare(SetElement ord1, SetElement ord2)
 //Returns true if the email is legal, false otherwise.
 static bool check_email(char* email)
 {
-    if(email == NULL || !strstr(email, "@"))
+    if(!strstr(email, "@"))
     {
         return false;
     }
@@ -81,8 +83,11 @@ Customer create_customer()
 MtmErrorCode initialize_customer(Customer cust, char* email,
                                  TechnionFaculty faculty, int skill)
 {
-    if(cust == NULL || !check_email(email) || !check_faculty(faculty) ||
-            !check_skill(skill))
+    if(cust == NULL || email == NULL)
+    {
+        return MTM_NULL_PARAMETER;
+    }
+    if(!check_email(email) || !check_faculty(faculty) || !check_skill(skill))
     {
         return MTM_INVALID_PARAMETER;
     }
@@ -96,11 +101,16 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
     cust->orders_num = 0;
     cust->skill_level = skill;
     cust->OrderSet = setCreate(ord_copy, ord_destroy, ord_compare);
+    return MTM_SUCCESS;
 
 }
 
 Customer customer_copy(Customer cust)
 {
+    if(cust == NULL)
+    {
+        return NULL;
+    }
     Customer new_cust = malloc(sizeof(struct customer));
     if(new_cust == NULL)
     {
@@ -136,13 +146,14 @@ MtmErrorCode customer_add_order(Order ord, Customer cust)
 {
     if(ord == NULL || cust == NULL)
     {
-        return MTM_INVALID_PARAMETER;
+        return MTM_NULL_PARAMETER;
     }
     SetResult result = setAdd(cust->OrderSet, ord);
     if(result == SET_ITEM_ALREADY_EXISTS)
     {
-        return MTM_EMAIL_ALREADY_EXISTS;
+        return MTM_CLIENT_IN_ROOM;
     }
+    cust->orders_num++;
     return MTM_SUCCESS;
 }
 
@@ -172,17 +183,14 @@ MtmErrorCode customer_remove_order(Order ord, Customer cust)
     {
         return MTM_INVALID_PARAMETER;
     }
+    cust->orders_num--;
     return MTM_SUCCESS;
 
 }
 
 bool customer_already_booked(Order ord, Customer cust)
 {
-    Order temp_ord = setGetFirst(cust->OrderSet);
-    for(int i = 0; i < setGetSize(cust->OrderSet); i++)
-    {
-        if(order_get_day(temp_ord) == order_get_day(ord) && )
-    }
+    return setIsIn(cust->OrderSet, ord);
 }
 
 

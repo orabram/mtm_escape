@@ -44,7 +44,7 @@ static bool check_time(char* time)
 //Returns true if the email is legal, false otherwise.
 static bool check_email(char* email)
 {
-    if(email == NULL || !strstr(email, "@"))
+    if(!strstr(email, "@"))
     {
         return false;
     }
@@ -93,8 +93,12 @@ MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
 int id, char* time, int num_ppl)
 {
     //Check if the parameters are legal
-    if(ord == NULL || !check_time(time) || !check_email(email) || !check_id(id)
-            || !check_faculty(faculty) || !check_num_ppl(num_ppl))
+    if(ord == NULL || email == NULL)
+    {
+        return MTM_NULL_PARAMETER;
+    }
+    if(!check_time(time) || !check_email(email) || !check_id(id)
+       || !check_faculty(faculty) || !check_num_ppl(num_ppl))
     {
         return MTM_INVALID_PARAMETER;
     }

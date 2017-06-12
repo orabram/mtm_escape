@@ -76,12 +76,12 @@ static int cust_compare(SetElement cust1, SetElement cust2)
     return strcmp(customer_get_email(cust1), customer_get_email(cust2));
 }
 
-/*
-static char* time_int_to_chr(int time)
+
+static char* time_int_to_chr(int day, int hour)
 {
-    char* chrtime = malloc(5);
-    int digit1 = time / 1000, digit2 = time / 100 - digit1 * 10,
-            digit4 = time % 10, digit3 = time % 100 - digit4;
+    char* chrtime = malloc(6);
+    int digit1 = day / 10, digit2 = day % 10, digit3 = hour / 10,
+            digit4 = hour % 10;
     if(chrtime == NULL)
     {
         return NULL;
@@ -93,7 +93,7 @@ static char* time_int_to_chr(int time)
     chrtime[4] = digit4 + '0';
     return chrtime;
 }
- */
+
 
 
 static MtmErrorCode remove_order(Order ord, EscapeTechnion escape)
@@ -523,10 +523,14 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
     if (cust == NULL) {
         return  MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
     }
-    code = remove_order()
+    Order ord;
+    for(int i = 0; i < customer_get_orders_num(cust); i++)
+    {
+        ord = customer_get_order(cust, i);
+        remove_order(ord, escape);
+    }
     escape->orders_num -= customer_get_orders_num(cust);
     customer_destroy(cust);
-    EscapeRoom room = escape_room_
     setRemove(escape->CustomersSet, email);
     //setRemove(escape->CustomerEmailsSet, email);
     return MTM_SUCCESS;
