@@ -37,7 +37,19 @@ static int compare_room(SetElement room1, SetElement room2)
 }
 
 
-static
+static bool test_create_escape_room()
+{
+    EscapeRoom room = create_escape_room();
+    ASSERT_TEST(room != NULL);
+    destroy_room(room);
+    return true;
+}
+
+static bool test_initialize_escape_room()
+{
+    EscapeRoom room = create_escape_room();
+
+}
 
 
 

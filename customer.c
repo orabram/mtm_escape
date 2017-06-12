@@ -95,7 +95,6 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
     {
         return MTM_OUT_OF_MEMORY;
     }
-    free(cust->email); //A precaution against multiple initializations.
     cust->email = strdup(email);
     cust->faculty = faculty;
     cust->orders_num = 0;

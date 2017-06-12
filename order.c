@@ -34,7 +34,7 @@ static bool check_time(char* time)
         return false;
     }
     int day = day_to_int(time) , hour = hour_to_int(time);
-    if(day < 0 || hour < 23 || hour > 23)
+    if(day < 0 || hour < 0 || hour > 23)
     {
         return false;
     }
@@ -102,7 +102,7 @@ int id, char* time, int num_ppl)
     {
         return MTM_INVALID_PARAMETER;
     }
-    free(ord->email); //A precaution against initializing the same order twice.
+    //free(ord->email); //A precaution against initializing the same order twice.
     ord->email = strdup(email);
     if(ord->email == NULL)
     {
