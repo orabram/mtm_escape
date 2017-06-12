@@ -97,26 +97,6 @@ MtmErrorCode company_remove_room(Company comp, int id)
         }
     }
     return MTM_ID_DOES_NOT_EXIST;
-    /*while (room != NULL && escape_room_get_id(room) != id) {
-        room = setGetNext(comp->escape_room_set);
-    }
-    if (room == NULL) {
-        return MTM_ID_DOES_NOT_EXIST;
-    }
-    if (escape_room_order_exists(room)) {
-        return MTM_RESERVATION_EXISTS;
-    }
-    setRemove(comp->escape_room_set, room);
-    return MTM_SUCCESS;
-     */
-}
-
-/**
- * IS IT ACTUALLY NECESSARY?
- */
-MtmErrorCode company_set_email(Company comp, char* email)
-{
-    return MTM_SUCCESS;
 }
 
 char* company_get_email(Company comp)
