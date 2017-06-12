@@ -110,7 +110,7 @@ int id, char* time, int num_ppl)
     }
     ord->id = id;
     ord->faculty = faculty;
-    ord->num_ppl = num_ppl;
+    ord->num_ppl = (unsigned int)num_ppl;
     ord->day = day_to_int(time);
     ord->hour = hour_to_int(time); //Save the parameters in their respective
                                    //fields
@@ -182,7 +182,7 @@ bool order_compare_time(Order ord1, Order ord2)
 }
 
 //Returns true if both orders happen in the same time, false otherwise.
-bool order_equal_time(Order ord1, Order ord2)
+bool orders_equal_time(Order ord1, Order ord2)
 {
     if(order_get_day(ord1) == order_get_day(ord2) && order_get_hour(ord1) ==
                                                      order_get_hour(ord2))

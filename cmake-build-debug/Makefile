@@ -122,60 +122,6 @@ mtm_escape/fast:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/build
 .PHONY : mtm_escape/fast
 
-company.obj: company.c.obj
-
-.PHONY : company.obj
-
-# target to build an object file
-company.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.obj
-.PHONY : company.c.obj
-
-company.i: company.c.i
-
-.PHONY : company.i
-
-# target to preprocess a source file
-company.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.i
-.PHONY : company.c.i
-
-company.s: company.c.s
-
-.PHONY : company.s
-
-# target to generate assembly for a file
-company.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.s
-.PHONY : company.c.s
-
-company_test.obj: company_test.c.obj
-
-.PHONY : company_test.obj
-
-# target to build an object file
-company_test.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company_test.c.obj
-.PHONY : company_test.c.obj
-
-company_test.i: company_test.c.i
-
-.PHONY : company_test.i
-
-# target to preprocess a source file
-company_test.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company_test.c.i
-.PHONY : company_test.c.i
-
-company_test.s: company_test.c.s
-
-.PHONY : company_test.s
-
-# target to generate assembly for a file
-company_test.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company_test.c.s
-.PHONY : company_test.c.s
-
 customer.obj: customer.c.obj
 
 .PHONY : customer.obj
@@ -203,113 +149,32 @@ customer.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer.c.s
 .PHONY : customer.c.s
 
-escaperoom.obj: escaperoom.c.obj
+customertests.obj: customertests.c.obj
 
-.PHONY : escaperoom.obj
-
-# target to build an object file
-escaperoom.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom.c.obj
-.PHONY : escaperoom.c.obj
-
-escaperoom.i: escaperoom.c.i
-
-.PHONY : escaperoom.i
-
-# target to preprocess a source file
-escaperoom.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom.c.i
-.PHONY : escaperoom.c.i
-
-escaperoom.s: escaperoom.c.s
-
-.PHONY : escaperoom.s
-
-# target to generate assembly for a file
-escaperoom.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom.c.s
-.PHONY : escaperoom.c.s
-
-escaperoom_test.obj: escaperoom_test.c.obj
-
-.PHONY : escaperoom_test.obj
+.PHONY : customertests.obj
 
 # target to build an object file
-escaperoom_test.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj
-.PHONY : escaperoom_test.c.obj
+customertests.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customertests.c.obj
+.PHONY : customertests.c.obj
 
-escaperoom_test.i: escaperoom_test.c.i
+customertests.i: customertests.c.i
 
-.PHONY : escaperoom_test.i
-
-# target to preprocess a source file
-escaperoom_test.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.i
-.PHONY : escaperoom_test.c.i
-
-escaperoom_test.s: escaperoom_test.c.s
-
-.PHONY : escaperoom_test.s
-
-# target to generate assembly for a file
-escaperoom_test.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.s
-.PHONY : escaperoom_test.c.s
-
-escapetechnion.obj: escapetechnion.c.obj
-
-.PHONY : escapetechnion.obj
-
-# target to build an object file
-escapetechnion.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.obj
-.PHONY : escapetechnion.c.obj
-
-escapetechnion.i: escapetechnion.c.i
-
-.PHONY : escapetechnion.i
+.PHONY : customertests.i
 
 # target to preprocess a source file
-escapetechnion.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.i
-.PHONY : escapetechnion.c.i
+customertests.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customertests.c.i
+.PHONY : customertests.c.i
 
-escapetechnion.s: escapetechnion.c.s
+customertests.s: customertests.c.s
 
-.PHONY : escapetechnion.s
-
-# target to generate assembly for a file
-escapetechnion.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.s
-.PHONY : escapetechnion.c.s
-
-main.obj: main.c.obj
-
-.PHONY : main.obj
-
-# target to build an object file
-main.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/main.c.obj
-.PHONY : main.c.obj
-
-main.i: main.c.i
-
-.PHONY : main.i
-
-# target to preprocess a source file
-main.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/main.c.i
-.PHONY : main.c.i
-
-main.s: main.c.s
-
-.PHONY : main.s
+.PHONY : customertests.s
 
 # target to generate assembly for a file
-main.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/main.c.s
-.PHONY : main.c.s
+customertests.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customertests.c.s
+.PHONY : customertests.c.s
 
 order.obj: order.c.obj
 
@@ -347,27 +212,12 @@ help:
 	@echo ... mtm_escape
 	@echo ... edit_cache
 	@echo ... rebuild_cache
-	@echo ... company.obj
-	@echo ... company.i
-	@echo ... company.s
-	@echo ... company_test.obj
-	@echo ... company_test.i
-	@echo ... company_test.s
 	@echo ... customer.obj
 	@echo ... customer.i
 	@echo ... customer.s
-	@echo ... escaperoom.obj
-	@echo ... escaperoom.i
-	@echo ... escaperoom.s
-	@echo ... escaperoom_test.obj
-	@echo ... escaperoom_test.i
-	@echo ... escaperoom_test.s
-	@echo ... escapetechnion.obj
-	@echo ... escapetechnion.i
-	@echo ... escapetechnion.s
-	@echo ... main.obj
-	@echo ... main.i
-	@echo ... main.s
+	@echo ... customertests.obj
+	@echo ... customertests.i
+	@echo ... customertests.s
 	@echo ... order.obj
 	@echo ... order.i
 	@echo ... order.s

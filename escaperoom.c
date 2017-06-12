@@ -150,7 +150,7 @@ int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
                                             int num_ppl)
 {
     if (room == NULL) {
-        return NULL;
+        return -1;
     }
     return ((room->num_ppl - num_ppl)*(room->num_ppl - num_ppl)) +
             ((room->difficulty - skill_level)*(room->difficulty - skill_level));

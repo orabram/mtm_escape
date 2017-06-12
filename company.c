@@ -134,7 +134,7 @@ char* company_get_email(Company comp)
 TechnionFaculty company_get_faculty(Company comp)
 {
     if (comp == NULL) {
-        return NULL;
+        return UNKNOWN;
     }
     return comp->faculty;
 }

@@ -82,55 +82,19 @@
 				</MakeCommands>
 			</Target>
 		</Build>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/company.c">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/company.h">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/company_test.c">
-			<Option target="mtm_escape"/>
-		</Unit>
 		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/customer.c">
 			<Option target="mtm_escape"/>
 		</Unit>
 		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/customer.h">
 			<Option target="mtm_escape"/>
 		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escaperoom.c">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escaperoom.h">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escaperoom_test.c">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escapetechnion.c">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escapetechnion.h">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/list.h">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/list_mtm1.h">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/main.c">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/mtm_ex3.h">
+		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/customertests.c">
 			<Option target="mtm_escape"/>
 		</Unit>
 		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/order.c">
 			<Option target="mtm_escape"/>
 		</Unit>
 		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/order.h">
-			<Option target="mtm_escape"/>
-		</Unit>
-		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/set.h">
 			<Option target="mtm_escape"/>
 		</Unit>
 		<Unit filename="C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/CMakeLists.txt">
