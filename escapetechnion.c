@@ -31,34 +31,43 @@ struct escapetechnion{
 /*This function receives an array of order objects and and EscapeTechnion object
  * and sorts the array according to the value and index of the items.*/
 
+//This is the copy function for the set.
 static SetElement comp_copy(SetElement comp)
 {
     return company_copy(comp);
 }
 
+//This is the free function for the set.
 static void comp_free(SetElement comp)
 {
     company_destroy(comp);
 }
+
+//This is the compare function for the set.
 static int comp_compare(SetElement comp1, SetElement comp2)
 {
     return strcmp(company_get_email(comp1), company_get_email(comp2));
 }
 
+//This is the copy function for the set.
 static SetElement cust_copy(SetElement cust)
 {
     return customer_copy(cust);
 }
 
+//This is the free function for the set.
 static void cust_free(SetElement cust)
 {
     customer_destroy(cust);
 }
+
+//This is the compare function for the set.
 static int cust_compare(SetElement cust1, SetElement cust2)
 {
     return strcmp(customer_get_email(cust1), customer_get_email(cust2));
 }
 
+/*
 static char* time_int_to_chr(int time)
 {
     char* chrtime = malloc(5);
@@ -75,6 +84,7 @@ static char* time_int_to_chr(int time)
     chrtime[4] = digit4 + '0';
     return chrtime;
 }
+ */
 
 static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
 {
