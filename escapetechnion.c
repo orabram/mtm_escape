@@ -553,7 +553,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     comp = setGetFirst(escape->CompanySet);
     bool rooms_exist = false;
     int cur_min = MAX_RECOMMENDED, temp_min, skill = customer_get_skill(cust),
-            min_room_id = MAX_RECOMMENDED, temp_room_id, time;
+            min_room_id = MAX_RECOMMENDED, temp_room_id, day, hour;
     TechnionFaculty cur_faculty = UNKNOWN, temp_faculty,
             cust_faculty = customer_get_faculty(cust);
     for(int i = 0; i < setGetSize(escape->CompanySet); i++)
