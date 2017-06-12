@@ -40,7 +40,7 @@ EscapeRoom company_get_room(Company comp, int id);
 bool company_room_exists(Company comp, int id);
 
 int company_recommended_rooms(Company comp, unsigned int num_ppl, int skill,
-                              int* id, int* time);
+                              int id, int day, int hour);
 
 bool company_room_got_orders(Company comp, int id);
 
