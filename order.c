@@ -1,9 +1,9 @@
 #include "order.h"
 #include <stdio.h>
 #include <stdlib.h>
-#include "string.h"
+#include <string.h>
 
-#define FACULTIES_NUM 18
+#define FACULTIES_NUM UNKNOWN
 
 struct order{
     char* email;
@@ -111,6 +111,23 @@ int id, char* time, int num_ppl)
     ord->hour = hour_to_int(time); //Save the parameters in their respective
                                    //fields
     return MTM_SUCCESS;
+}
+
+//Creates a clone of an existing order and returns it.
+Order order_copy(Order ord)
+{
+    Order new_ord = malloc(sizeof(struct order));
+    if(new_ord == NULL)
+    {
+        return NULL;
+    }
+    new_ord->faculty = ord->faculty;
+    new_ord->email = strdup(ord->email);
+    new_ord->day = ord->day;
+    new_ord->hour = ord->hour;
+    new_ord->num_ppl = ord->num_ppl;
+    new_ord->id = ord->id;
+    return new_ord;
 }
 
 //Returns the email address of the client who made this order.

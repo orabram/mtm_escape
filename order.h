@@ -21,10 +21,10 @@ Order create_order();
  * num_ppl: The number of people in the order. Must be a positive integer. */
 MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
                           int id, char* time, int num_ppl);
-/*
-//Copies an existing order
-MtmErrorCode copy_order(Order ord, Order new_ord);
 
+//Copies an existing order
+Order order_copy(Order ord);
+/*
 //Creates a new order, but with different parameters than the original one.
 MtmErrorCode create_order_gen(Order ord, Customer cust, EscapeRoom escapy,
                               int time, unsigned int numppl);

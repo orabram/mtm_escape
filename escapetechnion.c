@@ -95,6 +95,26 @@ static char* time_int_to_chr(int time)
 }
  */
 
+
+static MtmErrorCode remove_order(Order ord, EscapeTechnion escape)
+{
+    EscapeRoom room = find_escape_room(escape->CompanySet, order_get_id(ord),
+                                       order_get_faculty(ord));
+    Customer cust = find_customer_in_set(escape->CustomersSet,
+                                         order_get_email(ord));
+    MtmErrorCode code = escape_room_remove_order(room, ord);
+    if(code != MTM_SUCCESS)
+    {
+        return code;
+    }
+    code = customer_remove_order(ord, cust);
+    if(code != MTM_SUCCESS)
+    {
+        return code;
+    }
+    return MTM_SUCCESS;
+}
+
 static MtmErrorCode rooms_in_system(EscapeTechnion escape)
 {
     Company comp = setGetFirst(escape->CompanySet);
@@ -378,14 +398,12 @@ MtmErrorCode escapetechnion_destroy_company(EscapeTechnion escape, char* email)
     {
         return MTM_INVALID_PARAMETER;
     }
-    bool has_orders;
     Company tempcomp = find_company_in_set(escape->CompanySet, email);
     if(tempcomp == NULL)
     {
         return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
     }
-    has_orders = company_got_orders(tempcomp);
-    if(!has_orders)
+    if(company_got_orders(tempcomp))
     {
         return MTM_RESERVATION_EXISTS;
     }
@@ -505,11 +523,10 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
     if (cust == NULL) {
         return  MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
     }
-    /*if(!setIsIn(escape->CustomersSet, email))
-    {
-        return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
-    }*/
+    code = remove_order()
     escape->orders_num -= customer_get_orders_num(cust);
+    customer_destroy(cust);
+    EscapeRoom room = escape_room_
     setRemove(escape->CustomersSet, email);
     //setRemove(escape->CustomerEmailsSet, email);
     return MTM_SUCCESS;
@@ -558,7 +575,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         order_remove(ord);
         return code;
     }
-    code = customer_add_order(&ord, cust);
+    code = customer_add_order(ord, cust);
     if(code != MTM_SUCCESS)
     {
         escape_room_remove_order(room, ord);
@@ -656,7 +673,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     }
                     escape->faculties[faculty] += price;
                     prices[counter] = price;
-                    customer_remove_order(&ord, cust);
+                    remove_order(ord, escape);
                     escape->orders_num--;
                 }
                 else

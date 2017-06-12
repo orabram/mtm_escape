@@ -8,14 +8,7 @@
 #include "order.h"
 #include "escaperoom.h"
 
-typedef struct customer{
-    char* email;
-    TechnionFaculty faculty;
-    int skill_level;
-    Set *OrderSet;
-    int orders_num;
-
-} *Customer;
+typedef struct customer *Customer;
 
 
 Customer create_customer();
@@ -29,6 +22,7 @@ Customer customer_copy(Customer cust);
 
 int customer_compare(Customer cust1, Customer cust2);
 
+/*
 //Receives a costumer and a new email address and updates it.
 //Will also update the email in every order that the customer currently has.
 MtmErrorCode customer_set_email(Customer cust, char* newmail);
@@ -38,7 +32,7 @@ MtmErrorCode customer_set_faculty(Customer cust, TechnionFaculty newfac);
 
 //Receives a costumer and a new skill level and updates it.
 MtmErrorCode customer_set_skill(Customer cust, int skill);
-
+*/
 //Returns the email address of the customer.
 char* customer_get_email(Customer cust);
 
@@ -49,26 +43,26 @@ TechnionFaculty customer_get_faculty(Customer cust);
 int customer_get_skill(Customer cust);
 
 //Sets true if the email address is used by the customer.
-MtmErrorCode customer_already_exists(Customer cust, char* email, bool* correct);
+//MtmErrorCode customer_already_exists(Customer cust, char* email, bool* correct);
 
 //Adds a new order to the order set.
-MtmErrorCode customer_add_order(Order* ord, Customer cust);
+MtmErrorCode customer_add_order(Order ord, Customer cust);
 
-Order customer_get_order(Customer cust, int id);
-
-//Checks if the order already exists.
-bool customer_order_exists(Order* ord, Customer cust);
+Order customer_get_order(Customer cust, int ord_num);
 
 int customer_get_orders_num(Customer cust);
+
+//Checks if the order already exists.
+//bool customer_order_exists(Order* ord, Customer cust);
 
 //Checks if the customer has any other orders at the time of the order.
 bool customer_already_booked(Order ord, Customer cust);
 
 //Removes an order from the set.
-MtmErrorCode customer_remove_order(Order* ord, Customer cust);
+MtmErrorCode customer_remove_order(Order ord, Customer cust);
 
 //Checks if the customers has any impending orders.
-bool customer_has_orders(Order* ord, Customer cust);
+//bool customer_has_orders(Order* ord, Customer cust);
 
 //Destroys the customer.
 void customer_destroy(Customer cust);
