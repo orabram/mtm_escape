@@ -12,13 +12,15 @@ typedef struct escaperoom *EscapeRoom;
 //issue happens.
 EscapeRoom create_escape_room();
 
-//Initilizes values a new escape room. Resets OrdersSet.
-MtmErrorCode initialize_escape_room(char* email, int id, int price,
-                                int num_ppl, char *working_hrs, int difficulty);
+//Initializes values a new escape room. Resets OrdersSet.
+MtmErrorCode initialize_escape_room(EscapeRoom room, char* email, int id,
+                                    int price, int num_ppl, char *working_hrs,
+                                    int difficulty);
 
 //Copies an existing escape room.
 MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room);
 
+/*
 //Switches the current corporate email with a new one.
 //NOTE: It does not change the original one.
 MtmErrorCode escape_room_set_emails(EscapeRoom escape, char* email);
@@ -36,13 +38,14 @@ MtmErrorCode escape_room_set_num_ppl(EscapeRoom escape, int num_ppl);
 //Changes the working hours of the room.
 //NOTE: Due to this function not being vital, we've removed it until futher
 //notice.
-/*MtmErrorCode escape_room_set_working_hrs(EscapeRoom escape, int working_hrs);*/
+MtmErrorCode escape_room_set_working_hrs(EscapeRoom escape, int working_hrs);
 
 //Changes the difficulty of the room.
 MtmErrorCode escape_room_set_difficulty(EscapeRoom escape, int difficulty);
 
 //Changes the current price.
 //MtmErrorCode escape_room_set_faculty(EscapeRoom escape, TechnionFaculty faculty);
+*/
 
 //Returns the email into the given variable.
 char* escape_room_get_email(EscapeRoom room);
@@ -54,13 +57,13 @@ int escape_room_get_id(EscapeRoom room);
 int escape_room_get_price(EscapeRoom room);
 
 //Returns the num_ppl into the given variable.
-int escape_room_get_num_ppl(EscapeRoom room);
+//int escape_room_get_num_ppl(EscapeRoom room);
 
 //Returns the working_hrs into the given variable.
-char* escape_room_get_working_hrs(EscapeRoom room);
+//char* escape_room_get_working_hrs(EscapeRoom room);
 
 //Returns the difficulty into the given variable.
-int escape_room_get_difficulty(EscapeRoom room);
+//int escape_room_get_difficulty(EscapeRoom room);
 
 //Returns the faculty into the given variable.
 //MtmErrorCode escape_room_get_faculty(EscapeRoom room,
@@ -75,13 +78,10 @@ int escape_room_calculate_recommended_value(EscapeRoom room,
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);
 
 //Checks to see if two orders match each other's time.
-MtmErrorCode escape_room_colliding_times(EscapeRoom room, Order order);
+bool escape_room_colliding_times(EscapeRoom room, Order order);
 
 //Removes an order.
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order);
-
-//Compares two rooms. Returns True if they are equal, and False if not.
-bool escape_room_compare(EscapeRoom room1, EscapeRoom room2);
 
 //Returns True if a reservation for this room exists, and False otherwise.
 bool escape_room_order_exists(EscapeRoom room);
