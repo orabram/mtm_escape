@@ -12,6 +12,30 @@ struct company {
     Set escape_room_set;
 };
 
+static SetElement copy_room(SetElement room)
+{
+    EscapeRoom copy = create_escape_room();
+    if (copy == NULL) {
+        return NULL;
+    }
+    if (escape_room_copy(copy, room) != MTM_SUCCESS) {
+        escape_room_destroy(copy);
+        return NULL;
+    }
+    return copy;
+}
+
+static void destroy_room(SetElement room)
+{
+    escape_room_destroy(room);
+}
+
+static int compare_room(SetElement room1, SetElement room2)
+{
+    EscapeRoom r1 = (EscapeRoom)room1, r2 = (EscapeRoom)room2;
+    return escape_room_get_id(r1) - escape_room_get_id(r2);
+}
+
 Company create_company()
 {
     Company company = malloc(sizeof(*company));
@@ -22,8 +46,8 @@ Company create_company()
     /**
      * Got to change these functions according to the Set requirements
      */
-    Set room_set = setCreate(escape_room_copy, escape_room_destroy,
-                             escape_room_compare);
+    Set room_set = setCreate(copy_room, destroy_room,
+                             compare_room);
 
     if (room_set == NULL) {
         free(company);
@@ -115,7 +139,83 @@ TechnionFaculty company_get_faculty(Company comp)
     return comp->faculty;
 }
 
+int company_get_room_num(Company comp)
+{
+    if (comp == NULL) {
+        return -1;
+    }
+    return setGetSize(comp->escape_room_set);
+}
 
+EscapeRoom company_get_room(Company comp, int id)
+{
+    if (comp == NULL || id < 0) {
+        return NULL;
+    }
+    EscapeRoom temp_room = setGetFirst(comp->escape_room_set);
+    for (int i = 0; i < company_get_room_num(comp); i++) {
+        if (escape_room_get_id(temp_room) == id) {
+            return temp_room;
+        }
+        temp_room = setGetNext(comp->escape_room_set);
+    }
+    return NULL;
+}
+
+bool company_room_exists(Company comp, int id)
+{
+    if (company_get_room(comp, id) == NULL) {
+        return false;
+    }
+    return true;
+}
+
+int company_recommended_rooms(Company comp, int num_ppl, int skill,
+                              int* id, int* day, int* hour)
+{
+    assert (!(comp == NULL || num_ppl < 0 || skill <= 0 || skill > 10 ||
+            id == NULL || day == NULL || hour == NULL));
+    int temp_res, result = -1;
+    EscapeRoom room = setGetFirst(comp->escape_room_set);
+    for (int i = 0; i < setGetSize(comp->escape_room_set); i++) {
+        temp_res=escape_room_calculate_recommended_value(room, skill, num_ppl);
+        if (temp_res < result || result == -1) {
+            result = temp_res;
+        }
+        room = setGetNext(comp->escape_room_set);
+    }
+    return result;
+}
+
+/*bool company_room_got_orders(Company comp, int id)
+{
+    if (comp == NULL || id < 0) {
+        return false;
+    }
+    EscapeRoom room = company_get_room(comp, id);
+    if (room == NULL) {
+        return false;
+    }
+    if (escape_room_order_exists(room)) {
+        return true;
+    }
+    return false;
+}*/
+
+bool company_got_orders(Company comp)
+{
+    if (comp == NULL) {
+        return false;
+    }
+    EscapeRoom room = setGetFirst(comp->escape_room_set);
+    for (int i = 0; i < setGetSize(comp->escape_room_set); i++) {
+        if (escape_room_order_exists(room)) {
+            return true;
+        }
+        room = setGetNext(comp->escape_room_set);
+    }
+    return false;
+}
 
 void company_destroy(Company comp)
 {

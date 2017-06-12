@@ -67,11 +67,9 @@ int escape_room_get_difficulty(EscapeRoom room);
 //                                     TechnionFaculty *faculty);
 
 //Calculates how recommended this room is to a specific party,
-// and stores the value in the given variable.
-MtmErrorCode escape_room_calculate_recommended_value(EscapeRoom room,
+int escape_room_calculate_recommended_value(EscapeRoom room,
                                                      int skill_level,
-                                                     int party_size,
-                                                     int* recommended_value);
+                                                     int party_size);
 
 //Adds a new order to the room.
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);
@@ -89,6 +87,6 @@ bool escape_room_compare(EscapeRoom room1, EscapeRoom room2);
 bool escape_room_order_exists(EscapeRoom room);
 
 //Destroys the room.
-MtmErrorCode escape_room_destroy(EscapeRoom room);
+void escape_room_destroy(EscapeRoom room);
 
 #endif

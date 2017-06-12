@@ -34,9 +34,6 @@ MtmErrorCode company_add_room(Company comp, EscapeRoom escape);
  */
 MtmErrorCode company_remove_room(Company comp, int id);
 
-//Changes the email of the company. It also affects all the room it stores.
-MtmErrorCode company_set_email(Company comp, char* email);
-
 //Returns the company email into the given variable.
 char* company_get_email(Company comp);
 
@@ -48,10 +45,10 @@ EscapeRoom company_get_room(Company comp, int id);
 
 bool company_room_exists(Company comp, int id);
 
-int company_recommended_rooms(Company comp, unsigned int num_ppl, int skill,
+int company_recommended_rooms(Company comp, int num_ppl, int skill,
                               int* id, int* day, int* hour);
 
-bool company_room_got_orders(Company comp, int id);
+//bool company_room_got_orders(Company comp, int id);
 
 bool company_got_orders(Company comp);
 

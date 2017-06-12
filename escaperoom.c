@@ -1,4 +1,4 @@
-/*#include <stdio.h>
+#include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
 #include <assert.h>
@@ -6,7 +6,7 @@
 #include "escaperoom.h"
 
 struct escaperoom {
-    char** email;
+    char* email;
     int id;
     int price;
     int num_ppl;
@@ -16,9 +16,50 @@ struct escaperoom {
     Set OrdersSet;
 };
 
+static SetElement copy_order(SetElement order)
+{
+    Order ord = order_copy(order);
+    return ord;
+}
+
+static void destroy_order(SetElement order)
+{
+    order_remove(order);
+}
+
+static int compare_order(SetElement ord1, SetElement ord2)
+{
+    if (order_compare_time(ord1, ord2)) {
+        return 1;
+    }
+    if (orders_equal_time(ord1, ord2)) {
+        return 0;
+    }
+    return -1;
+}
+
 static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs);
 
-EscapeRoom create_escape_room(char *email, int id, int price,
+EscapeRoom create_escape_room()
+{
+    EscapeRoom room = malloc(sizeof(*room));
+    if (room == NULL) {
+        return NULL;
+    }
+    room->OrdersSet = setCreate(copy_order, destroy_order, compare_order);
+    if (room->OrdersSet == NULL) {
+        escape_room_destroy(room);
+        return NULL;
+    }
+    room->email = NULL;
+    room->id = room->price = room->num_ppl = room->open_hour = room->close_hour
+    = room->difficulty = 0;
+    return room;
+}
+
+
+
+/*EscapeRoom create_escape_room(char *email, int id, int price,
                               int num_ppl, char *working_hrs, int difficulty) {
     EscapeRoom room = malloc(sizeof(*room));
     if (room == NULL)
@@ -42,7 +83,7 @@ EscapeRoom create_escape_room(char *email, int id, int price,
     }
     strcpy(room->email, email);
     return room;
-}
+}*/
 
 MtmErrorCode reset_escape_room(EscapeRoom room)
 {
@@ -102,9 +143,10 @@ MtmErrorCode get_room_difficulty(EscapeRoom room, int *difficulty)
 }
 
 
- * An auxiliary function for setting the working hours of the room
+ /** An auxiliary function for setting the working hours of the room
  * It receives working hours in a string format and sets the opening hour and
  * closing hour fields accordingly
+ */
 
 static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
 {
@@ -120,4 +162,3 @@ static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
     room->close_hour = close_hrs;
     return MTM_SUCCESS;
 }
-*/
