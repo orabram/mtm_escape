@@ -559,9 +559,9 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     for(int i = 0; i < setGetSize(escape->CompanySet); i++)
     {
         temp_min = company_recommended_rooms(comp, num_ppl, skill,
-                                             &temp_room_id, &time);
+                                             &temp_room_id, &day, &hour);
         temp_faculty = company_get_faculty(comp);
-        if(temp_min < MAX_RECOMMENDED && time < MAX_RECOMMENDED)
+        if(temp_min < MAX_RECOMMENDED && day < MAX_RECOMMENDED)
         {
             rooms_exist = true;
             if(temp_min < cur_min)
