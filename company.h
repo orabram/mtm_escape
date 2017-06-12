@@ -17,12 +17,21 @@ MtmErrorCode initialize_company(Company comp, char* email,
 
 Company company_copy(Company comp);
 
-int company_compare(Company comp1, Company comp2);
-
 //Adds a room to the company.
 MtmErrorCode company_add_room(Company comp, EscapeRoom escape);
 
-//Removes a room from the company.
+/**
+ * Removes the room with the given ID from the company
+ *
+ * @param comp - The company on which the function operates
+ * @param id - ID of the room that should be removed
+ * @return
+ * MTM_INVALID_PARAMETER if a invalid parameter was sent
+ * MTM_RESERVATION_EXISTS if the room has an existing reservation and therefore
+ *                        cannot be removed
+ * MTM_ID_DOES_NOT_EXIST if the room does not exist in the company
+ * MTM_SUCCESS if the function succeeded removing the room
+ */
 MtmErrorCode company_remove_room(Company comp, int id);
 
 //Changes the email of the company. It also affects all the room it stores.

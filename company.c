@@ -65,16 +65,6 @@ Company company_copy(Company comp)
     return copy;
 }
 
-int company_compare(Company comp1, Company comp2)
-{
-    if (comp1 == NULL || comp2 == NULL) {
-        return -1;
-    }
-    /**
-     * What does the return value mean?
-     */
-}
-
 MtmErrorCode company_add_room(Company comp, EscapeRoom escape)
 {
     if (comp == NULL || escape == NULL) {
@@ -97,7 +87,17 @@ MtmErrorCode company_remove_room(Company comp, int id)
         return MTM_INVALID_PARAMETER;
     }
     EscapeRoom room = setGetFirst(comp->escape_room_set);
-    while (room != NULL && escape_room_get_id(room) != id) {
+    for (int i = 0; i < setGetSize(comp->escape_room_set); i++) {
+        if (escape_room_get_id(room) == id) {
+            if (escape_room_order_exists(room)) {
+                return MTM_RESERVATION_EXISTS;
+            }
+            setRemove(comp->escape_room_set, room);
+            return MTM_SUCCESS;
+        }
+    }
+    return MTM_ID_DOES_NOT_EXIST;
+    /*while (room != NULL && escape_room_get_id(room) != id) {
         room = setGetNext(comp->escape_room_set);
     }
     if (room == NULL) {
@@ -108,6 +108,7 @@ MtmErrorCode company_remove_room(Company comp, int id)
     }
     setRemove(comp->escape_room_set, room);
     return MTM_SUCCESS;
+     */
 }
 
 /**

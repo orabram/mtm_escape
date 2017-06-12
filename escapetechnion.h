@@ -39,7 +39,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
                                          char* time, int num_ppl);
 
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
-                                             unsigned int num_ppl);
+                                             int num_ppl);
 
 MtmErrorCode escapetechnion_reportday(EscapeTechnion escape);
 

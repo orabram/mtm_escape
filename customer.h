@@ -62,7 +62,7 @@ bool customer_order_exists(Order* ord, Customer cust);
 int customer_get_orders_num(Customer cust);
 
 //Checks if the customer has any other orders at the time of the order.
-bool customer_already_booked(Order* ord, Customer cust);
+bool customer_already_booked(Order ord, Customer cust);
 
 //Removes an order from the set.
 MtmErrorCode customer_remove_order(Order* ord, Customer cust);

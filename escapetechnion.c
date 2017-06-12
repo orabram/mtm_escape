@@ -1,8 +1,9 @@
 
 #include <stdio.h>
 #include <stdlib.h>
+#include <assert.h>
 #include "mtm_ex3.h"
-#include "string.h"
+#include <string.h>
 #include "escapetechnion.h"
 #include "company.h"
 #include "customer.h"
@@ -86,8 +87,25 @@ static char* time_int_to_chr(int time)
 }
  */
 
-static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
+static MtmErrorCode rooms_in_system(EscapeTechnion escape)
 {
+    int sum = 0;
+    Company comp = setGetFirst(escape->CompanySet);
+    for (int i = 0; i < setGetSize(escape->CompanySet); i++) {
+        sum += company_get_room_num(comp);
+    }
+    if(!sum)
+    {
+        return MTM_NO_ROOMS_AVAILABLE;
+    }
+    return MTM_SUCCESS;
+}
+
+static void order_sort(Order* sortedord, EscapeTechnion escape)
+{
+    /**
+     * Implemented as Bubble Sort
+     */
     Order swap;
     for (int i = 0 ; i < ( escape->orders_num - 1 ); i++)
     {
@@ -102,7 +120,7 @@ static void order_bubble_sort(Order* sortedord, EscapeTechnion escape)
                 sortedord[j+1] = swap;
             }
             /*If they're similar, check which one has a smaller faculty id*/
-            else if(orders_equal_time(ortedord[i], sortedord[i+1]))
+            else if(orders_equal_time(sortedord[i], sortedord[i+1]))
             {
                 if(order_get_faculty(sortedord[i]) >
                         order_get_faculty(sortedord[i+1]))
@@ -211,7 +229,8 @@ static int calculate_price(Order ord, EscapeTechnion escape)
 
 /*This function prints all the relevant information to the daily business
  * according to mtm_ex3.h*/
-static MtmErrorCode print_day(EscapeTechnion escape, int num_of_events, Order* orders, int sum)
+static MtmErrorCode print_day(EscapeTechnion escape, int num_of_events,
+                              Order* orders, int sum)
 {
     EscapeRoom room;
     Customer cust;
@@ -323,9 +342,22 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
         company_destroy(newcomp);
         return code;
     }
-    setAdd(escape->CompanySet, newcomp);
-    //setAdd(escape->CompanyEmailsSet, email);
-    return MTM_SUCCESS;
+    /*if(setIsIn(escape->CompanySet, newcomp))
+    {
+        company_destroy(newcomp);
+        return MTM_EMAIL_ALREADY_EXISTS;
+    }*/
+    SetResult result = setAdd(escape->CompanySet, newcomp);
+    switch (result) {
+        case SET_OUT_OF_MEMORY:
+            company_destroy(newcomp);
+            return MTM_OUT_OF_MEMORY;
+        case SET_ITEM_ALREADY_EXISTS:
+            company_destroy(newcomp);
+            return MTM_EMAIL_ALREADY_EXISTS;
+        default:
+            return MTM_SUCCESS;
+    }
 }
 
 MtmErrorCode escapetechnion_destroy_company(EscapeTechnion escape, char* email)
@@ -334,25 +366,19 @@ MtmErrorCode escapetechnion_destroy_company(EscapeTechnion escape, char* email)
     {
         return MTM_INVALID_PARAMETER;
     }
-    if(!setIsIn(escape->CompanySet, email))
-    {
-        return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
-    }
-    Company tempcomp;
     bool has_orders;
-    tempcomp = find_company_in_set(escape->CompanySet, email);
+    Company tempcomp = find_company_in_set(escape->CompanySet, email);
     if(tempcomp == NULL)
     {
-        return MTM_OUT_OF_MEMORY;
+        return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
     }
     has_orders = company_got_orders(tempcomp);
     if(!has_orders)
     {
         return MTM_RESERVATION_EXISTS;
     }
-    setRemove(escape->CompanySet, email);
+    setRemove(escape->CompanySet, tempcomp);
     //setRemove(escape->CompanyEmailsSet, email);
-    company_destroy(tempcomp);
     return MTM_SUCCESS;
 
 }
@@ -375,25 +401,24 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
         escape_room_destroy(room);
         return code;
     }
-    if(!setIsIn(escape->CompanySet, email))
+    /*if(!setIsIn(escape->CompanySet, email))
+    {
+        escape_room_destroy(room);
+        return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
+    }*/
+    Company comp = find_company_in_set(escape->CompanySet, email);
+    if(comp == NULL)
     {
         escape_room_destroy(room);
         return MTM_COMPANY_EMAIL_DOES_NOT_EXIST;
     }
-    Company tempcomp; //Could potentially cause troubles.
-    tempcomp = find_company_in_set(escape->CompanySet, email);
-    if(tempcomp == NULL)
-    {
-        escape_room_destroy(room);
-        return MTM_OUT_OF_MEMORY;
-    }
-    room_already_exists = company_room_exists(tempcomp, id);
+    room_already_exists = company_room_exists(comp, id);
     if(room_already_exists)
     {
         escape_room_destroy(room);
         return MTM_ID_ALREADY_EXIST;
     }
-    code = company_add_room(tempcomp, room);
+    code = company_add_room(comp, room);
     if(code != MTM_SUCCESS)
     {
         escape_room_destroy(room);
@@ -405,28 +430,25 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
 MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
                                         TechnionFaculty faculty, int id)
 {
-    if(faculty >= UNKNOWN)
+    if(faculty >= UNKNOWN || id < 0)
     {
         return MTM_INVALID_PARAMETER;
     }
-    Company tempcomp;
     TechnionFaculty temp_faculty;
-    bool room_has_orders;
-    MtmErrorCode code;
-    tempcomp = setGetFirst(escape->CompanySet);
+    MtmErrorCode result;
+    Company comp = setGetFirst(escape->CompanySet);
     for(int i = 0; i < setGetSize(escape->CompanySet); i++)
     {
-        temp_faculty = company_get_faculty(tempcomp);
+        temp_faculty = company_get_faculty(comp);
         if(faculty == temp_faculty)
         {
-            room_has_orders = company_room_got_orders(tempcomp, id);
-            if(room_has_orders)
-            {
-                return MTM_RESERVATION_EXISTS;
+            assert(comp != NULL);
+            result = company_remove_room(comp, id);
+            if (result != MTM_ID_DOES_NOT_EXIST) {
+                return result;
             }
-            code = company_remove_room(tempcomp, id);
-            return code;
         }
+        comp = setGetNext(escape->CompanySet);
     }
     return MTM_ID_DOES_NOT_EXIST;
 }
@@ -435,26 +457,33 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty,
                                          int skill_level)
 {
-    MtmErrorCode code;
     Customer cust = create_customer();
     if(cust == NULL)
     {
         return MTM_OUT_OF_MEMORY;
     }
-    code = initialize_customer(cust, email, faculty, skill_level);
+    MtmErrorCode code = initialize_customer(cust, email, faculty, skill_level);
     if(code != MTM_SUCCESS)
     {
         customer_destroy(cust);
         return code;
     }
-    if(setIsIn(escape->CustomersSet, email))
+    /*if(setIsIn(escape->CustomersSet, cust))
     {
         customer_destroy(cust);
         return MTM_EMAIL_ALREADY_EXISTS;
+    }*/
+    SetResult result = setAdd(escape->CustomersSet, cust);
+    switch (result) {
+        case SET_OUT_OF_MEMORY:
+            customer_destroy(cust);
+            return MTM_OUT_OF_MEMORY;
+        case SET_ITEM_ALREADY_EXISTS:
+            customer_destroy(cust);
+            return MTM_EMAIL_ALREADY_EXISTS;
+        default:
+            return MTM_SUCCESS;
     }
-    setAdd(escape->CustomersSet, cust);
-    //setAdd(escape->CustomerEmailsSet, email);
-    return MTM_SUCCESS;
 }
 
 MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
@@ -463,10 +492,14 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
     {
         return MTM_INVALID_PARAMETER;
     }
-    if(!setIsIn(escape->CustomersSet, email))
+    Customer cust = find_customer_in_set(escape->CustomersSet, email);
+    if (cust == NULL) {
+        return  MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
+    }
+    /*if(!setIsIn(escape->CustomersSet, email))
     {
         return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
-    }
+    }*/
     setRemove(escape->CustomersSet, email);
     //setRemove(escape->CustomerEmailsSet, email);
     return MTM_SUCCESS;
@@ -478,12 +511,17 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
 {
     MtmErrorCode code;
     Order ord = create_order();
+    if (ord == NULL) {
+        return MTM_OUT_OF_MEMORY;
+    }
     code = initialize_order(ord, email, faculty, id, time, num_ppl);
     if(code != MTM_SUCCESS)
     {
+        order_remove(ord);
         return code;
     }
-    if(!setIsIn(escape->CustomersSet, email))
+    Customer cust = find_customer_in_set(escape->CustomersSet, email);
+    if(cust == NULL)
     {
         order_remove(ord);
         return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
@@ -494,14 +532,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         order_remove(ord);
         return MTM_ID_DOES_NOT_EXIST;
     }
-    Customer cust;
-    cust = find_customer_in_set(escape->CustomersSet, email);
-    if(cust == NULL)
-    {
-        order_remove(ord);
-        return MTM_OUT_OF_MEMORY;
-    }
-    if(customer_already_booked(&ord, cust))
+    if(customer_already_booked(ord, cust))
     {
         order_remove(ord);
         return MTM_CLIENT_IN_ROOM;
@@ -520,6 +551,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
     code = customer_add_order(&ord, cust);
     if(code != MTM_SUCCESS)
     {
+        escape_room_remove_order(room, ord);
         order_remove(ord);
         return code;
     }
@@ -528,29 +560,22 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
 }
 
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
-                                             unsigned int num_ppl)
+                                             int num_ppl)
 {
-    if(escape == NULL || !check_email(email) || num_ppl == 0)
+    if(escape == NULL || !check_email(email) || num_ppl <= 0)
     {
         return MTM_INVALID_PARAMETER;
     }
-    if(!setIsIn(escape->CustomersSet, email))
-    {
+    Customer cust = find_customer_in_set(escape->CustomersSet, email);
+    if (cust == NULL) {
         return MTM_CLIENT_EMAIL_DOES_NOT_EXIST;
     }
-    if(setGetSize(escape->CompanySet) == 0)
+    MtmErrorCode code = rooms_in_system(escape);
+    if(code != MTM_SUCCESS)
     {
-        return MTM_NO_ROOMS_AVAILABLE;
+        return code;
     }
-    Customer cust;
-    MtmErrorCode code;
-    cust = find_customer_in_set(escape->CustomersSet, email);
-    if(cust == NULL)
-    {
-        return MTM_OUT_OF_MEMORY;
-    }
-    Company comp;
-    comp = setGetFirst(escape->CompanySet);
+    Company comp = setGetFirst(escape->CompanySet);
     bool rooms_exist = false;
     int cur_min = MAX_RECOMMENDED, temp_min, skill = customer_get_skill(cust),
             min_room_id = MAX_RECOMMENDED, temp_room_id, day, hour;

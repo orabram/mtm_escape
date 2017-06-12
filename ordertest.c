@@ -36,7 +36,7 @@ int main(){
     code = initialize_order(ord1, email, faculty, id, chrtime, num_ppl);
     assert(code == MTM_INVALID_PARAMETER);
     assert(order_get_hour(ord1) == hour);
-    strcpy(chrtime, "0024");
+    strcpy(chrtime, "00-24");
     code = initialize_order(ord1, email, faculty, id, chrtime, num_ppl);
     assert(code == MTM_INVALID_PARAMETER);
     assert(order_get_hour(ord1) == hour);
