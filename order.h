@@ -9,7 +9,16 @@ typedef struct order *Order;
 
 Order create_order();
 
-//Creates a new order.
+/*Initializes an order with the given parameters.
+ * ord: an Order object.
+ * email: The email of the customer. A char* with at least one @.
+ * faculty: The faculty of the company the room belongs to.
+ * Must be a legal faculty(must be lower than UNKNOWN).
+ * id: The id of the room in the faculty. Must be an positive number.
+ * time: The time until the order happens.
+ * Must be written in a format of: "dd-hh", where dd marks the day and hh marks
+ * the hours(must be lower than 23).
+ * num_ppl: The number of people in the order. Must be a positive integer. */
 MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
                           int id, char* time, int num_ppl);
 /*
@@ -45,29 +54,36 @@ MtmErrorCode order_set_new_time(Order ord, int time);
 MtmErrorCode order_set_numppl(Order ord, unsigned int num_ppl);
 */
 
-//Returns the email address of the order in the given memory space.
+//Returns the email address of the order.
 char* order_get_email(Order ord);
 
-//Returns the faculty of the order in the given memory space.
+//Returns the faculty of the order.
 TechnionFaculty order_get_faculty(Order ord);
 
-//Returns the id of the order in the given memory space.
+//Returns the id of the order.
 int order_get_id(Order ord);
 
-//Returns the time of the order in the given memory space.
+//Returns the day of the order.
 int order_get_day(Order ord);
 
+//Returns the hour of the order.
 int order_get_hour(Order ord);
 
+/*Compares between the dates of 2 orders.
+ * Returns true if ord1's date is more distant than ord2's date.
+ * Returns false otherwise.*/
 bool order_compare_time(Order ord1, Order ord2);
 
+/*Compares between the dates of 2 orders.
+ * Returns true if ord1's date is equal to ord2's date.
+ * Returns false otherwise*/
 bool orders_equal_time(Order ord1, Order ord2);
 
-//Returns the number of peoples of the order in the given memory space.
+//Returns the number of peoples of the order.
 unsigned int order_get_num_ppl(Order ord);
 
-//More generic than set_new_time, this order reduces the days left until
-//the order by 1.
+/*Reduces the date of a given order by 1.
+ * INPUT ASSUMPTION: day >=1. Won't do anything otherwise. */
 void order_day_passed(Order ord);
 
 //Destroys the order.
