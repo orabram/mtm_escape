@@ -21,31 +21,6 @@
 						printf("[SUCCESS]\n");
 
 
-/*static SetElement copy_room(SetElement room)
-{
-    EscapeRoom copy = create_escape_room();
-    if (copy == NULL) {
-        return NULL;
-    }
-    if (escape_room_copy(copy, room) != MTM_SUCCESS) {
-        escape_room_destroy(copy);
-        return NULL;
-    }
-    return copy;
-}
-
-static void destroy_room(SetElement room)
-{
-    escape_room_destroy(room);
-}
-
-static int compare_room(SetElement room1, SetElement room2)
-{
-    EscapeRoom r1 = (EscapeRoom)room1, r2 = (EscapeRoom)room2;
-    return escape_room_get_id(r1) - escape_room_get_id(r2);
-}*/
-
-
 static bool test_create_escape_room()
 {
     EscapeRoom room = create_escape_room();
@@ -84,8 +59,10 @@ static bool test_get_functions()
     ASSERT_TEST(strcmp(email, "hello@world.com") == 0);
     ASSERT_TEST(escape_room_get_id(room) == 1);
     ASSERT_TEST(escape_room_get_price(room) == 72);
-    ASSERT_TEST(strcmp(get_room_working_hrs(room), "10-22") == 0);
+    char* working_hrs = get_room_working_hrs(room);
+    ASSERT_TEST(strcmp(working_hrs, "10-22") == 0);
     ASSERT_TEST(escape_room_get_difficulty(room) == 3);
+    free(working_hrs);
     escape_room_destroy(room);
     return true;
 }
@@ -130,7 +107,7 @@ static bool test_add_order()
                      "2-15", 8);
     //Order 3 is trying to reserve at the same hours as Order 1
     ASSERT_TEST(escape_room_add_order(room, order3) == MTM_RESERVATION_EXISTS);
-    order_remove(order1);
+    order_remove(order3);
     escape_room_destroy(room);
     return true;
 }

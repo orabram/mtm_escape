@@ -136,14 +136,16 @@ MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room)
     if (new_room == NULL || original_room == NULL) {
         return MTM_NULL_PARAMETER;
     }
+    char* room_work = get_room_working_hrs(original_room);
     MtmErrorCode code = initialize_escape_room(new_room, original_room->email,
                            original_room->id, original_room->price,
                            original_room->num_ppl,
-                           get_room_working_hrs(original_room),
-                           original_room->difficulty);
+                           room_work, original_room->difficulty);
+    free(room_work);
     if (code == MTM_OUT_OF_MEMORY) {
         return MTM_OUT_OF_MEMORY;
     }
+    setDestroy(new_room->OrdersSet);
     new_room->OrdersSet = setCopy(original_room->OrdersSet);
     if (new_room->OrdersSet == NULL) {
         return MTM_OUT_OF_MEMORY;

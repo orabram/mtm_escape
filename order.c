@@ -237,9 +237,7 @@ void order_day_passed(Order ord)
 void order_remove(Order ord)
 {
     if(ord != NULL) {
-        if (ord->email != NULL) {
-            free(ord->email);
-        }
+        free(ord->email);
         free(ord);
     }
 }
