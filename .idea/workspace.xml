@@ -12,7 +12,6 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ae7718e-3d59-49f2-866f-b210d3f1ff0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.c" afterPath="$PROJECT_DIR$/customer.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
@@ -49,8 +48,8 @@
       <file leaf-file-name="escapetechnion.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/escapetechnion.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="176">
-              <caret line="581" column="5" lean-forward="true" selection-start-line="581" selection-start-column="5" selection-end-line="581" selection-end-column="5" />
+            <state relative-caret-position="-724">
+              <caret line="545" column="5" lean-forward="true" selection-start-line="545" selection-start-column="5" selection-end-line="545" selection-end-column="5" />
               <folding />
             </state>
           </provider>
@@ -91,8 +90,8 @@
       <file leaf-file-name="customer.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/customer.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+            <state relative-caret-position="289">
+              <caret line="33" column="3" lean-forward="false" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -449,12 +448,12 @@
       <workItem from="1497353953240" duration="553000" />
       <workItem from="1497354524677" duration="74000" />
       <workItem from="1497354664807" duration="11863000" />
-      <workItem from="1497369891733" duration="12161000" />
+      <workItem from="1497369891733" duration="12464000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="25701000" />
+    <option name="totallyTimeSpent" value="26004000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -517,12 +516,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/escapetechnion.c</url>
-          <line>660</line>
+          <line>619</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/escapetechnion.c</url>
-          <line>680</line>
+          <line>640</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
@@ -862,16 +861,16 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/escapetechnion.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="176">
-          <caret line="581" column="5" lean-forward="true" selection-start-line="581" selection-start-column="5" selection-end-line="581" selection-end-column="5" />
+        <state relative-caret-position="-724">
+          <caret line="545" column="5" lean-forward="true" selection-start-line="545" selection-start-column="5" selection-end-line="545" selection-end-column="5" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/customer.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="32" column="24" lean-forward="true" selection-start-line="32" selection-start-column="0" selection-end-line="33" selection-end-column="0" />
+        <state relative-caret-position="289">
+          <caret line="33" column="3" lean-forward="false" selection-start-line="33" selection-start-column="3" selection-end-line="33" selection-end-column="3" />
           <folding />
         </state>
       </provider>
