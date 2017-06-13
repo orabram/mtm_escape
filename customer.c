@@ -77,6 +77,11 @@ static bool check_skill(int skill)
 Customer create_customer()
 {
     Customer cust = malloc(sizeof(struct customer));
+    if(cust == NULL)
+    {
+        return NULL;
+    }
+    cust->email = NULL;
     return cust;
 }
 
@@ -95,7 +100,16 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
     {
         return MTM_OUT_OF_MEMORY;
     }
-    cust->email = strdup(email);
+    if(cust->email != NULL)
+    {
+        free(cust->email);
+    }
+    cust->email = malloc(strlen(email) + 1);
+    if(cust->email == NULL)
+    {
+        return MTM_OUT_OF_MEMORY;
+    }
+    strcpy(cust->email , email);
     cust->faculty = faculty;
     cust->orders_num = 0;
     cust->skill_level = skill;
@@ -116,7 +130,13 @@ Customer customer_copy(Customer cust)
         return NULL;
     }
     new_cust->OrderSet = setCopy(cust->OrderSet);
-    new_cust->email = strdup(cust->email);
+    new_cust->email = malloc(strlen(cust->email) + 1);
+    if(new_cust->email == NULL)
+    {
+        free(new_cust);
+        return NULL;
+    }
+    strcpy(new_cust->email, cust->email);
     new_cust->faculty = cust->faculty;
     new_cust->skill_level = cust->skill_level;
     new_cust->orders_num = cust->orders_num;
@@ -183,6 +203,7 @@ MtmErrorCode customer_remove_order(Order ord, Customer cust)
         return MTM_INVALID_PARAMETER;
     }
     cust->orders_num--;
+
     return MTM_SUCCESS;
 
 }
@@ -195,7 +216,10 @@ bool customer_already_booked(Order ord, Customer cust)
 
 void customer_destroy(Customer cust)
 {
-    free(cust->email);
-    setDestroy(cust->OrderSet);
+    if(cust->email != NULL)
+    {
+        free(cust->email);
+        setDestroy(cust->OrderSet);
+    }
     free(cust);
 }

@@ -94,7 +94,43 @@ static char* time_int_to_chr(int day, int hour)
     return chrtime;
 }
 
+/*Finds and returns an escaperoom object based on the id and faculty given.
+ * Returns null if no match has been found.*/
+static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
+{
+    Company comp;
+    comp = setGetFirst(set);
+    EscapeRoom escape;
+    for(int i = 0; i < setGetSize(set); i++)
+    {
+        if(company_get_faculty(comp) == faculty &&
+           company_room_exists(comp, id))
+        {
+            escape = company_get_room(comp, id);
+            return escape;
+        }
+        comp = setGetNext(set);
+    }
+    return NULL;
+}
 
+//Will have to merge both find functions further fown the road.
+static Customer find_customer_in_set(Set set, char* email)   /**TO MOVE **/
+{
+    Customer cust;
+    char* temp_email;
+    cust = setGetFirst(set);
+    //Run through the set and look for a match.
+    for(int i = 0; setGetSize(set); i++) {
+        temp_email = customer_get_email(cust);
+        //If the two emails are identical, that means we've got a match.
+        if (!strcmp(temp_email, email)) {
+            return cust;
+        }
+        cust = setGetNext(set);
+    }
+    return NULL;
+}
 
 static MtmErrorCode remove_order(Order ord, EscapeTechnion escape)
 {
@@ -146,7 +182,7 @@ static void order_sort(Order* sortedord, EscapeTechnion escape, int* prices)
     /**
      * Implemented as Bubble Sort
      */
-    Order swap;
+    //Order swap;
     for (int i = 0 ; i < ( escape->orders_num - 1 ); i++)
     {
         for (int j = 0 ; j < escape->orders_num - i - 1; j++)
@@ -204,23 +240,7 @@ static Company find_company_in_set(Set set, char* email)
     return NULL;
 }
 
-//Will have to merge both find functions further fown the road.
-static Customer find_customer_in_set(Set set, char* email)
-{
-    Customer cust;
-    char* temp_email;
-    cust = setGetFirst(set);
-    //Run through the set and look for a match.
-    for(int i = 0; setGetSize(set); i++) {
-        temp_email = customer_get_email(cust);
-        //If the two emails are identical, that means we've got a match.
-        if (!strcmp(temp_email, email)) {
-            return cust;
-        }
-        cust = setGetNext(set);
-    }
-    return NULL;
-}
+
 /*Checks if the mail address is legal. Returns true or false according to
  * whether or not the email address is legal.*/
 static bool check_email(char* email)
@@ -230,25 +250,6 @@ static bool check_email(char* email)
         return false;
     }
     return true;
-}
-/*Finds and returns an escaperoom object based on the id and faculty given.
- * Returns null if no match has been found.*/
-static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
-{
-    Company comp;
-    comp = setGetFirst(set);
-    EscapeRoom escape;
-    for(int i = 0; i < setGetSize(set); i++)
-    {
-        if(company_get_faculty(comp) == faculty &&
-                company_room_exists(comp, id))
-        {
-            escape = company_get_room(comp, id);
-            return escape;
-        }
-        comp = setGetNext(set);
-    }
-    return NULL;
 }
 
 /*Receives an Order and an EscapeTechnion object and calculates the price
@@ -279,12 +280,14 @@ static void print_day(EscapeTechnion escape, int num_of_events,
                                 order_get_faculty(orders[i]));
         cust = find_customer_in_set(escape->CustomersSet,
                                     order_get_email(orders[i]));
+
         mtmPrintOrder(escape->output_channel, order_get_email(orders[i]),
         customer_get_skill(cust), customer_get_faculty(cust),
         escape_room_get_email(room), order_get_faculty(orders[i]),
         order_get_id(orders[i]), order_get_hour(orders[i]),
         escape_room_get_difficulty(room), order_get_num_ppl(orders[i]),
                       prices[i]);
+        order_remove(orders[i]);
     }
     mtmPrintDayFooter(escape->output_channel, escape->days);
 }
@@ -422,7 +425,7 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
     {
         return MTM_OUT_OF_MEMORY;
     }
-    MtmErrorCode code = initialize_escape_room(email, id, price, num_ppl,
+    MtmErrorCode code = initialize_escape_room(room, email, id, price, num_ppl,
                                                working_hrs, difficulty);
     if(code != MTM_SUCCESS)
     {
@@ -640,7 +643,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
         }
         comp = setGetNext(escape->CompanySet);
     }
-    char* chrtime = time_int_to_string(day, hour);
+    char* chrtime = time_int_to_chr(day, hour);
     return escapetechnion_create_order(escape, email, cur_faculty, min_room_id,
                                        chrtime, num_ppl);
 }
@@ -649,7 +652,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
 {
     Customer cust = setGetFirst(escape->CustomersSet);
     TechnionFaculty faculty;
-    Order* sortedord = malloc(sizeof(struct order) * (escape->orders_num));
+    Order* sortedord = malloc(sizeof(*Order) * (escape->orders_num));
     if(sortedord == NULL)
     {
         return MTM_OUT_OF_MEMORY;
