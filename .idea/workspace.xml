@@ -12,6 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e1a1313e-954a-4712-aeee-de2495c4373d" name="Default" comment="">
+<<<<<<< HEAD
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom.c.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects.a" />
@@ -19,6 +20,20 @@
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/escaperoom.c" afterPath="$PROJECT_DIR$/escaperoom.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/escaperoom.h" afterPath="$PROJECT_DIR$/escaperoom.h" />
+=======
+      <change type="DELETED" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/customertests.c.obj" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/customer.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/customer.c.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects.a" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/order.c.obj" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/order.c.obj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/mtm_escape.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/mtm_escape.exe" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CMakeLists.txt" afterPath="$PROJECT_DIR$/CMakeLists.txt" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/build.make" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/build.make" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/cmake_clean.cmake" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/cmake_clean.cmake" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects1.rsp" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects1.rsp" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.c" afterPath="$PROJECT_DIR$/customer.c" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customertests.c" afterPath="$PROJECT_DIR$/customertests.c" />
+>>>>>>> origin/master
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/escaperoom_test.c" afterPath="$PROJECT_DIR$/escaperoom_test.c" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/escapetechnion.c" afterPath="$PROJECT_DIR$/escapetechnion.c" />
     </list>
@@ -37,7 +52,27 @@
         <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="100">
-              <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+              <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customertests.c" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/customertests.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="442">
+              <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="customer.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/customer.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="87">
+              <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="43" selection-end-column="14" />
               <folding />
             </state>
           </provider>
@@ -46,8 +81,15 @@
       <file leaf-file-name="escaperoom_test.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/escaperoom_test.c">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-95">
               <caret line="174" column="49" lean-forward="false" selection-start-line="174" selection-start-column="49" selection-end-line="174" selection-end-column="49" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+=======
+            <state relative-caret-position="880">
+              <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -55,11 +97,27 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="order.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/order.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="114">
+              <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+              <folding />
+>>>>>>> origin/master
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="escaperoom.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/escaperoom.h">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="45">
               <caret line="79" column="65" lean-forward="false" selection-start-line="79" selection-start-column="65" selection-end-line="79" selection-end-column="65" />
+=======
+            <state relative-caret-position="219">
+              <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+>>>>>>> origin/master
               <folding>
                 <element signature="e#45#63#0" expanded="true" />
               </folding>
@@ -67,12 +125,20 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="set.h" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/set.h">
+      <file leaf-file-name="escaperoom.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/escaperoom.c">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="165">
               <caret line="176" column="69" lean-forward="false" selection-start-line="176" selection-start-column="69" selection-end-line="176" selection-end-column="69" />
               <folding />
+=======
+            <state relative-caret-position="3040">
+              <caret line="152" column="18" lean-forward="false" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
+              <folding>
+                <element signature="e#0#18#0" expanded="true" />
+              </folding>
+>>>>>>> origin/master
             </state>
           </provider>
         </entry>
@@ -80,13 +146,18 @@
       <file leaf-file-name="order.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/order.h">
           <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
             <state relative-caret-position="-180">
+=======
+            <state relative-caret-position="-1380">
+>>>>>>> origin/master
               <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="order.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/order.c">
           <provider selected="true" editor-type-id="text-editor">
@@ -99,14 +170,19 @@
       </file>
       <file leaf-file-name="customer.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/customer.c">
+=======
+      <file leaf-file-name="test_utilities.h" pinned="false" current-in-tab="false">
+        <entry file="file://C:/Technion/Spring 2017/MTM/ex3/Provided/tests/list_mtm/test_utilities.h">
+>>>>>>> origin/master
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-2080">
-              <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
+            <state relative-caret-position="360">
+              <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
+<<<<<<< HEAD
       <file leaf-file-name="escapetechnion.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/escapetechnion.c">
           <provider selected="true" editor-type-id="text-editor">
@@ -131,6 +207,8 @@
           </provider>
         </entry>
       </file>
+=======
+>>>>>>> origin/master
     </leaf>
   </component>
   <component name="FindInProjectRecents">
@@ -141,10 +219,12 @@
       <find>escape_room_add_order</find>
       <find>get_room_working_hrs</find>
       <find>escape_room_compare</find>
-      <find>print_day</find>
       <find>escape_room_copy</find>
+<<<<<<< HEAD
       <find>copy_room</find>
       <find>coll</find>
+=======
+>>>>>>> origin/master
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -162,9 +242,12 @@
         <option value="$PROJECT_DIR$/customer.h" />
         <option value="$PROJECT_DIR$/escapetechnion.h" />
         <option value="$PROJECT_DIR$/ordertest.c" />
+        <option value="$PROJECT_DIR$/escapetechnion.c" />
         <option value="C:/Technion/Spring 2017/MTM/ex3/GDT/list_mtm1.c" />
         <option value="$PROJECT_DIR$/company.h" />
+        <option value="$PROJECT_DIR$/escaperoom.h" />
         <option value="$PROJECT_DIR$/company_test.c" />
+<<<<<<< HEAD
         <option value="$PROJECT_DIR$/customer.c" />
         <option value="$PROJECT_DIR$/customertests.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
@@ -174,6 +257,15 @@
         <option value="$PROJECT_DIR$/escaperoom.c" />
         <option value="$PROJECT_DIR$/escaperoom_test.c" />
         <option value="$PROJECT_DIR$/order.c" />
+=======
+        <option value="$PROJECT_DIR$/company.c" />
+        <option value="$PROJECT_DIR$/escaperoom.c" />
+        <option value="$PROJECT_DIR$/escaperoom_test.c" />
+        <option value="$PROJECT_DIR$/CMakeLists.txt" />
+        <option value="$PROJECT_DIR$/order.c" />
+        <option value="$PROJECT_DIR$/customer.c" />
+        <option value="$PROJECT_DIR$/customertests.c" />
+>>>>>>> origin/master
       </list>
     </option>
   </component>
@@ -452,9 +544,6 @@
   <component name="ShelveChangesManager" show_recycled="false">
     <option name="remove_strategy" value="false" />
   </component>
-  <component name="SvnConfiguration">
-    <configuration />
-  </component>
   <component name="TaskManager">
     <task active="true" id="Default" summary="Default task">
       <changelist id="e1a1313e-954a-4712-aeee-de2495c4373d" name="Default" comment="" />
@@ -473,7 +562,11 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
+<<<<<<< HEAD
     <option name="totallyTimeSpent" value="89230000" />
+=======
+    <option name="totallyTimeSpent" value="75325000" />
+>>>>>>> origin/master
   </component>
   <component name="ToolWindowManager">
     <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
@@ -485,11 +578,11 @@
       <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26096824" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998565" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39934534" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -511,27 +604,6 @@
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
-    <layout-to-restore>
-      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
-      <window_info id="Messages" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3289689" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="CMake" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32569557" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="11" side_tool="true" content_ui="tabs" />
-      <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32998565" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.26928896" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
-      <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.26096824" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Data View" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32980332" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-    </layout-to-restore>
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="processedProjectFiles" value="true" />
@@ -546,6 +618,11 @@
           <url>file://$PROJECT_DIR$/customertests.c</url>
           <line>17</line>
           <option name="timeStamp" value="16" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
+          <url>file://$PROJECT_DIR$/customertests.c</url>
+          <line>51</line>
+          <option name="timeStamp" value="17" />
         </line-breakpoint>
       </breakpoints>
       <option name="time" value="27" />
@@ -751,6 +828,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/set.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-248">
+          <caret line="176" column="69" lean-forward="false" selection-start-line="176" selection-start-column="69" selection-end-line="176" selection-end-column="69" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/ordertest.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="80">
@@ -782,6 +867,20 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/escapetechnion.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="10840">
+          <caret line="573" column="38" lean-forward="false" selection-start-line="573" selection-start-column="38" selection-end-line="573" selection-end-column="38" />
+          <folding>
+            <element signature="e#1#19#0" expanded="false" />
+            <marker date="1497303119080" expanded="true" signature="15872:15993" ph="{...}" />
+            <marker date="1497303119080" expanded="true" signature="16212:17440" ph="{...}" />
+            <marker date="1497303119080" expanded="true" signature="17581:19605" ph="{...}" />
+            <marker date="1497303119080" expanded="true" signature="19668:21207" ph="{...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://C:/Technion/Spring 2017/MTM/ex3/Provided/tests/list_mtm/list_example_test.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -789,40 +888,15 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/company_test.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="260">
-          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/customertests.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="582">
-          <caret line="70" column="43" lean-forward="false" selection-start-line="70" selection-start-column="43" selection-end-line="70" selection-end-column="43" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://C:/Technion/Spring 2017/MTM/ex3/Provided/tests/list_mtm/test_utilities.h">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="160">
-          <caret line="52" column="45" lean-forward="true" selection-start-line="52" selection-start-column="45" selection-end-line="52" selection-end-column="45" />
+        <state relative-caret-position="360">
+          <caret line="29" column="0" lean-forward="false" selection-start-line="29" selection-start-column="0" selection-end-line="29" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/customer.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-2080">
-          <caret line="37" column="17" lean-forward="true" selection-start-line="37" selection-start-column="17" selection-end-line="37" selection-end-column="17" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+<<<<<<< HEAD
     <entry file="file://$PROJECT_DIR$/company.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-400">
@@ -837,12 +911,21 @@
           <caret line="569" column="5" lean-forward="false" selection-start-line="569" selection-start-column="5" selection-end-line="569" selection-end-column="5" />
           <folding>
             <marker date="1497314771236" expanded="true" signature="15872:15993" ph="{...}" />
+=======
+    <entry file="file://$PROJECT_DIR$/company_test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="13" column="0" lean-forward="false" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+>>>>>>> origin/master
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/set.h">
+    <entry file="file://$PROJECT_DIR$/company.c">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="165">
           <caret line="176" column="69" lean-forward="false" selection-start-line="176" selection-start-column="69" selection-end-line="176" selection-end-column="69" />
           <folding />
@@ -875,6 +958,30 @@
           <caret line="174" column="49" lean-forward="false" selection-start-line="174" selection-start-column="49" selection-end-line="174" selection-end-column="49" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+=======
+        <state relative-caret-position="147">
+          <caret line="136" column="23" lean-forward="false" selection-start-line="136" selection-start-column="23" selection-end-line="136" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#18#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/order.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1380">
+          <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/escaperoom.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="219">
+          <caret line="16" column="30" lean-forward="false" selection-start-line="16" selection-start-column="30" selection-end-line="16" selection-end-column="30" />
+          <folding>
+            <element signature="e#45#63#0" expanded="true" />
+>>>>>>> origin/master
           </folding>
         </state>
       </provider>
@@ -882,13 +989,14 @@
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="100">
-          <caret line="5" column="56" lean-forward="true" selection-start-line="5" selection-start-column="56" selection-end-line="5" selection-end-column="56" />
+          <caret line="5" column="51" lean-forward="false" selection-start-line="5" selection-start-column="51" selection-end-line="5" selection-end-column="51" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/order.h">
+    <entry file="file://$PROJECT_DIR$/escaperoom.c">
       <provider selected="true" editor-type-id="text-editor">
+<<<<<<< HEAD
         <state relative-caret-position="-180">
           <caret line="1" column="16" lean-forward="false" selection-start-line="1" selection-start-column="16" selection-end-line="1" selection-end-column="16" />
           <folding />
@@ -899,6 +1007,46 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="280">
           <caret line="26" column="1" lean-forward="true" selection-start-line="26" selection-start-column="1" selection-end-line="26" selection-end-column="1" />
+=======
+        <state relative-caret-position="3040">
+          <caret line="152" column="18" lean-forward="false" selection-start-line="152" selection-start-column="18" selection-end-line="152" selection-end-column="18" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/escaperoom_test.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="880">
+          <caret line="50" column="0" lean-forward="false" selection-start-line="50" selection-start-column="0" selection-end-line="50" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customer.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="87">
+          <caret line="33" column="0" lean-forward="false" selection-start-line="33" selection-start-column="0" selection-end-line="43" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/order.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="114">
+          <caret line="181" column="0" lean-forward="false" selection-start-line="181" selection-start-column="0" selection-end-line="181" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/customertests.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="442">
+          <caret line="84" column="0" lean-forward="false" selection-start-line="84" selection-start-column="0" selection-end-line="84" selection-end-column="0" />
+>>>>>>> origin/master
           <folding />
         </state>
       </provider>
