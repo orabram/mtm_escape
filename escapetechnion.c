@@ -344,6 +344,9 @@ MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
 MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
                                         TechnionFaculty faculty)
 {
+    if (escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
     Company newcomp = create_company();
     if(newcomp == NULL)
     {

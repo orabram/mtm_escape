@@ -2,22 +2,7 @@
 #include <stdio.h>
 #include "escapetechnion.h"
 #include "mtm_ex3.h"
-
-#define ASSERT_TEST(b) do { \
-        if (!(b)) { \
-                printf("\nAssertion failed at %s:%d %s\n",__FILE__,__LINE__,#b); \
-                return false; \
-        } \
-} while (0)
-
-#define RUN_TEST(name)  printf("Running "); \
-						printf(#name);		\
-						printf("... ");		\
-						if (!name()) { \
-							printf("[FAILED]\n");		\
-							return false; \
-						}								\
-						printf("[SUCCESS]\n");
+#include "test_utilities.h"
 
 static bool test_create_escapetechnion()
 {
