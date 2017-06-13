@@ -79,9 +79,6 @@ int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
 //Adds a new order to the room.
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);
 
-//Checks to see if two orders match each other's time.
-bool escape_room_colliding_times(EscapeRoom room, Order order);
-
 //Removes an order.
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order);
 

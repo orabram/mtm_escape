@@ -568,11 +568,6 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         order_remove(ord);
         return MTM_CLIENT_IN_ROOM;
     }
-    if(escape_room_colliding_times(room, ord))
-    {
-        order_remove(ord);
-        return MTM_ROOM_NOT_AVAILABLE;
-    }
     code = escape_room_add_order(room, ord);
     if(code != MTM_SUCCESS)
     {

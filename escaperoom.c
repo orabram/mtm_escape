@@ -38,6 +38,16 @@ static int compare_order(SetElement ord1, SetElement ord2)
     return -1;
 }
 
+//Returns true if the email is legal, false otherwise.
+static bool check_email(char* email)
+{
+    if(!strstr(email, "@"))
+    {
+        return false;
+    }
+    return true;
+}
+
 /** An auxiliary function for setting the working hours of the room
  * It receives working hours in a string format and sets the opening hour and
  * closing hour fields accordingly
@@ -55,6 +65,22 @@ static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
     room->open_hour = open_hrs;
     room->close_hour = close_hrs;
     return MTM_SUCCESS;
+}
+
+static bool escape_room_colliding_times(EscapeRoom room, Order order)
+{
+    if (room == NULL || order == NULL) {
+        return false;
+    }
+    int order_time = order_get_hour(order);
+    Order ord = setGetFirst(room->OrdersSet);
+    for (int i = 0; i < setGetSize(room->OrdersSet); i++) {
+        if (order_get_hour(ord) == order_time) {
+            return true;
+        }
+        ord = setGetNext(room->OrdersSet);
+    }
+    return false;
 }
 
 EscapeRoom create_escape_room()
@@ -88,6 +114,9 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
         return MTM_INVALID_PARAMETER;
     }
     if (set_working_hrs(room, working_hrs) == MTM_INVALID_PARAMETER) {
+        return MTM_INVALID_PARAMETER;
+    }
+    if (!check_email(email)) {
         return MTM_INVALID_PARAMETER;
     }
     room->id = id;
@@ -184,6 +213,9 @@ MtmErrorCode escape_room_add_order(EscapeRoom room, Order order)
     if (room == NULL || order == NULL) {
         return MTM_NULL_PARAMETER;
     }
+    if (escape_room_colliding_times(room, order)) {
+        return MTM_RESERVATION_EXISTS;
+    }
     int order_time = order_get_hour(order);
     if (order_time < room->open_hour || order_time >= room->close_hour) {
         return MTM_INVALID_PARAMETER;
@@ -194,28 +226,14 @@ MtmErrorCode escape_room_add_order(EscapeRoom room, Order order)
     return MTM_SUCCESS;
 }
 
-bool escape_room_colliding_times(EscapeRoom room, Order order)
-{
-    if (room == NULL || order == NULL) {
-        return false;
-    }
-    int order_time = order_get_hour(order);
-    Order ord = setGetFirst(room->OrdersSet);
-    for (int i = 0; i < setGetSize(room->OrdersSet); i++) {
-        if (order_get_hour(ord) == order_time) {
-            return true;
-        }
-        ord = setGetNext(room->OrdersSet);
-    }
-    return false;
-}
-
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order)
 {
     if (room == NULL || order == NULL) {
         return MTM_NULL_PARAMETER;
     }
-    setRemove(room->OrdersSet, order);
+    if (setRemove(room->OrdersSet, order) == SET_ITEM_DOES_NOT_EXIST) {
+        return MTM_INVALID_PARAMETER;
+    }
     return MTM_SUCCESS;
 }
 

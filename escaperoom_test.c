@@ -59,6 +59,8 @@ static bool test_initialize_and_copy()
     EscapeRoom room = create_escape_room();
     ASSERT_TEST(initialize_escape_room(NULL, "hello@world.com", 1, 72, 5,
                                        "10-22", 3) == MTM_NULL_PARAMETER);
+    ASSERT_TEST(initialize_escape_room(room, "helloworld.com", 1, 72, 5,
+                                       "10-22", 3) == MTM_INVALID_PARAMETER);
     ASSERT_TEST(initialize_escape_room(room, "hello@world.com", 1, 72, 5,
                                        "10-22", 3) == MTM_SUCCESS);
     EscapeRoom copy = create_escape_room();
@@ -82,7 +84,8 @@ static bool test_get_functions()
     ASSERT_TEST(strcmp(email, "hello@world.com") == 0);
     ASSERT_TEST(escape_room_get_id(room) == 1);
     ASSERT_TEST(escape_room_get_price(room) == 72);
-    ASSERT_TEST(get_room_working_hrs(room) == "10-22");
+    ASSERT_TEST(strcmp(get_room_working_hrs(room), "10-22") == 0);
+    ASSERT_TEST(escape_room_get_difficulty(room) == 3);
     escape_room_destroy(room);
     return true;
 }
@@ -109,17 +112,71 @@ static bool test_recommended_value()
 static bool test_add_order()
 {
     EscapeRoom room = create_escape_room();
+    ASSERT_TEST(initialize_escape_room(room, "hello@world.com", 1, 72, 5,
+                                       "10-22", 3) == MTM_SUCCESS);
     ASSERT_TEST(escape_room_add_order(room, NULL) == MTM_NULL_PARAMETER);
-    Order order = create_order();
-    initialize_order(order, "order@mtm.com", ELECTRICAL_ENGINEERING, 57,
+    Order order1 = create_order();
+    initialize_order(order1, "client1@mtm.com", ELECTRICAL_ENGINEERING, 57,
                      "2-15", 3);
-    ASSERT_TEST(escape_room_add_order(room, order) == MTM_SUCCESS);
-
+    ASSERT_TEST(escape_room_add_order(room, order1) == MTM_SUCCESS);
+    order_remove(order1);
+    Order order2 = create_order();
+    initialize_order(order2, "client2@mtm.com", CIVIL_ENGINEERING, 45, "1-9",4);
+    //Order 2 is trying to reserve at illegal hour
+    ASSERT_TEST(escape_room_add_order(room, order2) == MTM_INVALID_PARAMETER);
+    order_remove(order2);
+    Order order3 = create_order();
+    initialize_order(order3, "client3@mtm.com", AEROSPACE_ENGINEERING, 23,
+                     "2-15", 8);
+    //Order 3 is trying to reserve at the same hours as Order 1
+    ASSERT_TEST(escape_room_add_order(room, order3) == MTM_RESERVATION_EXISTS);
+    order_remove(order1);
+    escape_room_destroy(room);
+    return true;
 }
 
+static bool test_remove_order()
+{
+    EscapeRoom room = create_escape_room();
+    ASSERT_TEST(escape_room_remove_order(room, NULL) == MTM_NULL_PARAMETER);
+    ASSERT_TEST(initialize_escape_room(room, "hello@world.com", 1, 72, 5,
+                                       "10-22", 3) == MTM_SUCCESS);
+    Order order = create_order();
+    initialize_order(order, "client1@mtm.com", ELECTRICAL_ENGINEERING, 57,
+                     "2-15", 3);
+    ASSERT_TEST(escape_room_remove_order(NULL, order) == MTM_NULL_PARAMETER);
+    ASSERT_TEST(escape_room_remove_order(room, order) ==
+                        MTM_INVALID_PARAMETER);
+    ASSERT_TEST(escape_room_add_order(room, order) == MTM_SUCCESS);
+    ASSERT_TEST(escape_room_remove_order(room, order) == MTM_SUCCESS);
+    escape_room_destroy(room);
+    order_remove(order);
+    return true;
+}
 
-
-
+static bool test_order_exists()
+{
+    ASSERT_TEST(!escape_room_order_exists(NULL));
+    EscapeRoom room = create_escape_room();
+    ASSERT_TEST(initialize_escape_room(room, "hello@world.com", 1, 72, 5,
+                                       "10-22", 3) == MTM_SUCCESS);
+    ASSERT_TEST(!escape_room_order_exists(room));
+    Order order1 = create_order();
+    initialize_order(order1, "client1@mtm.com", ELECTRICAL_ENGINEERING, 57,
+                     "2-15", 3);
+    ASSERT_TEST(escape_room_add_order(room, order1) == MTM_SUCCESS);
+    ASSERT_TEST(escape_room_order_exists(room));
+    ASSERT_TEST(escape_room_remove_order(room, order1) == MTM_SUCCESS);
+    order_remove(order1);
+    Order order2 = create_order();
+    initialize_order(order2, "client2@mtm.com", CIVIL_ENGINEERING, 45, "1-9",4);
+    //Order 2 is trying to reserve at illegal hour
+    ASSERT_TEST(escape_room_add_order(room, order2) == MTM_INVALID_PARAMETER);
+    ASSERT_TEST(!escape_room_order_exists(room));
+    order_remove(order2);
+    escape_room_destroy(room);
+    return true;
+}
 
 int main()
 {
@@ -127,5 +184,9 @@ int main()
     RUN_TEST(test_initialize_and_copy);
     RUN_TEST(test_get_functions);
     RUN_TEST(test_recommended_value);
+    RUN_TEST(test_add_order);
+    RUN_TEST(test_remove_order);
+    RUN_TEST(test_order_exists);
+    printf("\nAll tests passed!\n");
     return 0;
 }
