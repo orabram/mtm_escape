@@ -6,15 +6,23 @@
 #define FACULTIES_NUM UNKNOWN
 
 struct order{
-    char* email;
-    TechnionFaculty faculty;
-    int id;
-    int day;
-    int hour;
-    unsigned int num_ppl;
+    char* email;    //The email of the customer
+    TechnionFaculty faculty;    //The faculty of the room
+    int id;     //The id of the room
+    int day;    //The amount of days until the reservation
+    int hour;   //The amount of hours until the reservation
+    unsigned int num_ppl;   //The amount of people the reservation was made to
 };
 
-//Extracts and returns the day from a given time string.
+/**
+ *Receives the time in XX-YY format, and returns XX(the day) as an integer.
+ *
+ * @param time: The time until the order happens. It's a char*, written in an
+ * XX-YY format, where XX is the day and YY is the hour.
+ * @return
+ * Returns -1 if time isn't in the correct format.
+ * Returns the day of the order otherwise.
+ */
 static int day_to_int(char* time)
 {
     int day, hour;
@@ -24,7 +32,15 @@ static int day_to_int(char* time)
     return day;
 }
 
-//Extracts and returns the hour from a given time string.
+/**
+ * Receives the time in XX-YY format, and returns YY(the hour) as an integer.
+ *
+ * @param time: The time until the order happens. It's a char*, written in an
+ * XX-YY format, where XX is the day and YY is the hour.
+ * @return
+ * Returns -1 if time isn't in the correct format.
+ * Returns the hour of the order otherwise.
+ */
 static int hour_to_int(char* time)
 {
     int day, hour;
@@ -34,7 +50,14 @@ static int hour_to_int(char* time)
     return hour;
 }
 
-//Returns true if the time string is legal, false otherwise.
+/**
+ * Checks if time is written in a legal fashion.
+ *
+ * @param time: A char* containing the time of the order.
+ * @return
+ * false if time isn't written correctly.
+ * true otherwise.
+ */
 static bool check_time(char* time)
 {
     if(time == NULL)
@@ -49,7 +72,14 @@ static bool check_time(char* time)
     return true;
 }
 
-//Returns true if the email is legal, false otherwise.
+/**
+ * Checks if time is written in a legal fashion.
+ *
+ * @param time: A char* containing the time of the order.
+ * @return
+ * false if time isn't written correctly.
+ * true otherwise.
+ */
 static bool check_email(char* email)
 {
     if(!strstr(email, "@"))
@@ -106,7 +136,7 @@ MtmErrorCode initialize_order(Order ord, char* email, TechnionFaculty faculty,
 int id, char* time, int num_ppl)
 {
     //Check if the parameters are legal
-    if(ord == NULL || email == NULL)
+    if(ord == NULL || email == NULL || time == NULL)
     {
         return MTM_NULL_PARAMETER;
     }
@@ -164,30 +194,50 @@ Order order_copy(Order ord)
 //Returns the email address of the client who made this order.
 char* order_get_email(Order ord)
 {
+    if(ord == NULL || ord->email == NULL)
+    {
+        return NULL;
+    }
     return ord->email;
 }
 
 //Returns the faculty of the room the order was made to.
 TechnionFaculty order_get_faculty(Order ord)
 {
+    if(ord == NULL)
+    {
+        return UNKNOWN;
+    }
     return ord->faculty;
 }
 
 //Returns the id of the room the order was made to.
 int order_get_id(Order ord)
 {
+    if(ord == NULL)
+    {
+        return -1;
+    }
     return ord->id;
 }
 
 //Returns the days until the order happens.
 int order_get_day(Order ord)
 {
+    if(ord == NULL)
+    {
+        return -1;
+    }
     return ord->day;
 }
 
 //Returns the hours until the order happens.
 int order_get_hour(Order ord)
 {
+    if(ord ==  NULL)
+    {
+        return -1;
+    }
     return ord->hour;
 }
 
@@ -222,6 +272,10 @@ bool orders_equal_time(Order ord1, Order ord2)
 //Returns the number of people in the order.
 unsigned int order_get_num_ppl(Order ord)
 {
+    if(ord == NULL)
+    {
+        return 0;
+    }
     return ord->num_ppl;
 }
 

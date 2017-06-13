@@ -81,10 +81,12 @@ static bool check_email(char* email)
 }
 
 /**
- * Receives a faculty and 
+ * Receives a faculty and checks if it's legal(between 0 and unknown);
  *
- * @param faculty
+ * @param faculty: The faculty we need to check.
  * @return
+ * false if the value isn't legal.
+ * true otherwise.
  */
 static bool check_faculty(TechnionFaculty faculty)
 {
@@ -95,7 +97,14 @@ static bool check_faculty(TechnionFaculty faculty)
     return true;
 }
 
-//Returns true if the skill is legal, false otherwise.
+/**
+ * Receives a skill and checks if it's legal(between 1 and 10);
+ *
+ * @param skill: The skill we need to check.
+ * @return
+ * false if the value isn't legal.
+ * true otherwise.
+ */
 static bool check_skill(int skill)
 {
     if(skill >= 1 && skill <= 10)
@@ -235,12 +244,6 @@ MtmErrorCode customer_remove_order(Order ord, Customer cust)
     return MTM_SUCCESS;
 
 }
-
-bool customer_already_booked(Order ord, Customer cust)
-{
-    return setIsIn(cust->OrderSet, ord);
-}
-
 
 void customer_destroy(Customer cust)
 {
