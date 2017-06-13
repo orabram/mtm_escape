@@ -150,30 +150,18 @@ Customer customer_copy(Customer cust)
 //Returns the email address of the customer.
 char* customer_get_email(Customer cust)
 {
-    if(cust == NULL)
-    {
-        return NULL;
-    }
     return cust->email;
 }
 
 //Returns the faculty of the customer.
 TechnionFaculty customer_get_faculty(Customer cust)
 {
-    if(cust == NULL)
-    {
-        return UNKNOWN;
-    }
     return cust->faculty;
 }
 
 //Returns the skill level of the customer.
 int customer_get_skill(Customer cust)
 {
-    if(cust == NULL)
-    {
-        return -1;
-    }
     return cust->skill_level;
 }
 
@@ -188,26 +176,18 @@ MtmErrorCode customer_add_order(Order ord, Customer cust)
     {
         return MTM_CLIENT_IN_ROOM;
     }
-    else if(result == SET_OUT_OF_MEMORY)
-    {
-        return MTM_OUT_OF_MEMORY;
-    }
     cust->orders_num++;
     return MTM_SUCCESS;
 }
 
 int customer_get_orders_num(Customer cust)
 {
-    if(cust == NULL)
-    {
-        return -1;
-    }
     return cust->orders_num;
 }
 
 Order customer_get_order(Customer cust, int ord_num)
 {
-    if(cust == NULL ||ord_num > setGetSize(cust->OrderSet))
+    if(ord_num > setGetSize(cust->OrderSet))
     {
         return NULL;
     }
@@ -221,10 +201,6 @@ Order customer_get_order(Customer cust, int ord_num)
 
 MtmErrorCode customer_remove_order(Order ord, Customer cust)
 {
-    if(ord == NULL || cust == NULL)
-    {
-        return MTM_NULL_PARAMETER;
-    }
     SetResult result = setRemove(cust->OrderSet, ord);
     if(result != SET_SUCCESS)
     {
@@ -235,9 +211,17 @@ MtmErrorCode customer_remove_order(Order ord, Customer cust)
 
 }
 
+bool customer_already_booked(Order ord, Customer cust)
+{
+    return setIsIn(cust->OrderSet, ord);
+}
+
 
 void customer_destroy(Customer cust)
 {
+    if (cust == NULL) {
+        return;
+    }
     if(strcmp(cust->email, "/") != 0) {
         free(cust->email);
     }
