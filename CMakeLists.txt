@@ -6,4 +6,4 @@ set(CMAKE_C_FLAGS "${CMAKE_C_FLAGS} -std=c99 -Wall -pedantic-errors -Werror")
 set(SOURCE_FILES escapetechnion_tests.c escapetechnion.c escaperoom.c company.c
         customer.c order.c)
 add_executable(mtm_escape ${SOURCE_FILES})
-target_link_libraries(mtm_escape ${CMAKE_SOURCE_DIR}/libmtm32.a)
+target_link_libraries(mtm_escape ${CMAKE_SOURCE_DIR}/libmtm.a)
