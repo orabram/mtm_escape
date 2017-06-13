@@ -30,7 +30,11 @@ static SetElement ord_copy(SetElement ord)
 
 }
 
-//This is the free function for the set.
+/**
+ * 
+ *
+ * @param ord
+ */
 static void ord_destroy(SetElement ord)
 {
     order_remove(ord);
