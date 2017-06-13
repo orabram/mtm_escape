@@ -9,9 +9,30 @@
 
 typedef struct company *Company;
 
+/**
+ * Allocates space for a new Company object.
+ *
+ * @return
+ * NULL upon memory failure in either the Company creation or the room_set
+ * creation.
+ * A Company object otherwise.
+ */
 Company create_company();
 
-//Initializes a new company.
+/**
+ * Receives multiple parameters and initializes with the
+ * a newly created Company.
+ *
+ * @param comp: The Company object this function initializes.
+ * @param email: The email of the company.
+ * @param faculty: The faculty of the company
+ * @return
+ * MTM_OUT_OF_MEMORY if there was an allocation problem with email.
+ * MTM_NULL_PARAMETER if either comp or email is NULL.
+ * MTM_INVALID_PARAMETER if email doesn't contain at least one @ or if
+ * faculty's numeral value is either lower than 0 or greater than UNKNOWN'S.
+ *
+ */
 MtmErrorCode initialize_company(Company comp, char* email,
                                 TechnionFaculty faculty);
 

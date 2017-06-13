@@ -287,7 +287,7 @@ static void print_day(EscapeTechnion escape, int num_of_events,
         order_get_id(orders[i]), order_get_hour(orders[i]),
         escape_room_get_difficulty(room), order_get_num_ppl(orders[i]),
                       prices[i]);
-        order_remove(orders[i]);
+        remove_order(orders[i], escape);
     }
     mtmPrintDayFooter(escape->output_channel, escape->days);
 }
@@ -687,7 +687,6 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     }
                     escape->faculties[faculty] += price;
                     prices[counter] = price;
-                    remove_order(ord, escape);
                     escape->orders_num--;
                 }
                 else

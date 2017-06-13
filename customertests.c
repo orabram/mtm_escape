@@ -61,7 +61,6 @@ int main() {
     code = customer_add_order(ord2, cust1);
     assert(code == MTM_SUCCESS);
     assert(customer_get_orders_num(cust1) == 2);
-    assert(customer_already_booked(ord2, cust1));
     assert(customer_add_order(ord3, cust1) == MTM_CLIENT_IN_ROOM);
     assert(customer_remove_order(ord2, cust1) == MTM_SUCCESS);
     assert(customer_get_orders_num(cust1) == 1);
