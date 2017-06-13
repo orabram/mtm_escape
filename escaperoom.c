@@ -96,7 +96,7 @@ EscapeRoom create_escape_room()
     }
     room->email = NULL;
     room->id = room->price = room->num_ppl = room->open_hour = room->close_hour
-    = room->difficulty = 0;
+            = room->difficulty = 0;
     return room;
 }
 
@@ -138,9 +138,9 @@ MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room)
     }
     char* room_work = get_room_working_hrs(original_room);
     MtmErrorCode code = initialize_escape_room(new_room, original_room->email,
-                           original_room->id, original_room->price,
-                           original_room->num_ppl,
-                           room_work, original_room->difficulty);
+                                               original_room->id, original_room->price,
+                                               original_room->num_ppl,
+                                               room_work, original_room->difficulty);
     free(room_work);
     if (code == MTM_OUT_OF_MEMORY) {
         return MTM_OUT_OF_MEMORY;
@@ -207,7 +207,37 @@ int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
         return -1;
     }
     return ((room->num_ppl - num_ppl)*(room->num_ppl - num_ppl)) +
-            ((room->difficulty - skill_level)*(room->difficulty - skill_level));
+           ((room->difficulty - skill_level)*(room->difficulty - skill_level));
+}
+
+MtmErrorCode escape_room_find_closest_time(EscapeRoom room, int *day, int *hour)
+{
+    if (room == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    int free_day = 0, free_hour = room->open_hour,
+            order_count = setGetSize(room->OrdersSet), i;
+    while (order_count > 0) {
+        Order order = setGetFirst(room->OrdersSet);
+        for (i = 0; i < setGetSize(room->OrdersSet); i++) {
+            if (order_get_day(order) == free_day &&
+                order_get_hour(order) == free_hour) {
+                order_count--;
+                free_hour++;
+                break;
+            }
+        }
+        if (i == setGetSize(room->OrdersSet)) {
+            break;
+        }
+        if (free_hour == room->close_hour) {
+            free_hour = room->open_hour;
+            free_day++;
+        }
+    }
+    *day = free_day;
+    *hour = free_hour;
+    return MTM_SUCCESS;
 }
 
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order)

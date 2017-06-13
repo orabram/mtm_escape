@@ -81,8 +81,25 @@ static bool test_recommended_value()
     int calc_expected = 10;
 
     ASSERT_TEST(escape_room_calculate_recommended_value(room, 2, 8) ==
-                        calc_expected);
+                calc_expected);
     escape_room_destroy(room);
+    return true;
+}
+
+static bool test_find_closest_time()
+{
+    EscapeRoom room = create_escape_room();
+    ASSERT_TEST(initialize_escape_room(room, "hello@world.com", 1, 72, 5,
+                                       "10-22", 3) == MTM_SUCCESS);
+    int day, hour;
+    ASSERT_TEST(escape_room_find_closest_time(room, &day, &hour)==MTM_SUCCESS);
+    ASSERT_TEST(day == 0 && hour == 10);
+    Order order = create_order();
+    initialize_order(order, "client@mtm.com", ELECTRICAL_ENGINEERING, 57,
+                     "0-10", 3);
+    ASSERT_TEST(escape_room_add_order(room, order) == MTM_SUCCESS);
+    ASSERT_TEST(escape_room_find_closest_time(room, &day, &hour)==MTM_SUCCESS);
+    ASSERT_TEST(day == 0 && hour == 11);
     return true;
 }
 
@@ -123,7 +140,7 @@ static bool test_remove_order()
                      "2-15", 3);
     ASSERT_TEST(escape_room_remove_order(NULL, order) == MTM_NULL_PARAMETER);
     ASSERT_TEST(escape_room_remove_order(room, order) ==
-                        MTM_INVALID_PARAMETER);
+                MTM_INVALID_PARAMETER);
     ASSERT_TEST(escape_room_add_order(room, order) == MTM_SUCCESS);
     ASSERT_TEST(escape_room_remove_order(room, order) == MTM_SUCCESS);
     escape_room_destroy(room);
@@ -161,6 +178,7 @@ int main()
     RUN_TEST(test_initialize_and_copy);
     RUN_TEST(test_get_functions);
     RUN_TEST(test_recommended_value);
+    RUN_TEST(test_find_closest_time);
     RUN_TEST(test_add_order);
     RUN_TEST(test_remove_order);
     RUN_TEST(test_order_exists);

@@ -76,6 +76,10 @@ int escape_room_get_difficulty(EscapeRoom room);
 int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
                                             int num_ppl);
 
+//Finds the soonest time when the room will be available and returns it into
+//the given parameters for day and hour
+MtmErrorCode escape_room_find_closest_time(EscapeRoom room,int *day,int *hour);
+
 //Adds a new order to the room.
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);
 
