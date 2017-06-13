@@ -26,10 +26,10 @@ int programArguments(int argc, char** argv, FILE** input_channel,
     }
     if(argc == 5)
     {
-        if(argv[1] == "i")
+        if(!strcmp(argv[1],"i"))
         {
             *input_channel = fopen(argv[3], "r");
-            if(argv[3] != "o")
+            if(strcmp(argv[3],"o") != 0)
             {
                 mtmPrintErrorMessage(stderr,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
@@ -37,14 +37,14 @@ int programArguments(int argc, char** argv, FILE** input_channel,
             }
             *output_channel = fopen(argv[5], "w");
         }
-        else if(argv[1] == "o") {
-            if (argv[3] != "i") {
+        else if(!strcmp(argv[1],"o")) {
+            if (strcmp(argv[3], "i") != 0) {
                 mtmPrintErrorMessage(stderr,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
                 return 0;
             }
-            *input_channel = fopen(argv[5], "r");
-            *output_channel = fopen(argv[3], "w");
+            *input_channel = fopen(argv[4], "r");
+            *output_channel = fopen(argv[2], "w");
         }
         else
         {
@@ -62,12 +62,12 @@ int programArguments(int argc, char** argv, FILE** input_channel,
 
     if(argc == 3)
     {
-        if(argv[1] == "i")
+        if(!strcmp(argv[1],"i"))
         {
             *input_channel = fopen(argv[2], "r");
             *output_channel = stdout;
         }
-        else if(argv[1] == "o")
+        else if(!strcmp(argv[1],"o"))
         {
             *output_channel = fopen(argv[2], "w");
             *input_channel = stdin;
@@ -108,12 +108,7 @@ int sortInput(char* input)
 
 }
 
-char* get_parameter(char* input)
-{
-    char* tok = input;
-    tok = strtok(NULL, DELIM);
-    return tok;
-}
+
 MtmErrorCode company_orders(EscapeTechnion escape, char* email,
                             int faculty, char* subcommand)
 {
@@ -223,7 +218,7 @@ int main(int argc, char** argv){
         mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
         return 0;
     }
-    escapetechnion_set_output_channel(output_channel);
+    escapetechnion_set_output_channel(escape, output_channel);
     MtmErrorCode code;
     char* input = malloc(MAX_LEN);  //The maximum length of a line is MAX_LEN.
     if(input == NULL)

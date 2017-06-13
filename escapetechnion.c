@@ -365,6 +365,17 @@ EscapeTechnion create_escapetechnion(){
     return escape;
 }
 
+MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
+                                               FILE* output_channel)
+{
+    if(output_channel == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    escape->output_channel = output_channel;
+    return MTM_SUCCESS;
+
+}
+
 MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
                                         TechnionFaculty faculty)
 {
@@ -395,7 +406,7 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
     }
 }
 
-MtmErrorCode escapetechnion_destroy_company(EscapeTechnion escape, char* email)
+MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email)
 {
     if(escape == NULL || check_email(email))
     {

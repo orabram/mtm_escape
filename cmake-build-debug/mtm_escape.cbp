@@ -80,10 +80,37 @@
 				</MakeCommands>
 			</Target>
 		</Build>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/company.c">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/company.h">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/customer.c">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/customer.h">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/escaperoom.c">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/escaperoom.h">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.c">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.h">
+			<Option target="mtm_escape"/>
+		</Unit>
 		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/mtm_escape.c">
 			<Option target="mtm_escape"/>
 		</Unit>
-		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/mtmescapetests.c">
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/order.c">
+			<Option target="mtm_escape"/>
+		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/order.h">
 			<Option target="mtm_escape"/>
 		</Unit>
 		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/CMakeLists.txt">

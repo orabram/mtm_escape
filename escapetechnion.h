@@ -12,7 +12,8 @@ typedef struct escapetechnion *EscapeTechnion;
 
 EscapeTechnion create_escapetechnion();
 
-MtmErrorCode escapetechnion_set_output_channel(FILE* output_channel);
+MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
+                                               FILE* output_channel);
 
 //MtmErrorCode initialize_escapetechnion();
 
