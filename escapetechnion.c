@@ -652,7 +652,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
 {
     Customer cust = setGetFirst(escape->CustomersSet);
     TechnionFaculty faculty;
-    Order* sortedord = malloc(sizeof(*Order) * (escape->orders_num));
+    Order* sortedord = malloc(sizeof(*sortedord) * (escape->orders_num));
     if(sortedord == NULL)
     {
         return MTM_OUT_OF_MEMORY;
