@@ -86,7 +86,7 @@ int parseInput(FILE* output_channel, char* input)
 {
     while(*(input) != NULL)
     {
-        if(*(input) == "\t" || *(input == " ")
+        if(*(input) == "\t" || *(input) == " ")
         {
             input++;
         }
