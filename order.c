@@ -17,19 +17,27 @@ struct order{
 //Extracts and returns the day from a given time string.
 static int day_to_int(char* time)
 {
-    return (time[0] - '0')*10 + (time[1] - '0');
+    int day, hour;
+    if (sscanf(time, "%d-%d", &day, &hour) != 2) {
+        return -1;
+    }
+    return day;
 }
 
 //Extracts and returns the hour from a given time string.
 static int hour_to_int(char* time)
 {
-    return (time[3] - '0')*10 + (time[4] - '0');
+    int day, hour;
+    if (sscanf(time, "%d-%d", &day, &hour) != 2) {
+        return -1;
+    }
+    return hour;
 }
 
 //Returns true if the time string is legal, false otherwise.
 static bool check_time(char* time)
 {
-    if(time == NULL || strlen(time) != 5 || time[2] != '-')
+    if(time == NULL)
     {
         return false;
     }
@@ -85,6 +93,11 @@ static bool check_num_ppl(int num_ppl)
 Order create_order()
 {
     Order ord = malloc(sizeof(struct order));
+    if(ord == NULL)
+    {
+        return NULL;
+    }
+    ord->email = NULL;
     return ord;
 }
 
@@ -102,8 +115,16 @@ int id, char* time, int num_ppl)
     {
         return MTM_INVALID_PARAMETER;
     }
-    //free(ord->email); //A precaution against initializing the same order twice.
-    ord->email = strdup(email);
+    if(ord->email != NULL)
+    {
+        free(ord->email); //A precaution against initializing the same order twice.
+    }
+    ord->email = malloc(strlen(email) + 1);
+    if(ord->email == NULL)
+    {
+        return MTM_OUT_OF_MEMORY;
+    }
+    strcpy(ord->email , email);
     if(ord->email == NULL)
     {
         return MTM_OUT_OF_MEMORY;
@@ -126,7 +147,13 @@ Order order_copy(Order ord)
         return NULL;
     }
     new_ord->faculty = ord->faculty;
-    new_ord->email = strdup(ord->email);
+    new_ord->email = malloc(strlen(ord->email) + 1);
+    strcpy(new_ord->email, ord->email);
+    if(new_ord->email == NULL)
+    {
+        free(new_ord);
+        return NULL;
+    }
     new_ord->day = ord->day;
     new_ord->hour = ord->hour;
     new_ord->num_ppl = ord->num_ppl;
@@ -173,7 +200,7 @@ bool order_compare_time(Order ord1, Order ord2)
     }
     else if(order_get_day(ord1) == order_get_day(ord2))
     {
-        if (order_get_hour(ord1) > order_get_day(ord2))
+        if (order_get_hour(ord1) > order_get_hour(ord2))
         {
             return true;
         }
@@ -209,11 +236,12 @@ void order_day_passed(Order ord)
 //Destroys the order.
 void order_remove(Order ord)
 {
-    if (ord == NULL) {
-        return;
+    if(ord != NULL) {
+        if (ord->email != NULL) {
+            free(ord->email);
+        }
+        free(ord);
     }
-    free(ord->email);
-    free(ord);
 }
 
 

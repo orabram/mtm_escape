@@ -53,5 +53,5 @@ int main(){
     order_day_passed(ord1);
     assert(order_get_day(ord1) == day);
     order_remove(ord1);
-    printf("All tests passed successfully. Congrats!");
+    printf("All Order tests passed successfully. Congrats!");
 }
