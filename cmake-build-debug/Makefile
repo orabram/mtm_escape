@@ -38,19 +38,19 @@ cmake_force:
 SHELL = cmd.exe
 
 # The CMake executable.
-CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe"
+CMAKE_COMMAND = "C:\Program Files\JetBrains\CLion 2017.1.1\bin\cmake\bin\cmake.exe"
 
 # The command to remove a file.
-RM = "C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E remove -f
+RM = "C:\Program Files\JetBrains\CLion 2017.1.1\bin\cmake\bin\cmake.exe" -E remove -f
 
 # Escaping for special characters.
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape
+CMAKE_SOURCE_DIR = C:\Users\USER\CLionProjects\mtm_escape
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug
+CMAKE_BINARY_DIR = C:\Users\USER\CLionProjects\mtm_escape\cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
@@ -58,7 +58,7 @@ CMAKE_BINARY_DIR = C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-bui
 # Special rule for the target edit_cache
 edit_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "No interactive CMake dialog available..."
-	"C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
+	"C:\Program Files\JetBrains\CLion 2017.1.1\bin\cmake\bin\cmake.exe" -E echo "No interactive CMake dialog available."
 .PHONY : edit_cache
 
 # Special rule for the target edit_cache
@@ -69,7 +69,7 @@ edit_cache/fast: edit_cache
 # Special rule for the target rebuild_cache
 rebuild_cache:
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	"C:\Program Files\JetBrains\CLion 2017.1.2\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+	"C:\Program Files\JetBrains\CLion 2017.1.1\bin\cmake\bin\cmake.exe" -H$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
 .PHONY : rebuild_cache
 
 # Special rule for the target rebuild_cache
@@ -79,9 +79,9 @@ rebuild_cache/fast: rebuild_cache
 
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles\progress.marks
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\USER\CLionProjects\mtm_escape\cmake-build-debug\CMakeFiles C:\Users\USER\CLionProjects\mtm_escape\cmake-build-debug\CMakeFiles\progress.marks
 	$(MAKE) -f CMakeFiles\Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles 0
+	$(CMAKE_COMMAND) -E cmake_progress_start C:\Users\USER\CLionProjects\mtm_escape\cmake-build-debug\CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -122,6 +122,60 @@ mtm_escape/fast:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/build
 .PHONY : mtm_escape/fast
 
+company.obj: company.c.obj
+
+.PHONY : company.obj
+
+# target to build an object file
+company.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.obj
+.PHONY : company.c.obj
+
+company.i: company.c.i
+
+.PHONY : company.i
+
+# target to preprocess a source file
+company.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.i
+.PHONY : company.c.i
+
+company.s: company.c.s
+
+.PHONY : company.s
+
+# target to generate assembly for a file
+company.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/company.c.s
+.PHONY : company.c.s
+
+customer.obj: customer.c.obj
+
+.PHONY : customer.obj
+
+# target to build an object file
+customer.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer.c.obj
+.PHONY : customer.c.obj
+
+customer.i: customer.c.i
+
+.PHONY : customer.i
+
+# target to preprocess a source file
+customer.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer.c.i
+.PHONY : customer.c.i
+
+customer.s: customer.c.s
+
+.PHONY : customer.s
+
+# target to generate assembly for a file
+customer.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer.c.s
+.PHONY : customer.c.s
+
 escaperoom.obj: escaperoom.c.obj
 
 .PHONY : escaperoom.obj
@@ -149,32 +203,59 @@ escaperoom.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom.c.s
 .PHONY : escaperoom.c.s
 
-escaperoom_test.obj: escaperoom_test.c.obj
+escapetechnion.obj: escapetechnion.c.obj
 
-.PHONY : escaperoom_test.obj
+.PHONY : escapetechnion.obj
 
 # target to build an object file
-escaperoom_test.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj
-.PHONY : escaperoom_test.c.obj
+escapetechnion.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.obj
+.PHONY : escapetechnion.c.obj
 
-escaperoom_test.i: escaperoom_test.c.i
+escapetechnion.i: escapetechnion.c.i
 
-.PHONY : escaperoom_test.i
+.PHONY : escapetechnion.i
 
 # target to preprocess a source file
-escaperoom_test.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.i
-.PHONY : escaperoom_test.c.i
+escapetechnion.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.i
+.PHONY : escapetechnion.c.i
 
-escaperoom_test.s: escaperoom_test.c.s
+escapetechnion.s: escapetechnion.c.s
 
-.PHONY : escaperoom_test.s
+.PHONY : escapetechnion.s
 
 # target to generate assembly for a file
-escaperoom_test.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.s
-.PHONY : escaperoom_test.c.s
+escapetechnion.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.s
+.PHONY : escapetechnion.c.s
+
+mtm_escape.obj: mtm_escape.c.obj
+
+.PHONY : mtm_escape.obj
+
+# target to build an object file
+mtm_escape.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.obj
+.PHONY : mtm_escape.c.obj
+
+mtm_escape.i: mtm_escape.c.i
+
+.PHONY : mtm_escape.i
+
+# target to preprocess a source file
+mtm_escape.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.i
+.PHONY : mtm_escape.c.i
+
+mtm_escape.s: mtm_escape.c.s
+
+.PHONY : mtm_escape.s
+
+# target to generate assembly for a file
+mtm_escape.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.s
+.PHONY : mtm_escape.c.s
 
 order.obj: order.c.obj
 
@@ -212,12 +293,21 @@ help:
 	@echo ... mtm_escape
 	@echo ... edit_cache
 	@echo ... rebuild_cache
+	@echo ... company.obj
+	@echo ... company.i
+	@echo ... company.s
+	@echo ... customer.obj
+	@echo ... customer.i
+	@echo ... customer.s
 	@echo ... escaperoom.obj
 	@echo ... escaperoom.i
 	@echo ... escaperoom.s
-	@echo ... escaperoom_test.obj
-	@echo ... escaperoom_test.i
-	@echo ... escaperoom_test.s
+	@echo ... escapetechnion.obj
+	@echo ... escapetechnion.i
+	@echo ... escapetechnion.s
+	@echo ... mtm_escape.obj
+	@echo ... mtm_escape.i
+	@echo ... mtm_escape.s
 	@echo ... order.obj
 	@echo ... order.i
 	@echo ... order.s
