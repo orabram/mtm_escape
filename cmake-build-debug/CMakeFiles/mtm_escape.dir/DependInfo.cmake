@@ -8,7 +8,6 @@ set(CMAKE_DEPENDS_CHECK_C
   "C:/Users/USER/CLionProjects/mtm_escape/customer.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/customer.c.obj"
   "C:/Users/USER/CLionProjects/mtm_escape/escaperoom.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom.c.obj"
   "C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escapetechnion.c.obj"
-  "C:/Users/USER/CLionProjects/mtm_escape/escapetechnion_tests.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj"
   "C:/Users/USER/CLionProjects/mtm_escape/order.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/order.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")

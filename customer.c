@@ -17,7 +17,7 @@ struct customer {
 };
 
 /**
- * Receives an ord SetElement and copies it.
+ * Receives a SetElement and copies it.
  *
  * @param ord: the SetElement we wish to clone.
  * @return
@@ -31,16 +31,25 @@ static SetElement ord_copy(SetElement ord)
 }
 
 /**
- * 
+ * Receives a SetElement and frees it.
  *
- * @param ord
+ * @param ord: The SetElement we wish to free.
  */
 static void ord_destroy(SetElement ord)
 {
     order_remove(ord);
 }
 
-//This is the compare function for the set.
+/**
+ * Receives two SetElements and compares their booking times.
+ *
+ * @param ord1: The first SetElement we wish to compare.
+ * @param ord2: The second SetElement we wish to compare.
+ * @return
+ * If ord1 happens after ord2, it returns 1.
+ * If ord1 happens at the same time as ord2, it returns 0.
+ * If ord1 happens before ord2, it returns -1;
+ */
 static int ord_compare(SetElement ord1, SetElement ord2)
 {
     if(order_compare_time(ord1, ord2))
@@ -54,7 +63,14 @@ static int ord_compare(SetElement ord1, SetElement ord2)
     return -1;
 }
 
-//Returns true if the email is legal, false otherwise.
+/**
+ * Receives an email address and checks if it is legal.
+ *
+ * @param email: The email address we check.
+ * @return
+ * false if it isn't legal(doesn't contain @).
+ * true otherwise.
+ */
 static bool check_email(char* email)
 {
     if(!strstr(email, "@"))
@@ -64,7 +80,12 @@ static bool check_email(char* email)
     return true;
 }
 
-//Returns true if the faculty is legal, false otherwise.
+/**
+ * Receives a faculty and 
+ *
+ * @param faculty
+ * @return
+ */
 static bool check_faculty(TechnionFaculty faculty)
 {
     if(faculty >= FACULTIES_NUM || faculty < 0)

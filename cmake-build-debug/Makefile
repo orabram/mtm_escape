@@ -230,33 +230,6 @@ escapetechnion.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.s
 .PHONY : escapetechnion.c.s
 
-escapetechnion_tests.obj: escapetechnion_tests.c.obj
-
-.PHONY : escapetechnion_tests.obj
-
-# target to build an object file
-escapetechnion_tests.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj
-.PHONY : escapetechnion_tests.c.obj
-
-escapetechnion_tests.i: escapetechnion_tests.c.i
-
-.PHONY : escapetechnion_tests.i
-
-# target to preprocess a source file
-escapetechnion_tests.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.i
-.PHONY : escapetechnion_tests.c.i
-
-escapetechnion_tests.s: escapetechnion_tests.c.s
-
-.PHONY : escapetechnion_tests.s
-
-# target to generate assembly for a file
-escapetechnion_tests.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.s
-.PHONY : escapetechnion_tests.c.s
-
 order.obj: order.c.obj
 
 .PHONY : order.obj
@@ -305,9 +278,6 @@ help:
 	@echo ... escapetechnion.obj
 	@echo ... escapetechnion.i
 	@echo ... escapetechnion.s
-	@echo ... escapetechnion_tests.obj
-	@echo ... escapetechnion_tests.i
-	@echo ... escapetechnion_tests.s
 	@echo ... order.obj
 	@echo ... order.i
 	@echo ... order.s
