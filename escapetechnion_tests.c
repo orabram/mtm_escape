@@ -10,91 +10,69 @@
         } \
 } while (0)
 
-#define RUN_TEST(name)  printf("Running "); \
-						printf(#name);		\
-						printf("... ");		\
-						if (!name()) { \
-							printf("[FAILED]\n");		\
-							return false; \
-						}								\
-						printf("[SUCCESS]\n");
 
-static bool test_create_escapetechnion()
-{
-    EscapeTechnion escapeTechnion = create_escapetechnion();
-    ASSERT_TEST(escapeTechnion != NULL);
-    escapetechnion_destroy(escapeTechnion);
-    return true;
-}
-
-static bool test_set_output_channel()
-{
-    EscapeTechnion escapeTechnion = create_escapetechnion();
-    ASSERT_TEST(escapetechnion_set_output_channel(escapeTechnion, stdout) ==
-                MTM_SUCCESS);
-    escapetechnion_destroy(escapeTechnion);
-    return true;
-}
-
-static bool test_add_and_remove_company()
-{
-    EscapeTechnion escapeTechnion = create_escapetechnion();
-    ASSERT_TEST(escapetechnion_add_company(NULL, "company@mtm.com", PHYSICS) ==
-                        MTM_NULL_PARAMETER);
-    ASSERT_TEST(escapetechnion_add_company(escapeTechnion, "companymtm.com",
-                                           PHYSICS) == MTM_INVALID_PARAMETER);
-    ASSERT_TEST(escapetechnion_add_company(escapeTechnion, "company@mtm.com",
-                                           PHYSICS) == MTM_SUCCESS);
-    ASSERT_TEST(escapetechnion_remove_company(NULL, "company@mtm.com")
-                == MTM_NULL_PARAMETER);
-    ASSERT_TEST(escapetechnion_remove_company(escapeTechnion,"company2@mtm.com")
-                == MTM_COMPANY_EMAIL_DOES_NOT_EXIST);
-    ASSERT_TEST(escapetechnion_remove_company(escapeTechnion, "company@mtm.com")
-                == MTM_SUCCESS);
-    escapetechnion_destroy(escapeTechnion);
-    return true;
-}
-
-static bool test_add_room()
-{
-    EscapeTechnion escapeTechnion = create_escapetechnion();
-    escapetechnion_add_company(escapeTechnion, "company@mtm.com", PHYSICS);
-    ASSERT_TEST(escapetechnion_add_room(NULL, "company2@mtm.com", 22
-            , 100, 2, "15-22", 4) == MTM_NULL_PARAMETER);
-    ASSERT_TEST(escapetechnion_add_room(escapeTechnion, "company2@mtm.com", 22
-            , 100, 2, "15-22", 4) == MTM_COMPANY_EMAIL_DOES_NOT_EXIST);
-    ASSERT_TEST(escapetechnion_add_room(escapeTechnion, "company@mtm.com", 22
-            , 101, 2, "15-22", 4) == MTM_INVALID_PARAMETER);
-    ASSERT_TEST(escapetechnion_add_room(escapeTechnion, "company@mtm.com", 22
-            , 100, 2, "15-22", 4) == MTM_SUCCESS);
-    escapetechnion_destroy(escapeTechnion);
-    return true;
-}
-
-static bool test_remove_room()
-{
-    EscapeTechnion escapeTechnion = create_escapetechnion();
-    escapetechnion_add_company(escapeTechnion, "company@mtm.com", PHYSICS);
-    ASSERT_TEST(escapetechnion_remove_room(NULL, PHYSICS, 33)
-                == MTM_NULL_PARAMETER);
-    ASSERT_TEST(escapetechnion_remove_room(escapeTechnion, PHYSICS, 34)
-                == MTM_ID_DOES_NOT_EXIST);
-    ASSERT_TEST(escapetechnion_remove_room(escapeTechnion, CHEMISTRY, 33)
-                == MTM_ID_DOES_NOT_EXIST);
-    ASSERT_TEST(escapetechnion_remove_room(escapeTechnion, PHYSICS, 33)
-                == MTM_SUCCESS);
-    escapetechnion_destroy(escapeTechnion);
-    return true;
-}
+int main() {
+    EscapeTechnion escape = create_escapetechnion();
+    ASSERT_TEST(escape != NULL);
+    MtmErrorCode code = escapetechnion_set_output_channel(escape, stdout);
+    ASSERT_TEST(code == MTM_SUCCESS);
+    code =escapetechnion_add_company(escape, "roomsinc@gmail.com", BIOLOGY);
+    ASSERT_TEST(code == MTM_SUCCESS);
+    escapetechnion_add_company(escape, "roomss", BIOLOGY);
+    ASSERT_TEST(code == MTM_INVALID_PARAMETER);
+    code = escapetechnion_add_company(escape, "roomsinc@gmail.com", BIOLOGY);
+    ASSERT_TEST(code == MTM_EMAIL_ALREADY_EXISTS);
+    code = escapetechnion_add_company(escape, "validmail@gmail.com", UNKNOWN);
+    ASSERT_TEST(code == MTM_INVALID_PARAMETER);
+    code = escapetechnion_add_company(escape, "validmail@gmail.com",
+                                      AEROSPACE_ENGINEERING);
+    ASSERT_TEST(code == MTM_SUCCESS);
 
 
-int main()
-{
-    RUN_TEST(test_create_escapetechnion);
-    RUN_TEST(test_set_output_channel);
-    RUN_TEST(test_add_and_remove_company);
-    RUN_TEST(test_add_room);
-    RUN_TEST(test_remove_room);
-    printf("\nAll tests passed!\n");
-    return 0;
+/*
+    company
+    add
+    roomsinc@gmail.com
+    13
+    room
+    add
+    roomsinc@gmail.com
+    1
+    100
+    3
+    06 - 18
+    7
+    escaper
+    add
+    escmaster@gmail.com
+    13
+    8
+
+    escaper
+    order
+    escmaster@gmail.com
+    13
+    1
+    0 - 10
+    3
+    report day
+
+    escaper
+    recommend
+    escmaster@gmail.com
+    3
+    report day
+
+    report best
+
+    escaper
+    remove
+    escmaster@gmail.com
+    room
+    remove
+    13
+    1
+    company
+    remove
+    roomsinc@gmail.com*/
 }
