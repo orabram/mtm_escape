@@ -56,6 +56,9 @@ int escape_room_get_id(EscapeRoom room);
 //Returns the price into the given variable.
 int escape_room_get_price(EscapeRoom room);
 
+//Returns the working hours in a string format
+char* get_room_working_hrs(EscapeRoom room);
+
 //Returns the num_ppl into the given variable.
 //int escape_room_get_num_ppl(EscapeRoom room);
 
@@ -63,16 +66,15 @@ int escape_room_get_price(EscapeRoom room);
 //char* escape_room_get_working_hrs(EscapeRoom room);
 
 //Returns the difficulty into the given variable.
-//int escape_room_get_difficulty(EscapeRoom room);
+int escape_room_get_difficulty(EscapeRoom room);
 
 //Returns the faculty into the given variable.
 //MtmErrorCode escape_room_get_faculty(EscapeRoom room,
 //                                     TechnionFaculty *faculty);
 
-//Calculates how recommended this room is to a specific party,
-int escape_room_calculate_recommended_value(EscapeRoom room,
-                                                     int skill_level,
-                                                     int party_size);
+//Calculates how recommended this room is to a specific group.
+int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
+                                            int num_ppl);
 
 //Adds a new order to the room.
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);

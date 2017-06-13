@@ -56,9 +56,57 @@ include CMakeFiles/mtm_escape.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/mtm_escape.dir/flags.make
 
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj: CMakeFiles/mtm_escape.dir/flags.make
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj: ../escaperoom_test.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj"
+	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\escaperoom_test.c.obj   -c C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\escaperoom_test.c
+
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mtm_escape.dir/escaperoom_test.c.i"
+	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\escaperoom_test.c > CMakeFiles\mtm_escape.dir\escaperoom_test.c.i
+
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mtm_escape.dir/escaperoom_test.c.s"
+	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\escaperoom_test.c -o CMakeFiles\mtm_escape.dir\escaperoom_test.c.s
+
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.requires:
+
+.PHONY : CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.requires
+
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.provides: CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.requires
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.provides.build
+.PHONY : CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.provides
+
+CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.provides.build: CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj
+
+
+CMakeFiles/mtm_escape.dir/escaperoom.c.obj: CMakeFiles/mtm_escape.dir/flags.make
+CMakeFiles/mtm_escape.dir/escaperoom.c.obj: ../escaperoom.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/mtm_escape.dir/escaperoom.c.obj"
+	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\escaperoom.c.obj   -c C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\escaperoom.c
+
+CMakeFiles/mtm_escape.dir/escaperoom.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mtm_escape.dir/escaperoom.c.i"
+	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\escaperoom.c > CMakeFiles\mtm_escape.dir\escaperoom.c.i
+
+CMakeFiles/mtm_escape.dir/escaperoom.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mtm_escape.dir/escaperoom.c.s"
+	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\escaperoom.c -o CMakeFiles\mtm_escape.dir\escaperoom.c.s
+
+CMakeFiles/mtm_escape.dir/escaperoom.c.obj.requires:
+
+.PHONY : CMakeFiles/mtm_escape.dir/escaperoom.c.obj.requires
+
+CMakeFiles/mtm_escape.dir/escaperoom.c.obj.provides: CMakeFiles/mtm_escape.dir/escaperoom.c.obj.requires
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escaperoom.c.obj.provides.build
+.PHONY : CMakeFiles/mtm_escape.dir/escaperoom.c.obj.provides
+
+CMakeFiles/mtm_escape.dir/escaperoom.c.obj.provides.build: CMakeFiles/mtm_escape.dir/escaperoom.c.obj
+
+
 CMakeFiles/mtm_escape.dir/order.c.obj: CMakeFiles/mtm_escape.dir/flags.make
 CMakeFiles/mtm_escape.dir/order.c.obj: ../order.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/mtm_escape.dir/order.c.obj"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/mtm_escape.dir/order.c.obj"
 	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\order.c.obj   -c C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\order.c
 
 CMakeFiles/mtm_escape.dir/order.c.i: cmake_force
@@ -80,66 +128,18 @@ CMakeFiles/mtm_escape.dir/order.c.obj.provides: CMakeFiles/mtm_escape.dir/order.
 CMakeFiles/mtm_escape.dir/order.c.obj.provides.build: CMakeFiles/mtm_escape.dir/order.c.obj
 
 
-CMakeFiles/mtm_escape.dir/customer.c.obj: CMakeFiles/mtm_escape.dir/flags.make
-CMakeFiles/mtm_escape.dir/customer.c.obj: ../customer.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building C object CMakeFiles/mtm_escape.dir/customer.c.obj"
-	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\customer.c.obj   -c C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\customer.c
-
-CMakeFiles/mtm_escape.dir/customer.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mtm_escape.dir/customer.c.i"
-	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\customer.c > CMakeFiles\mtm_escape.dir\customer.c.i
-
-CMakeFiles/mtm_escape.dir/customer.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mtm_escape.dir/customer.c.s"
-	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\customer.c -o CMakeFiles\mtm_escape.dir\customer.c.s
-
-CMakeFiles/mtm_escape.dir/customer.c.obj.requires:
-
-.PHONY : CMakeFiles/mtm_escape.dir/customer.c.obj.requires
-
-CMakeFiles/mtm_escape.dir/customer.c.obj.provides: CMakeFiles/mtm_escape.dir/customer.c.obj.requires
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer.c.obj.provides.build
-.PHONY : CMakeFiles/mtm_escape.dir/customer.c.obj.provides
-
-CMakeFiles/mtm_escape.dir/customer.c.obj.provides.build: CMakeFiles/mtm_escape.dir/customer.c.obj
-
-
-CMakeFiles/mtm_escape.dir/customertests.c.obj: CMakeFiles/mtm_escape.dir/flags.make
-CMakeFiles/mtm_escape.dir/customertests.c.obj: ../customertests.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building C object CMakeFiles/mtm_escape.dir/customertests.c.obj"
-	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\customertests.c.obj   -c C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\customertests.c
-
-CMakeFiles/mtm_escape.dir/customertests.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mtm_escape.dir/customertests.c.i"
-	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\customertests.c > CMakeFiles\mtm_escape.dir\customertests.c.i
-
-CMakeFiles/mtm_escape.dir/customertests.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mtm_escape.dir/customertests.c.s"
-	C:\TDM-GCC-64\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\victa\OneDrive\Documents\GitHub\mtm_escape\customertests.c -o CMakeFiles\mtm_escape.dir\customertests.c.s
-
-CMakeFiles/mtm_escape.dir/customertests.c.obj.requires:
-
-.PHONY : CMakeFiles/mtm_escape.dir/customertests.c.obj.requires
-
-CMakeFiles/mtm_escape.dir/customertests.c.obj.provides: CMakeFiles/mtm_escape.dir/customertests.c.obj.requires
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customertests.c.obj.provides.build
-.PHONY : CMakeFiles/mtm_escape.dir/customertests.c.obj.provides
-
-CMakeFiles/mtm_escape.dir/customertests.c.obj.provides.build: CMakeFiles/mtm_escape.dir/customertests.c.obj
-
-
 # Object files for target mtm_escape
 mtm_escape_OBJECTS = \
-"CMakeFiles/mtm_escape.dir/order.c.obj" \
-"CMakeFiles/mtm_escape.dir/customer.c.obj" \
-"CMakeFiles/mtm_escape.dir/customertests.c.obj"
+"CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj" \
+"CMakeFiles/mtm_escape.dir/escaperoom.c.obj" \
+"CMakeFiles/mtm_escape.dir/order.c.obj"
 
 # External object files for target mtm_escape
 mtm_escape_EXTERNAL_OBJECTS =
 
+mtm_escape.exe: CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj
+mtm_escape.exe: CMakeFiles/mtm_escape.dir/escaperoom.c.obj
 mtm_escape.exe: CMakeFiles/mtm_escape.dir/order.c.obj
-mtm_escape.exe: CMakeFiles/mtm_escape.dir/customer.c.obj
-mtm_escape.exe: CMakeFiles/mtm_escape.dir/customertests.c.obj
 mtm_escape.exe: CMakeFiles/mtm_escape.dir/build.make
 mtm_escape.exe: ../libmtm.a
 mtm_escape.exe: CMakeFiles/mtm_escape.dir/linklibs.rsp
@@ -153,9 +153,9 @@ CMakeFiles/mtm_escape.dir/build: mtm_escape.exe
 
 .PHONY : CMakeFiles/mtm_escape.dir/build
 
+CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj.requires
+CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/escaperoom.c.obj.requires
 CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/order.c.obj.requires
-CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/customer.c.obj.requires
-CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/customertests.c.obj.requires
 
 .PHONY : CMakeFiles/mtm_escape.dir/requires
 

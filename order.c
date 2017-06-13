@@ -209,6 +209,9 @@ void order_day_passed(Order ord)
 //Destroys the order.
 void order_remove(Order ord)
 {
+    if (ord == NULL) {
+        return;
+    }
     free(ord->email);
     free(ord);
 }

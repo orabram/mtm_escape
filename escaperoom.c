@@ -80,7 +80,9 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
                                     int price, int num_ppl, char *working_hrs,
                                     int difficulty)
 {
-    if (room == NULL )
+    if (room == NULL ) {
+        return MTM_NULL_PARAMETER;
+    }
     if ( id < 0 || price % 4 != 0 || price <= 0 || num_ppl <= 0
          || difficulty < 1 || difficulty > 10) {
         return MTM_INVALID_PARAMETER;
@@ -89,6 +91,7 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
         return MTM_INVALID_PARAMETER;
     }
     room->id = id;
+    room->price = price;
     room->num_ppl = num_ppl;
     room->difficulty = difficulty;
     room->email = malloc(strlen(email) + 1);
@@ -96,6 +99,26 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
         return MTM_OUT_OF_MEMORY;
     }
     strcpy(room->email, email);
+    return MTM_SUCCESS;
+}
+
+MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room)
+{
+    if (new_room == NULL || original_room == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    MtmErrorCode code = initialize_escape_room(new_room, original_room->email,
+                           original_room->id, original_room->price,
+                           original_room->num_ppl,
+                           get_room_working_hrs(original_room),
+                           original_room->difficulty);
+    if (code == MTM_OUT_OF_MEMORY) {
+        return MTM_OUT_OF_MEMORY;
+    }
+    new_room->OrdersSet = setCopy(original_room->OrdersSet);
+    if (new_room->OrdersSet == NULL) {
+        return MTM_OUT_OF_MEMORY;
+    }
     return MTM_SUCCESS;
 }
 
@@ -113,7 +136,7 @@ int escape_room_get_id(EscapeRoom room)
     return room->id;
 }
 
-int get_room_price(EscapeRoom room)
+int escape_room_get_price(EscapeRoom room)
 {
     assert(room != NULL);
     assert(room->price > 0);
@@ -121,7 +144,7 @@ int get_room_price(EscapeRoom room)
     return room->price;
 }
 
-int get_room_num_ppl(EscapeRoom room)
+int escape_room_get_num_ppl(EscapeRoom room)
 {
     assert(room != NULL);
     assert(room->num_ppl > 0);
@@ -139,7 +162,7 @@ char* get_room_working_hrs(EscapeRoom room)
     return working_hrs;
 }
 
-int get_room_difficulty(EscapeRoom room)
+int escape_room_get_difficulty(EscapeRoom room)
 {
     assert(room != NULL);
     assert(room->difficulty >=1 && room->difficulty <= 10);
@@ -206,7 +229,6 @@ bool escape_room_order_exists(EscapeRoom room)
     }
     return false;
 }
-
 
 void escape_room_destroy(EscapeRoom room)
 {
