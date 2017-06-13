@@ -46,6 +46,4 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape);
 
 void escapetechnion_reportbest(EscapeTechnion escape);
 
-void escapetechnion_destroy(EscapeTechnion escape);
-
 #endif

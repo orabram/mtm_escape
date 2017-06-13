@@ -213,9 +213,6 @@ bool customer_already_booked(Order ord, Customer cust)
 
 void customer_destroy(Customer cust)
 {
-    if (cust == NULL) {
-        return;
-    }
     if(strcmp(cust->email, "/") != 0) {
         free(cust->email);
     }

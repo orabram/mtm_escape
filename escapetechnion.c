@@ -13,8 +13,9 @@
 #include "set.h"
 
 
+#define MAX_RECOMMENDED 9999
 #define ILLEGAL_PRICE -1
-#define FACULTIES_NUM UNKNOWN
+#define FACULTIES_NUM 18
 
 /**
  * Used in report_day function
@@ -79,7 +80,17 @@ static int cust_compare(SetElement cust1, SetElement cust2)
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
-
+    int digit1 = day / 10, digit2 = day % 10, digit3 = hour / 10,
+            digit4 = hour % 10;
+    if(chrtime == NULL)
+    {
+        return NULL;
+    }
+    chrtime[0] = digit1 + '0';
+    chrtime[1] = digit2 + '0';
+    chrtime[2] = '-';
+    chrtime[3] = digit3 + '0';
+    chrtime[4] = digit4 + '0';
     return chrtime;
 }
 
@@ -304,9 +315,8 @@ static void reset_array(int* array, int len)
 
 /*This function doesn't receive parameters, and is responsible
  * for creating EscapeTechnion objects. */
-EscapeTechnion create_escapetechnion()
-{
-    EscapeTechnion escape = malloc(sizeof(*escape));
+EscapeTechnion create_escapetechnion(){
+    EscapeTechnion escape = malloc(sizeof(EscapeTechnion));
     if(escape == NULL)
     {
         return NULL;
@@ -320,10 +330,36 @@ EscapeTechnion create_escapetechnion()
     escape->CustomersSet = setCreate(cust_copy, cust_free, cust_compare);
     if(escape->CustomersSet == NULL)
     {
-        setDestroy(escape->CompanySet);
+        setClear(escape->CompanySet);
         free(escape);
         return NULL;
     }
+    /*escape->CompanyEmailsSet = setCreate(strcpy, free , strcmp);
+    if(escape->CompanyEmailsSet == NULL)
+    {
+        setClear(escape->CustomersSet);
+        setClear(escape->CompanySet);
+        free(escape);
+        return NULL;
+    }
+    escape->CustomerEmailsSet = setCreate(strcpy, free, strcmp);
+    if(escape->CustomerEmailsSet == NULL)
+    {
+        setClear(escape->CompanyEmailsSet);
+        setClear(escape->CustomersSet);
+        setClear(escape->CompanySet);
+        free(escape);
+        return NULL;
+    }
+    &(escape->orders_num) = malloc(sizeof(sizeof(int)));
+    if(&(escape->orders_num) == NULL)
+    {
+        setClear(escape->CustomerEmailsSet);
+        setClear(escape->CompanyEmailsSet);
+        setClear(escape->CustomersSet);
+        setClear(escape->CompanySet);
+        free(escape);
+    }*/
     reset_array(escape->faculties, FACULTIES_NUM);
     escape->days = 0;
     escape->orders_num = 0;
@@ -333,7 +369,7 @@ EscapeTechnion create_escapetechnion()
 MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
                                                FILE* output_channel)
 {
-    if(escape == NULL || output_channel == NULL) {
+    if(output_channel == NULL) {
         return MTM_NULL_PARAMETER;
     }
     escape->output_channel = output_channel;
@@ -350,7 +386,6 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
         return MTM_OUT_OF_MEMORY;
     }
     if (find_customer_in_set(escape->CustomersSet, email) != NULL) {
-        company_destroy(newcomp);
         return MTM_EMAIL_ALREADY_EXISTS;
     }
     MtmErrorCode code = initialize_company(newcomp, email, faculty);
@@ -543,6 +578,11 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         order_remove(ord);
         return MTM_ID_DOES_NOT_EXIST;
     }
+    if(customer_already_booked(ord, cust))
+    {
+        order_remove(ord);
+        return MTM_CLIENT_IN_ROOM;
+    }
     code = escape_room_add_order(room, ord);
     if(code != MTM_SUCCESS)
     {
@@ -705,14 +745,4 @@ void escapetechnion_reportbest(EscapeTechnion escape)
         id3 = temp;
     }
     print_winners(escape, sum, id1, no1, id2, no2, id3, no3);
-}
-
-void escapetechnion_destroy(EscapeTechnion escape)
-{
-    if (escape == NULL) {
-        return;
-    }
-    setDestroy(escape->CustomersSet);
-    setDestroy(escape->CompanySet);
-    free(escape);
 }
