@@ -229,7 +229,7 @@ static Company find_company_in_set(Set set, char* email)
     char* temp_email;
     comp = setGetFirst(set);
     //Run through the set and look for a match.
-    for(int i = 0; setGetSize(set); i++) {
+    for(int i = 0; i < setGetSize(set); i++) {
         temp_email = company_get_email(comp);
         //If the two emails are identical, that means we've got a match.
         if (!strcmp(temp_email, email)) {
@@ -362,6 +362,7 @@ EscapeTechnion create_escapetechnion(){
     }*/
     reset_array(escape->faculties, FACULTIES_NUM);
     escape->days = 0;
+    escape->orders_num = 0;
     return escape;
 }
 
@@ -664,7 +665,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         return MTM_OUT_OF_MEMORY;
     }
     int orders_num, counter = 0, price; //sum = 0;
-    int* prices = malloc(escape->orders_num);
+    int* prices = malloc(sizeof(int) * escape->orders_num);
     Order ord;
     for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
     {

@@ -8,7 +8,7 @@
 #define COMMENT_CHAR '#'
 #define COMMANDS_NUM 4
 #define COMMAND_MAX_LEN 8
-#define DELIM " \t"
+#define DELIM " \t\n"
 
 int programArguments(int argc, char** argv, FILE** input_channel,
                       FILE** output_channel)
@@ -91,8 +91,12 @@ int programArguments(int argc, char** argv, FILE** input_channel,
 int sortInput(char* input)
 {
     int counter = 0;
-    while(*(input) == '\t' || *(input) == ' ')
+    while(*(input) == '\t' || *(input) == ' ' || *(input) == '\n')
     {
+        if(*(input) == '\n')
+        {
+            return 0;
+        }
         input++;
         counter++;
     }

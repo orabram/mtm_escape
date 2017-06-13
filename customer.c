@@ -201,7 +201,6 @@ MtmErrorCode customer_remove_order(Order ord, Customer cust)
         return MTM_INVALID_PARAMETER;
     }
     cust->orders_num--;
-
     return MTM_SUCCESS;
 
 }
