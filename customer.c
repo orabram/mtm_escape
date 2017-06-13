@@ -81,13 +81,20 @@ Customer create_customer()
     {
         return NULL;
     }
-    cust->email = NULL;
+    cust->OrderSet = setCreate(ord_copy, ord_destroy, ord_compare);
+    if(cust->OrderSet == NULL)
+    {
+        free(cust);
+        return NULL;
+    }
+    cust->email = "/";
     return cust;
 }
 
 MtmErrorCode initialize_customer(Customer cust, char* email,
                                  TechnionFaculty faculty, int skill)
 {
+
     if(cust == NULL || email == NULL)
     {
         return MTM_NULL_PARAMETER;
@@ -95,14 +102,6 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
     if(!check_email(email) || !check_faculty(faculty) || !check_skill(skill))
     {
         return MTM_INVALID_PARAMETER;
-    }
-    if(cust->OrderSet == NULL )
-    {
-        return MTM_OUT_OF_MEMORY;
-    }
-    if(cust->email != NULL)
-    {
-        free(cust->email);
     }
     cust->email = malloc(strlen(email) + 1);
     if(cust->email == NULL)
@@ -113,7 +112,6 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
     cust->faculty = faculty;
     cust->orders_num = 0;
     cust->skill_level = skill;
-    cust->OrderSet = setCreate(ord_copy, ord_destroy, ord_compare);
     return MTM_SUCCESS;
 
 }
@@ -216,10 +214,9 @@ bool customer_already_booked(Order ord, Customer cust)
 
 void customer_destroy(Customer cust)
 {
-    if(cust->email != NULL)
-    {
+    if(strcmp(cust->email, "/") != 0) {
         free(cust->email);
-        setDestroy(cust->OrderSet);
     }
+    setDestroy(cust->OrderSet);
     free(cust);
 }

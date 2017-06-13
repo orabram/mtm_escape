@@ -19,20 +19,19 @@ int main() {
     Order ord2 = create_order();
     Order ord3;
     MtmErrorCode code;
-    char email1[50] = "simon@gmail.com";
-    char email3[50] = "gideon@gmail.com";
+    char* email1 = "simon@gmail.com";
+    char* email3 = "gideon@gmail.com";
     TechnionFaculty faculty = CIVIL_ENGINEERING;
     int id = 12345;
-    char chrtime[50] = "00-23";
+    char* chrtime = "00-23";
     unsigned int num_ppl = 3;
-    char email2[50] =  "victan98@gmail.com";
+    char* email2 =  "victan98@gmail.com";
     TechnionFaculty faculty2 = BIOMEDICAL_ENGINEERING;
     int id2 = 3;
-    char chrtime2[50] = "03-05";
+    char* chrtime2 = "03-05";
     unsigned int num_ppl2 = 50;
     int skill1 = 5;
-    char faultymain[50] = "hillaryclinton";
-
+    char* faultymail = "hillaryclinton";
 
     code = initialize_order(ord1, email1, faculty, id, chrtime, num_ppl);
     assert(code == MTM_SUCCESS);
@@ -44,7 +43,7 @@ int main() {
     code = initialize_customer(cust1, email3, BIOLOGY, skill1);
     assert(code == MTM_SUCCESS);
     Customer cust2 = create_customer();
-    code = initialize_customer(cust2, faultymain, BIOLOGY, skill1);
+    code = initialize_customer(cust2, faultymail, BIOLOGY, skill1);
     assert(code == MTM_INVALID_PARAMETER);
     code = initialize_customer(cust2, 0, BIOLOGY, skill1);
     assert(code == MTM_NULL_PARAMETER);
@@ -73,4 +72,6 @@ int main() {
     customer_destroy(cust1);
     customer_destroy(cust2);
     printf("You've passed all the tests. Congrats!");
+
+
 }
