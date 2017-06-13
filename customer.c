@@ -16,7 +16,13 @@ struct customer {
     int orders_num;
 };
 
-
+/**
+ * Receives an ord SetElement and copies it.
+ *
+ * @param ord: the SetElement we wish to clone.
+ * @return
+ * The result of order_copy(ord).
+ */
 static SetElement ord_copy(SetElement ord)
 {
     Order ord2 = order_copy(ord);
