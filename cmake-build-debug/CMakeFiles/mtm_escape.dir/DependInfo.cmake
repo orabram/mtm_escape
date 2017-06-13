@@ -4,9 +4,12 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escaperoom.c" "C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom.c.obj"
-  "C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/escaperoom_test.c" "C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom_test.c.obj"
-  "C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/order.c" "C:/Users/victa/OneDrive/Documents/GitHub/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/order.c.obj"
+  "C:/Users/USER/CLionProjects/mtm_escape/company.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/company.c.obj"
+  "C:/Users/USER/CLionProjects/mtm_escape/customer.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/customer.c.obj"
+  "C:/Users/USER/CLionProjects/mtm_escape/escaperoom.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escaperoom.c.obj"
+  "C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/escapetechnion.c.obj"
+  "C:/Users/USER/CLionProjects/mtm_escape/mtm_escape.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/mtm_escape.c.obj"
+  "C:/Users/USER/CLionProjects/mtm_escape/order.c" "C:/Users/USER/CLionProjects/mtm_escape/cmake-build-debug/CMakeFiles/mtm_escape.dir/order.c.obj"
   )
 set(CMAKE_C_COMPILER_ID "GNU")
 
