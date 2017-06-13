@@ -56,28 +56,28 @@ include CMakeFiles/mtm_escape.dir/progress.make
 # Include the compile flags for this target's objects.
 include CMakeFiles/mtm_escape.dir/flags.make
 
-CMakeFiles/mtm_escape.dir/mtm_escape.c.obj: CMakeFiles/mtm_escape.dir/flags.make
-CMakeFiles/mtm_escape.dir/mtm_escape.c.obj: ../mtm_escape.c
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\USER\CLionProjects\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/mtm_escape.dir/mtm_escape.c.obj"
-	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\mtm_escape.c.obj   -c C:\Users\USER\CLionProjects\mtm_escape\mtm_escape.c
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: CMakeFiles/mtm_escape.dir/flags.make
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../escapetechnion_tests.c
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=C:\Users\USER\CLionProjects\mtm_escape\cmake-build-debug\CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building C object CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -o CMakeFiles\mtm_escape.dir\escapetechnion_tests.c.obj   -c C:\Users\USER\CLionProjects\mtm_escape\escapetechnion_tests.c
 
-CMakeFiles/mtm_escape.dir/mtm_escape.c.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mtm_escape.dir/mtm_escape.c.i"
-	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\USER\CLionProjects\mtm_escape\mtm_escape.c > CMakeFiles\mtm_escape.dir\mtm_escape.c.i
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing C source to CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.i"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -E C:\Users\USER\CLionProjects\mtm_escape\escapetechnion_tests.c > CMakeFiles\mtm_escape.dir\escapetechnion_tests.c.i
 
-CMakeFiles/mtm_escape.dir/mtm_escape.c.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mtm_escape.dir/mtm_escape.c.s"
-	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\USER\CLionProjects\mtm_escape\mtm_escape.c -o CMakeFiles\mtm_escape.dir\mtm_escape.c.s
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling C source to assembly CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.s"
+	C:\MinGW\bin\gcc.exe  $(C_DEFINES) $(C_INCLUDES) $(C_FLAGS) -S C:\Users\USER\CLionProjects\mtm_escape\escapetechnion_tests.c -o CMakeFiles\mtm_escape.dir\escapetechnion_tests.c.s
 
-CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.requires:
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.requires:
 
-.PHONY : CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.requires
+.PHONY : CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.requires
 
-CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.provides: CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.requires
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.provides.build
-.PHONY : CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.provides
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.provides: CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.requires
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.provides.build
+.PHONY : CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.provides
 
-CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.provides.build: CMakeFiles/mtm_escape.dir/mtm_escape.c.obj
+CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.provides.build: CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj
 
 
 CMakeFiles/mtm_escape.dir/escapetechnion.c.obj: CMakeFiles/mtm_escape.dir/flags.make
@@ -202,7 +202,7 @@ CMakeFiles/mtm_escape.dir/order.c.obj.provides.build: CMakeFiles/mtm_escape.dir/
 
 # Object files for target mtm_escape
 mtm_escape_OBJECTS = \
-"CMakeFiles/mtm_escape.dir/mtm_escape.c.obj" \
+"CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj" \
 "CMakeFiles/mtm_escape.dir/escapetechnion.c.obj" \
 "CMakeFiles/mtm_escape.dir/escaperoom.c.obj" \
 "CMakeFiles/mtm_escape.dir/company.c.obj" \
@@ -212,7 +212,7 @@ mtm_escape_OBJECTS = \
 # External object files for target mtm_escape
 mtm_escape_EXTERNAL_OBJECTS =
 
-mtm_escape.exe: CMakeFiles/mtm_escape.dir/mtm_escape.c.obj
+mtm_escape.exe: CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj
 mtm_escape.exe: CMakeFiles/mtm_escape.dir/escapetechnion.c.obj
 mtm_escape.exe: CMakeFiles/mtm_escape.dir/escaperoom.c.obj
 mtm_escape.exe: CMakeFiles/mtm_escape.dir/company.c.obj
@@ -231,7 +231,7 @@ CMakeFiles/mtm_escape.dir/build: mtm_escape.exe
 
 .PHONY : CMakeFiles/mtm_escape.dir/build
 
-CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/mtm_escape.c.obj.requires
+CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj.requires
 CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/escapetechnion.c.obj.requires
 CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/escaperoom.c.obj.requires
 CMakeFiles/mtm_escape.dir/requires: CMakeFiles/mtm_escape.dir/company.c.obj.requires

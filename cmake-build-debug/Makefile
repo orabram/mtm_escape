@@ -230,32 +230,32 @@ escapetechnion.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.s
 .PHONY : escapetechnion.c.s
 
-mtm_escape.obj: mtm_escape.c.obj
+escapetechnion_tests.obj: escapetechnion_tests.c.obj
 
-.PHONY : mtm_escape.obj
+.PHONY : escapetechnion_tests.obj
 
 # target to build an object file
-mtm_escape.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.obj
-.PHONY : mtm_escape.c.obj
+escapetechnion_tests.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj
+.PHONY : escapetechnion_tests.c.obj
 
-mtm_escape.i: mtm_escape.c.i
+escapetechnion_tests.i: escapetechnion_tests.c.i
 
-.PHONY : mtm_escape.i
+.PHONY : escapetechnion_tests.i
 
 # target to preprocess a source file
-mtm_escape.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.i
-.PHONY : mtm_escape.c.i
+escapetechnion_tests.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.i
+.PHONY : escapetechnion_tests.c.i
 
-mtm_escape.s: mtm_escape.c.s
+escapetechnion_tests.s: escapetechnion_tests.c.s
 
-.PHONY : mtm_escape.s
+.PHONY : escapetechnion_tests.s
 
 # target to generate assembly for a file
-mtm_escape.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.s
-.PHONY : mtm_escape.c.s
+escapetechnion_tests.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.s
+.PHONY : escapetechnion_tests.c.s
 
 order.obj: order.c.obj
 
@@ -305,9 +305,9 @@ help:
 	@echo ... escapetechnion.obj
 	@echo ... escapetechnion.i
 	@echo ... escapetechnion.s
-	@echo ... mtm_escape.obj
-	@echo ... mtm_escape.i
-	@echo ... mtm_escape.s
+	@echo ... escapetechnion_tests.obj
+	@echo ... escapetechnion_tests.i
+	@echo ... escapetechnion_tests.s
 	@echo ... order.obj
 	@echo ... order.i
 	@echo ... order.s

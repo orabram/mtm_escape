@@ -1,5 +1,5 @@
 file(REMOVE_RECURSE
-  "CMakeFiles/mtm_escape.dir/mtm_escape.c.obj"
+  "CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj"
   "CMakeFiles/mtm_escape.dir/escapetechnion.c.obj"
   "CMakeFiles/mtm_escape.dir/escaperoom.c.obj"
   "CMakeFiles/mtm_escape.dir/company.c.obj"
