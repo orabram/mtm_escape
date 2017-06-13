@@ -42,10 +42,6 @@ Company create_company()
     if (company == NULL) {
         return NULL;
     }
-
-    /**
-     * Got to change these functions according to the Set requirements
-     */
     Set room_set = setCreate(copy_room, destroy_room,
                              compare_room);
 
