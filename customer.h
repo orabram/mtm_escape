@@ -60,7 +60,7 @@ int customer_compare(Customer cust1, Customer cust2);
  * @param cust: The Customer whose email we wish to return.
  * @return
  * NULL if either cust or cust's email are equal to NULL.
- * An email adress otherwise.
+ * An email address otherwise.
  */
 char* customer_get_email(Customer cust);
 
