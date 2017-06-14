@@ -8,79 +8,140 @@
 
 typedef struct escaperoom *EscapeRoom;
 
-//Creates a new instance of EscapeRoom. Returns the object or null if a memory
-//issue happens.
+/**
+ * Creates a new instance of EscapeRoom.
+ * Allocates all necessary space for it and initializes with default values.
+ *
+ * @return
+ * NULL if a memory allocation problem occurred.
+ * The newly created instance of EscapeRoom otherwise.
+ */
 EscapeRoom create_escape_room();
 
-//Initializes values a new escape room. Resets OrdersSet.
+
+/**
+ * Initializes the given EscapeRoom with values passed as parameters.
+ *
+ * @param room: The room to initialize.
+ * @param email: The e-mail of the room to initialize.
+ * @param id: The ID of the room to initialize.
+ * @param price: The price for an order per person in the room.
+ * @param num_ppl: The recommended number of people to visit the room at once.
+ * @param working_hrs: The working hours of the room, passed as a string in
+ *                     "xx-yy" format, where "xx" is the opening hour and
+ *                     "yy" is the closing hour.
+ * @param difficulty: The difficulty level of the room.
+ * @return
+ * MTM_NULL_PARAMETER if the room is NULL
+ * MTM_INVALID_PARAMETER if at least one of the parameters is invalid
+ * MTM_OUT_OF_MEMORY if a memory allocation problem occurred
+ * MTM_SUCCESS otherwise
+ */
 MtmErrorCode initialize_escape_room(EscapeRoom room, char* email, int id,
                                     int price, int num_ppl, char *working_hrs,
                                     int difficulty);
 
-//Copies an existing escape room.
+/**
+ * Creates a copy of the room and returns it in the dedicated parameter.
+ *
+ * @param new_room: The copy of the room will be returned here.
+ * @param original_room: The original room, of which a copy is created.
+ * @return
+ * MTM_NULL_PARAMETER if a NULL parameter was sent. new_room is NULL.
+ * MTM_OUT_OF_MEMORY if a memory allocation problem occurred. new_room is NULL.
+ * MTM_SUCCESS otherwise
+ */
 MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room);
 
-/*
-//Switches the current corporate email with a new one.
-//NOTE: It does not change the original one.
-MtmErrorCode escape_room_set_emails(EscapeRoom escape, char* email);
-
-//Changes the current room id.
-//NOTE: All recorded orders in the room are updated as well.
-MtmErrorCode escape_room_set_id(EscapeRoom escape, int id);
-
-//Changes the current price.
-MtmErrorCode escape_room_set_price(EscapeRoom escape, int price);
-
-//Changes the current recommended amount of people in the room.
-MtmErrorCode escape_room_set_num_ppl(EscapeRoom escape, int num_ppl);
-
-//Changes the working hours of the room.
-//NOTE: Due to this function not being vital, we've removed it until futher
-//notice.
-MtmErrorCode escape_room_set_working_hrs(EscapeRoom escape, int working_hrs);
-
-//Changes the difficulty of the room.
-MtmErrorCode escape_room_set_difficulty(EscapeRoom escape, int difficulty);
-
-//Changes the current price.
-//MtmErrorCode escape_room_set_faculty(EscapeRoom escape, TechnionFaculty faculty);
-*/
-
-//Returns the email into the given variable.
+/**
+ * Returns the e-mail of the room.
+ *
+ * @param room: The room on which the function operates.
+ * @return
+ * NULL if the room that was sent is NULL
+ * The e-mail of the room
+ */
 char* escape_room_get_email(EscapeRoom room);
 
-//Returns the id into the given variable.
+/**
+ * Returns the ID of the room.
+ *
+ * @param room: The room on which the function operates.
+ * @return
+ * -1 if the room that was sent is NULL
+ * The ID of the room
+ */
 int escape_room_get_id(EscapeRoom room);
 
-//Returns the price into the given variable.
+/**
+ * Returns the price of an order per person in the room.
+ *
+ * @param room: The room on which the function operates.
+ * @return
+ * -1 if the room that was sent is NULL
+ * The price as described above
+ */
 int escape_room_get_price(EscapeRoom room);
 
-//Returns the working hours in a string format
+/**
+ * Returns the working hours of the room as a string in format "xx-yy",
+ * where "xx" is the opening hour and "yy" is the closing hour of the room.
+ *
+ * @param room: The room on which the function operates.
+ * @return
+ * NULL if the room that was sent is NULL
+ * The working hours of the room
+ */
 char* get_room_working_hrs(EscapeRoom room);
 
-//Returns the num_ppl into the given variable.
-//int escape_room_get_num_ppl(EscapeRoom room);
-
-//Returns the working_hrs into the given variable.
-//char* escape_room_get_working_hrs(EscapeRoom room);
-
-//Returns the difficulty into the given variable.
+/**
+ * Returns the difficulty level of the room.
+ *
+ * @param room: The room on which the function operates.
+ * @return
+ * -1 if the room that was sent is NULL
+ * The difficulty level of the room.
+ */
 int escape_room_get_difficulty(EscapeRoom room);
 
-//Returns the faculty into the given variable.
-//MtmErrorCode escape_room_get_faculty(EscapeRoom room,
-//                                     TechnionFaculty *faculty);
-
-//Calculates how recommended this room is to a specific group.
+/**
+ * Calculates the recommendation value of the room according to the formula:
+ * (P_r - P_e)^2 + (difficulty - skill level)^2, where:
+ *  P_r is the recommended number of people for the room;
+ *  P_e is the number of people in the order;
+ *  difficulty is the difficulty level of the room;
+ *  skill level is the skill level of the customer.
+ *
+ * @param room: The room for which the calculation is done.
+ * @param skill_level: The skill level of the customer.
+ * @param num_ppl: The number of people in the order.
+ * @return
+ * -1 if the room that was sent is NULL
+ * The calculation product
+ */
 int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
                                             int num_ppl);
 
-//Finds the soonest time when the room will be available and returns it into
-//the given parameters for day and hour
+/**
+ * Finds the soonest time when the room will be available and returns it into
+ * the given parameters for day and hour
+ *
+ * @param room: The room on which the function operates
+ * @param day: The soonest day available will be returned here
+ * @param hour: The soonest hour available will be returned here
+ * @return
+ * MTM_NULL_PARAMETER if the room is NULL
+ * MTM_SUCCESS otherwise
+ */
 MtmErrorCode escape_room_find_closest_time(EscapeRoom room,int *day,int *hour);
 
-//Adds a new order to the room.
+/**
+ * Adds the requested order into the room.
+ *
+ * @param room: The room which the order is added to.
+ * @param order: 
+ * @return
+ */
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);
 
 //Removes an order.

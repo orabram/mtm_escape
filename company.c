@@ -35,7 +35,7 @@ static SetElement copy_room(SetElement room)
 }
 
 /**
- * Receives a SetElement and frees it.
+ * Receives a SetElement and deallocates it.
  *
  * @param room: The SetElement we wish to free.
  */
@@ -60,7 +60,15 @@ static int compare_room(SetElement room1, SetElement room2)
     return escape_room_get_id(r1) - escape_room_get_id(r2);
 }
 
-//Returns true if the email is legal, false otherwise.
+/**
+ * Checks if the e-mail is valid.
+ * A valid e-mail is every string containing the '@' character.
+ *
+ * @param email: the e-mail which is checked
+ * @return
+ * True if the e-mail is valid,
+ * False if it's invalid.
+ */
 static bool check_email(char* email)
 {
     if(!strstr(email, "@"))
@@ -70,6 +78,7 @@ static bool check_email(char* email)
     return true;
 }
 
+//Creates a company and returns it; Initializes it with default values.
 Company create_company()
 {
     Company company = malloc(sizeof(*company));
@@ -87,13 +96,14 @@ Company create_company()
     return company;
 }
 
+//Initializes the company according to the given parameters.
 MtmErrorCode initialize_company(Company comp, char* email,
                                 TechnionFaculty faculty)
 {
     if (comp == NULL) {
-        return MTM_INVALID_PARAMETER;
+        return MTM_NULL_PARAMETER;
     }
-    if (!check_email(email)) {
+    if (!check_email(email) || faculty < 0 || faculty >= UNKNOWN) {
         return MTM_INVALID_PARAMETER;
     }
     comp->email = malloc(strlen(email)+1);
@@ -105,6 +115,7 @@ MtmErrorCode initialize_company(Company comp, char* email,
     return MTM_SUCCESS;
 }
 
+//Creates a copy of the company and returns the copy.
 Company company_copy(Company comp)
 {
     if (comp == NULL) {
@@ -122,6 +133,7 @@ Company company_copy(Company comp)
     return copy;
 }
 
+//Adds the given room to the given company.
 MtmErrorCode company_add_room(Company comp, EscapeRoom escape)
 {
     if (comp == NULL || escape == NULL) {
@@ -141,6 +153,7 @@ MtmErrorCode company_add_room(Company comp, EscapeRoom escape)
     }
 }
 
+//Removes the room, which is determined by its ID, from the company.
 MtmErrorCode company_remove_room(Company comp, int id)
 {
     if (comp == NULL) {
@@ -159,6 +172,7 @@ MtmErrorCode company_remove_room(Company comp, int id)
     return MTM_ID_DOES_NOT_EXIST;
 }
 
+//Returns the company's e-mail.
 char* company_get_email(Company comp)
 {
     if (comp == NULL) {
@@ -167,6 +181,7 @@ char* company_get_email(Company comp)
     return comp->email;
 }
 
+//Returns the faculty which the company belongs to.
 TechnionFaculty company_get_faculty(Company comp)
 {
     if (comp == NULL) {
@@ -183,6 +198,10 @@ int company_get_room_num(Company comp)
     return setGetSize(comp->escape_room_set);
 }
 
+/* Finds a room with the given ID in the company.
+ * NOTE: The ID is unique in the company, so there can be at most one room with
+ * such ID.
+ */
 EscapeRoom company_get_room(Company comp, int id)
 {
     if (comp == NULL || id < 0) {
@@ -198,6 +217,7 @@ EscapeRoom company_get_room(Company comp, int id)
     return NULL;
 }
 
+//Returns True if a room with the given ID exists in the company.
 bool company_room_exists(Company comp, int id)
 {
     if (company_get_room(comp, id) == NULL) {
@@ -206,12 +226,16 @@ bool company_room_exists(Company comp, int id)
     return true;
 }
 
+/* Calculates the most recommended room for a customer with the given values.
+ * The function returns the calculation product as a return value, and the ID of
+ * the most recommended room and the soonest day and hour into the given
+ * parameters. If one of the passed parameters is invalid, it returns -1.
+ */
 int company_recommended_rooms(Company comp, int num_ppl, int skill,
                               int* id, int* day, int* hour)
 {
     if(comp == NULL || num_ppl < 0 || skill <= 0 || skill > 10 ||
-              id == NULL || day == NULL || hour == NULL)
-    {
+              id == NULL || day == NULL || hour == NULL) {
         return -1;
     }
     int temp_res, result = -1;
@@ -234,21 +258,7 @@ int company_recommended_rooms(Company comp, int num_ppl, int skill,
     return result;
 }
 
-/*bool company_room_got_orders(Company comp, int id)
-{
-    if (comp == NULL || id < 0) {
-        return false;
-    }
-    EscapeRoom room = company_get_room(comp, id);
-    if (room == NULL) {
-        return false;
-    }
-    if (escape_room_order_exists(room)) {
-        return true;
-    }
-    return false;
-}*/
-
+//Returns True if at least one order exists in the company, and False otherwise.
 bool company_got_orders(Company comp)
 {
     if (comp == NULL) {
@@ -264,6 +274,7 @@ bool company_got_orders(Company comp)
     return false;
 }
 
+//Destroys the company.
 void company_destroy(Company comp)
 {
     if (comp == NULL) {
