@@ -12,10 +12,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ae7718e-3d59-49f2-866f-b210d3f1ff0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.c" afterPath="$PROJECT_DIR$/customer.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/customer.h" afterPath="$PROJECT_DIR$/customer.h" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/company.h" afterPath="$PROJECT_DIR$/company.h" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/order.c" afterPath="$PROJECT_DIR$/order.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/order.h" afterPath="$PROJECT_DIR$/order.h" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -48,11 +47,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="company.h" pinned="false" current-in-tab="false">
+      <file leaf-file-name="company.h" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/company.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="454">
-              <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
+            <state relative-caret-position="222">
+              <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
               <folding>
                 <element signature="e#39#57#0" expanded="true" />
               </folding>
@@ -60,11 +59,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="company.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/company.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1018">
+              <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="order.h" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/order.h">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3273">
-              <caret line="134" column="42" lean-forward="false" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+            <state relative-caret-position="176">
+              <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="41" selection-end-column="3" />
               <folding />
             </state>
           </provider>
@@ -80,14 +89,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="order.c" pinned="false" current-in-tab="true">
+      <file leaf-file-name="order.c" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/order.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="279">
-              <caret line="75" column="15" lean-forward="true" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
+            <state relative-caret-position="425">
+              <caret line="141" column="30" lean-forward="true" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="escapetechnion.c" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/escapetechnion.c">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="646" column="42" lean-forward="true" selection-start-line="646" selection-start-column="42" selection-end-line="646" selection-end-column="42" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -143,13 +162,13 @@
         <option value="$PROJECT_DIR$/mtm_escape.c" />
         <option value="$PROJECT_DIR$/escapetechnion_tests.c" />
         <option value="$PROJECT_DIR$/escapetechnion.c" />
-        <option value="$PROJECT_DIR$/company.h" />
         <option value="$PROJECT_DIR$/customertests.c" />
         <option value="$PROJECT_DIR$/CMakeLists.txt" />
         <option value="$PROJECT_DIR$/customer.c" />
         <option value="$PROJECT_DIR$/customer.h" />
         <option value="$PROJECT_DIR$/order.h" />
         <option value="$PROJECT_DIR$/order.c" />
+        <option value="$PROJECT_DIR$/company.h" />
       </list>
     </option>
   </component>
@@ -423,12 +442,12 @@
       <workItem from="1497353953240" duration="553000" />
       <workItem from="1497354524677" duration="74000" />
       <workItem from="1497354664807" duration="11863000" />
-      <workItem from="1497369891733" duration="21961000" />
+      <workItem from="1497369891733" duration="25419000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="35501000" />
+    <option name="totallyTimeSpent" value="38959000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -491,12 +510,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/escapetechnion.c</url>
-          <line>619</line>
+          <line>622</line>
           <option name="timeStamp" value="17" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/escapetechnion.c</url>
-          <line>640</line>
+          <line>643</line>
           <option name="timeStamp" value="19" />
         </line-breakpoint>
       </breakpoints>
@@ -583,9 +602,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1100">
           <caret line="44" column="3" lean-forward="true" selection-start-line="44" selection-start-column="3" selection-end-line="44" selection-end-column="3" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
+          <folding />
         </state>
       </provider>
     </entry>
@@ -764,26 +781,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/company.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="166">
-          <caret line="58" column="23" lean-forward="true" selection-start-line="58" selection-start-column="23" selection-end-line="58" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#18#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/company.h">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="454">
-          <caret line="37" column="0" lean-forward="false" selection-start-line="37" selection-start-column="0" selection-end-line="37" selection-end-column="0" />
-          <folding>
-            <element signature="e#39#57#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/CMakeLists.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -826,14 +823,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/escapetechnion.c">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="12698">
-          <caret line="555" column="5" lean-forward="false" selection-start-line="555" selection-start-column="5" selection-end-line="555" selection-end-column="5" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/customer.h">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="315">
@@ -850,20 +839,46 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/order.h">
+    <entry file="file://$PROJECT_DIR$/escapetechnion.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3273">
-          <caret line="134" column="42" lean-forward="false" selection-start-line="134" selection-start-column="42" selection-end-line="134" selection-end-column="42" />
+        <state relative-caret-position="300">
+          <caret line="646" column="42" lean-forward="true" selection-start-line="646" selection-start-column="42" selection-end-line="646" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/order.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="279">
-          <caret line="75" column="15" lean-forward="true" selection-start-line="75" selection-start-column="15" selection-end-line="75" selection-end-column="15" />
+        <state relative-caret-position="425">
+          <caret line="141" column="30" lean-forward="true" selection-start-line="141" selection-start-column="30" selection-end-line="141" selection-end-column="30" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/order.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="176">
+          <caret line="34" column="0" lean-forward="false" selection-start-line="34" selection-start-column="0" selection-end-line="41" selection-end-column="3" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company.c">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1018">
+          <caret line="56" column="20" lean-forward="true" selection-start-line="56" selection-start-column="20" selection-end-line="56" selection-end-column="20" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/company.h">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="56" column="29" lean-forward="false" selection-start-line="56" selection-start-column="29" selection-end-line="56" selection-end-column="29" />
+          <folding>
+            <element signature="e#39#57#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -73,11 +73,12 @@ static bool check_time(char* time)
 }
 
 /**
- * Checks if time is written in a legal fashion.
+ * Checks if email is written in a legal fashion.
  *
- * @param time: A char* containing the time of the order.
+ * @param email: A char* containing the email of the order. Needs to be written
+ * with at least one @.
  * @return
- * false if time isn't written correctly.
+ * false if email isn't written correctly.
  * true otherwise.
  */
 static bool check_email(char* email)
@@ -89,7 +90,14 @@ static bool check_email(char* email)
     return true;
 }
 
-//Returns true if id is legal, false otherwise.
+/**
+ * Checks if id is written in a legal fashion.
+ *
+ * @param email: An integer containing the id of the room. Must be positive.
+ * @return
+ * false if id's value isn't legal.
+ * true otherwise.
+ */
 static bool check_id(int id)
 {
     if(id < 0)
@@ -99,8 +107,14 @@ static bool check_id(int id)
     return true;
 }
 
-//Returns true if the faculty is legal, false otherwise.
-static bool check_faculty(TechnionFaculty faculty)
+/**
+ * Checks if faculty is written in a legal fashion.
+ *
+ * @param email: An integer with a value between 0 and UNKNOWN'S(a constant).
+ * @return
+ * false if faculty's value isn't legal.
+ * true otherwise.
+ */static bool check_faculty(TechnionFaculty faculty)
 {
     if(faculty >= FACULTIES_NUM || faculty < 0)
     {
@@ -108,8 +122,14 @@ static bool check_faculty(TechnionFaculty faculty)
     }
     return true;
 }
-
-//Returns true if num_ppl is legal, false otherwise.
+/**
+ * Checks if num_ppl is legal.
+ *
+ * @param email: An integer with a value between 0 and UNKNOWN'S(a constant).
+ * @return
+ * false if faculty's value isn't legal.
+ * true otherwise.
+ */
 static bool check_num_ppl(int num_ppl)
 {
     if(num_ppl <= 0)

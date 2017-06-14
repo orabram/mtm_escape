@@ -35,10 +35,27 @@ Company create_company();
  */
 MtmErrorCode initialize_company(Company comp, char* email,
                                 TechnionFaculty faculty);
-
+/**
+ * Receives an existing company and copies it.
+ *
+ * @param comp: The company we wish to copy.
+ * @return
+ * NULL if comp is NULL or if the memory allocation failed.
+ * A cloned Company otherwise.
+ */
 Company company_copy(Company comp);
 
-//Adds a room to the company.
+/**
+ * Adds a new EscapeRoom to company.
+ *
+ * @param comp: The company to which we'll add the room.
+ * @param escape: The room we'll add.
+ * @return
+ * MTM_OUT_OF_MEMORY: if the set has memory allocation problems.
+ * MTM_NULL_PARAMETER: if either comp or escape are equal to NULL.
+ * MTM_INVALID_PARAMETER: if their email addresses aren't equal(room should
+ * have the email address of 
+ */
 MtmErrorCode company_add_room(Company comp, EscapeRoom escape);
 
 /**
