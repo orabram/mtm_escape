@@ -175,11 +175,11 @@ static bool test_report_day()
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer2@mtm.com"
             , CHEMISTRY, 23, "1-08", 5) == MTM_SUCCESS);
 
-    //A try to reserve orders at unavailable times (when a reservation exists)
+    //A try to reserve orders at unavailable times(when a client exists in room)
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
-            , CHEMISTRY, 23, "1-08", 2) == MTM_RESERVATION_EXISTS);
+            , CHEMISTRY, 23, "1-08", 2) == MTM_ROOM_NOT_AVAILABLE);
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
-            , COMPUTER_SCIENCE, 22, "0-02", 6) == MTM_RESERVATION_EXISTS);
+            , COMPUTER_SCIENCE, 22, "0-02", 6) == MTM_CLIENT_IN_ROOM);
 
     printf("\n---Daily Report Test:---\n");
     ASSERT_TEST(escapetechnion_reportday(escapeTechnion) == MTM_SUCCESS);
@@ -187,7 +187,7 @@ static bool test_report_day()
     //A try to reserve these orders again.
     //After a day passed, room No. 23 is taken by customer 2 at 08:00
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
-            , CHEMISTRY, 23, "0-08", 2) == MTM_RESERVATION_EXISTS);
+            , CHEMISTRY, 23, "0-08", 2) == MTM_ROOM_NOT_AVAILABLE);
     //However room No. 22 is available today at 02:00 (after a day passed)
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
             , COMPUTER_SCIENCE, 22, "0-02", 6) == MTM_SUCCESS);
