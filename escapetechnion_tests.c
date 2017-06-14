@@ -98,6 +98,7 @@ static bool test_remove_customer()
             , "customer2@mtm.com") == MTM_CLIENT_EMAIL_DOES_NOT_EXIST);
     ASSERT_TEST(escapetechnion_remove_customer(escapeTechnion
             , "customer@mtm.com") == MTM_SUCCESS);
+    escapetechnion_destroy(escapeTechnion);
     return true;
 }
 
@@ -166,7 +167,7 @@ static bool test_report_day()
     ASSERT_TEST(escapetechnion_add_customer(escapeTechnion, "customer1@mtm.com"
             , BIOTECHNOLOGY_AND_FOOD_ENGINEERING, 3) == MTM_SUCCESS);
     ASSERT_TEST(escapetechnion_add_customer(escapeTechnion, "customer2@mtm.com",
-                                CHEMICAL_ENGINEERING, 2) == MTM_SUCCESS);
+                                            CHEMICAL_ENGINEERING, 2) == MTM_SUCCESS);
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
             , CHEMISTRY, 20, "0-18", 12) == MTM_SUCCESS);
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
@@ -176,10 +177,11 @@ static bool test_report_day()
 
     //A try to reserve orders at unavailable times (when a reservation exists)
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
-                , CHEMISTRY, 23, "1-08", 2) == MTM_RESERVATION_EXISTS);
+            , CHEMISTRY, 23, "1-08", 2) == MTM_RESERVATION_EXISTS);
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
             , COMPUTER_SCIENCE, 22, "0-02", 6) == MTM_RESERVATION_EXISTS);
 
+    printf("\n---Daily Report Test:---\n");
     ASSERT_TEST(escapetechnion_reportday(escapeTechnion) == MTM_SUCCESS);
 
     //A try to reserve these orders again.
@@ -189,7 +191,7 @@ static bool test_report_day()
     //However room No. 22 is available today at 02:00 (after a day passed)
     ASSERT_TEST(escapetechnion_create_order(escapeTechnion, "customer1@mtm.com"
             , COMPUTER_SCIENCE, 22, "0-02", 6) == MTM_SUCCESS);
-
+    printf("------------------------\n");
     escapetechnion_destroy(escapeTechnion);
     return true;
 }
