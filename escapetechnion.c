@@ -684,8 +684,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         cust = setGetNext(escape->CustomersSet);
     }
     order_sort(sortedord, escape, prices);
-    escape->days++;
     print_day(escape, counter, sortedord, prices);
+    escape->days++;
     free(sortedord);
     free(prices);
     return MTM_SUCCESS;

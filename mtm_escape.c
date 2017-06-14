@@ -201,61 +201,58 @@ MtmErrorCode parseInput(EscapeTechnion escape, char* input)
     return MTM_SUCCESS;
 }
 
-<<<<<<< HEAD
-int main(int argc, char** argv){
+void close_program(FILE* input_channel, FILE* output_channel,
+                   EscapeTechnion escape, char* input)
+{
+    if(input_channel != stdin)
+    {
+        fclose(input_channel);
+    }
+    if(output_channel != stdout)
+    {
+        fclose(output_channel);
+    }
+    escapetechnion_destroy(escape);
+    free(input);
+}
+
+int main(int argc, char** argv) {
 
     //If there aren't any parameters, use the default input and output channels.
-    FILE* input_channel = stdin;
-    FILE* output_channel = stdout;
-    printf("%d\n", argc);
-    for(int i = 0; i < argc; i++)
-    {
-        printf("%s\n", argv[i]);
-    }
-=======
-int main(int argc, char** argv)
-{
-    FILE* input_channel;
-    FILE* output_channel;
->>>>>>> origin/master
-    int worked = programArguments(argc, argv, &input_channel, &output_channel);
-    if(!worked)
-    {
+    FILE *input_channel = stdin;
+    FILE *output_channel = stdout;
+    int worked = programArguments(argc, argv, &input_channel,
+                                  &output_channel);
+    if (!worked) {
         return 0;
     }
     EscapeTechnion escape = create_escapetechnion();
-    if(escape == NULL)
-    {
-        escapetechnion_destroy(escape);
+    if (escape == NULL) {
+        close_program(input_channel, output_channel, escape, NULL); //Input
+        // isn't defined, so we send NULL instead
         mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
         return 0;
     }
     escapetechnion_set_output_channel(escape, output_channel);
     MtmErrorCode code;
-    char* input = malloc(MAX_LEN);  //The maximum length of a line is MAX_LEN.
-    if(input == NULL)
-    {
+    char *input = malloc(
+            MAX_LEN);  //The maximum length of a line is MAX_LEN.
+    if (input == NULL) {
         mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
-        escapetechnion_destroy(escape);
-        free(input);
+        close_program(input_channel, output_channel, escape, input);
         return 0;
     }
-    while(fgets(input, MAX_LEN, input_channel) != NULL)
-    {
-        if(sortInput(input) == 1)
-        {
+    while (fgets(input, MAX_LEN, input_channel) != NULL) {
+        if (sortInput(input) == 1) {
             code = parseInput(escape, input);
-            if(code != MTM_SUCCESS)
-            {
+            if (code != MTM_SUCCESS) {
                 mtmPrintErrorMessage(stderr, code);
-                printf(input);
-                if(code == MTM_OUT_OF_MEMORY)
-                {
-                    escapetechnion_destroy(escape);
-                    free(input);
+                if (code == MTM_OUT_OF_MEMORY) {
+                    close_program(input_channel, output_channel, escape, input);
                     return 0;
                 }
             }
         }
     }
+    close_program(input_channel, output_channel, escape, input);
 }
