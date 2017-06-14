@@ -169,15 +169,16 @@ static int generic_swap(void *x, void *y, int size)
     return 0;
 }
 
-static void order_sort(Order* sortedord, EscapeTechnion escape, int* prices)
+static void order_sort(Order* sortedord, EscapeTechnion escape, int* prices,
+                       int orders_num)
 {
     /**
      * Implemented as Bubble Sort
      */
     //Order swap;
-    for (int i = 0 ; i < ( escape->orders_num - 1 ); i++)
+    for (int i = 0 ; i < ( orders_num - 1 ); i++)
     {
-        for (int j = 0 ; j < escape->orders_num - i - 1; j++)
+        for (int j = 0 ; j < orders_num - i - 1; j++)
         {
             /*Check if the current order is scheduled before or after the next
              * order*/
@@ -280,6 +281,7 @@ static void print_day(EscapeTechnion escape, int num_of_events,
                       escape_room_get_difficulty(room),
                       order_get_num_ppl(orders[i]), prices[i]);
         remove_order(orders[i], escape);
+        escape->orders_num--;
     }
     mtmPrintDayFooter(escape->output_channel, escape->days);
 }
@@ -652,9 +654,9 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         return MTM_OUT_OF_MEMORY;
     }
     int orders_num, counter = 0, price;
-    EscapeRoom room;
+    //EscapeRoom room;
     int* prices = malloc(sizeof(int) * escape->orders_num);
-    Order ord;
+    Order ord; //escape_ord;
     for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
     {
         orders_num = customer_get_orders_num(cust);
@@ -675,21 +677,21 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     escape->faculties[faculty] += price;
                     prices[counter] = price;
                     counter++;
-                    escape->orders_num--;
                 }
                 else
                 {
                     order_day_passed(ord);
-                    room = find_escape_room(escape->CompanySet,
-                                            order_get_id(ord),
-                                            order_get_faculty(ord));
-                    escape_room_remove_order(room, ord);
+                    //room = find_escape_room(escape->CompanySet,
+                                            //order_get_id(ord),
+                                            //order_get_faculty(ord));
+                    //escape_ord = escape_room_
+                    //order_day_passed(escape_room_ord);
                 }
             }
         }
         cust = setGetNext(escape->CustomersSet);
     }
-    order_sort(sortedord, escape, prices);
+    order_sort(sortedord, escape, prices, counter);
     print_day(escape, counter, sortedord, prices);
     escape->days++;
     free(sortedord);
