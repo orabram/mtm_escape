@@ -43,7 +43,12 @@ int main(){
     code = escapetechnion_create_order(escape, "1@", 16, 8, "0-11", 5);
     code = escapetechnion_remove_customer(escape, "4@");
     code = escapetechnion_reportday(escape);
-    )
+    code = escapetechnion_remove_customer(escape, "4@");
+    escapetechnion_reportbest(escape);
+    code = escapetechnion_reportday(escape);
+    code = escapetechnion_recommended_room(escape, "3@", 6);
+    code = escapetechnion_reportday(escape);
+
 
     return code;
 

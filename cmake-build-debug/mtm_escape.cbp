@@ -104,6 +104,9 @@
 		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.h">
 			<Option target="mtm_escape"/>
 		</Unit>
+		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/mtmescapetests.c">
+			<Option target="mtm_escape"/>
+		</Unit>
 		<Unit filename="C:/Users/USER/CLionProjects/mtm_escape/order.c">
 			<Option target="mtm_escape"/>
 		</Unit>

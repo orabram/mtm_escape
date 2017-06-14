@@ -23,7 +23,8 @@
     cur_min = temp_min; \
     cur_faculty = temp_faculty; \
     min_room_id = temp_room_id; \
-
+    cur_hour = hour; \
+    cur_day = day; \
 
 struct escapetechnion{
     Set CompanySet;
@@ -618,7 +619,8 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     }
     Company comp = setGetFirst(escape->CompanySet);
     int cur_min = -1, temp_min, skill = customer_get_skill(cust),
-            min_room_id = 0, temp_room_id = 0, day = 0, hour = 0;
+            min_room_id = 0, temp_room_id = 0, day = 0, hour = 0, cur_day = 0,
+            cur_hour = 0;
     TechnionFaculty cur_faculty = UNKNOWN, temp_faculty,
             cust_faculty = customer_get_faculty(cust);
     for(int i = 0; i < setGetSize(escape->CompanySet); i++) {
@@ -652,7 +654,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
         }
         comp = setGetNext(escape->CompanySet);
     }
-    char* chrtime = time_int_to_chr(day, hour);
+    char* chrtime = time_int_to_chr(cur_day, cur_hour);
     MtmErrorCode res = escapetechnion_create_order(escape, email, cur_faculty
             , min_room_id, chrtime, num_ppl);
     free(chrtime);
