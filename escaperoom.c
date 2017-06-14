@@ -347,6 +347,21 @@ bool escape_room_order_exists(EscapeRoom room)
     return false;
 }
 
+//Updates the time of all the orders of the room after a day passed
+MtmErrorCode escape_room_day_passed(EscapeRoom room)
+{
+    if (room == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    int orders_num = setGetSize(room->OrdersSet);
+    Order order = setGetFirst(room->OrdersSet);
+    for (int i = 0; i < orders_num; i++) {
+        order_day_passed(order);
+        order = setGetNext(room->OrdersSet);
+    }
+    return MTM_SUCCESS;
+}
+
 //Destroys the room
 void escape_room_destroy(EscapeRoom room)
 {
