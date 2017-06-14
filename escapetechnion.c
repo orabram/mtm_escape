@@ -653,8 +653,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     {
         return MTM_OUT_OF_MEMORY;
     }
-    int orders_num, counter = 0, price; //sum = 0;
-    int* prices = malloc(sizeof(int) * escape->orders_num);
+    int orders_num = 0, counter = 0, price = 0; //sum = 0;
+    int* prices = malloc(sizeof(int) * (escape->orders_num));
     Order ord;
     for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
     {
@@ -667,7 +667,6 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                 if(order_get_day(ord) == 0)
                 {
                     sortedord[counter] = ord;
-                    counter++;
                     faculty = order_get_faculty(ord);
                     price = calculate_price(ord, escape);
                     if(faculty == customer_get_faculty(cust))
@@ -676,6 +675,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     }
                     escape->faculties[faculty] += price;
                     prices[counter] = price;
+                    counter++;
                     escape->orders_num--;
                 }
                 else
