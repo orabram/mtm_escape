@@ -35,6 +35,14 @@ int main(){
     code =     escapetechnion_create_order(escape, "4@", 6, 11, "2-23", 5);
     code =    escapetechnion_remove_room(escape, 0, 2);
     code =    escapetechnion_reportday(escape);
+    code = escapetechnion_remove_company(escape, "company5@gmail");
+    code = escapetechnion_create_order(escape, "2@", 8, 2, "0-10", 5);
+    code = escapetechnion_create_order(escape, "2@", 8, 2, "0-10", 5);
+    code = escapetechnion_create_order(escape, "2@", 8, 2, "0-10", 5);
+    code = escapetechnion_create_order(escape, "2@", 8, 2, "0-10", 5);
+    code = escapetechnion_create_order(escape, "2@", 8, 2, "0-10", 5);
+
+    )
 
     return code;
 
