@@ -13,19 +13,6 @@
 #define ILLEGAL_PRICE -1
 #define FACULTIES_NUM UNKNOWN
 
-<<<<<<< HEAD
-=======
-/**
- * Used in report_day function
- */
-#define UPDATE_MIN() \
-    cur_min = temp_min; \
-    cur_faculty = temp_faculty; \
-    min_room_id = temp_room_id; \
-    cur_hour = hour; \
-    cur_day = day; \
->>>>>>> origin/master
-
 struct escapetechnion{
     Set CompanySet;
     Set CustomersSet;
@@ -132,7 +119,6 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
     }
     return MTM_SUCCESS;
 }
-<<<<<<< HEAD
 
 /**
  * Converts the day and the hour, received as integers, to a string in
@@ -143,7 +129,6 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
  * @return
  * The converted string
  */
-=======
 /**
  * Returns the absolute value of a number.
  * @param x: an integer.
@@ -158,7 +143,8 @@ static int absolut(int x)
     }
     return x;
 }
->>>>>>> origin/master
+
+
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
@@ -386,9 +372,12 @@ static Company find_company_in_set(Set set, char* email)
 }
 
 /**
+ * Checks if the e-mail is valid (contains exactly one '@' character)
  *
- * @param email
+ * @param email: The e-mail to check
  * @return
+ * True if it is valid
+ * False otherwise
  */
 static bool check_email(char* email)
 {
@@ -837,14 +826,9 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                    absolut(cur_faculty - cust_faculty)) {
                     UPDATE_MIN();
                 }
-<<<<<<< HEAD
                     //Sort by the last criteria
-                else if(fabs(temp_faculty - cust_faculty) ==
-                        fabs(cur_faculty - cur_faculty))  {
-=======
                 else if(absolut(temp_faculty - cust_faculty) ==
                         absolut(cur_faculty - cur_faculty))  {
->>>>>>> origin/master
                     if(temp_faculty < cur_faculty) {
                         UPDATE_MIN();
                     }
@@ -865,6 +849,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     return res;
 }
 
+//Report the last day's orders and revenue
 MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
 {
     if (escape == NULL) {
@@ -901,13 +886,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     prices[counter] = price;
                     counter++;
                 }
-<<<<<<< HEAD
-                else {
-=======
                 else
                 {
-                    order_day_passed(ord);;
->>>>>>> origin/master
                     order_day_passed(ord);
                 }
             }
@@ -928,6 +908,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     free(prices);
     return MTM_SUCCESS;
 }
+
+//Report the most lucrative three faculties
 void escapetechnion_reportbest(EscapeTechnion escape)
 {
     int no1 = -1, no2 = -1, no3 = -1;
@@ -973,6 +955,7 @@ void escapetechnion_reportbest(EscapeTechnion escape)
     print_winners(escape, sum, id1, no1, id2, no2, id3, no3);
 }
 
+//Destroys the system
 void escapetechnion_destroy(EscapeTechnion escape)
 {
     if (escape == NULL) {
