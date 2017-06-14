@@ -27,18 +27,14 @@
 int programArguments(int argc, char** argv, FILE** input_channel,
                       FILE** output_channel)
 {
-    if(argc != 1 && argc != 3 && argc != 5)
-    {
+    if(argc != 1 && argc != 3 && argc != 5) {
         mtmPrintErrorMessage(stderr, MTM_INVALID_COMMAND_LINE_PARAMETERS);
         return 0;
     }
-    if(argc == 5)
-    {
-        if(!strcmp(argv[1],"-i"))
-        {
+    if(argc == 5) {
+        if(!strcmp(argv[1],"-i")) {
             *input_channel = fopen(argv[2], "r");
-            if(strcmp(argv[3],"-o") != 0)
-            {
+            if(strcmp(argv[3],"-o") != 0) {
                 mtmPrintErrorMessage(stderr,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
                 return 0;
@@ -54,34 +50,27 @@ int programArguments(int argc, char** argv, FILE** input_channel,
             *input_channel = fopen(argv[4], "r");
             *output_channel = fopen(argv[2], "w");
         }
-        else
-        {
+        else {
             mtmPrintErrorMessage(stderr,
                                  MTM_INVALID_COMMAND_LINE_PARAMETERS);
             return 0;
         }
-        if(*input_channel == NULL || *output_channel == NULL)
-        {
+        if(*input_channel == NULL || *output_channel == NULL) {
             mtmPrintErrorMessage(stderr, MTM_CANNOT_OPEN_FILE);
             return 0;
         }
-
     }
-
     if(argc == 3)
     {
-        if(!strcmp(argv[1],"-i"))
-        {
+        if(!strcmp(argv[1],"-i")) {
             *input_channel = fopen(argv[2], "r");
             *output_channel = stdout;
         }
-        else if(!strcmp(argv[1],"-o"))
-        {
+        else if(!strcmp(argv[1],"-o")) {
             *output_channel = fopen(argv[2], "w");
             *input_channel = stdin;
         }
-        else
-        {
+        else {
             mtmPrintErrorMessage(stderr, MTM_INVALID_COMMAND_LINE_PARAMETERS);
             return 0;
         }
@@ -215,13 +204,9 @@ MtmErrorCode room_orders(EscapeTechnion escape, char* email,
  * MTM_INVALID_PARAMETER if the e-mail is invalid
  * MTM_CLIENT_EMAIL_DOES_NOT_EXIST if no client with such email exists
  * MTM_NO_ROOMS_AVAILABLE if no rooms available to book
- * MTM_CLIENT_EMAIL_DOES_NOT_EXIST if no client with such email exists
- * MTM_NO_ROOMS_AVAILABLE if no rooms available to book
  * MTM_NULL_PARAMETER if escape is NULL
  * MTM_OUT_OF_MEMORY if memory allocation problem occurred
-
  * MTM_SUCCESS otherwise
-
 
  */
 MtmErrorCode customer_orders(EscapeTechnion escape, char* email, int id,
@@ -319,7 +304,6 @@ void close_program(FILE* input_channel, FILE* output_channel,
 }
 
 int main(int argc, char** argv) {
-
     //If there aren't any parameters, use the default input and output channels.
     FILE *input_channel = stdin;
     FILE *output_channel = stdout;

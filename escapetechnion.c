@@ -798,33 +798,26 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
         return code;
     }
     Company comp = setGetFirst(escape->CompanySet);
-    int cur_min = -1, temp_min, skill = customer_get_skill(cust),
-            min_room_id = 0, temp_room_id = 0, day = 0, hour = 0, cur_day = 0,
-            cur_hour = 0;
-    TechnionFaculty cur_faculty = UNKNOWN, temp_faculty,
+    int cur_min=-1,temp_min,skill=customer_get_skill(cust),min_room_id=0,
+            temp_room_id = 0, day = 0, hour = 0, cur_day = 0, cur_hour = 0;
+    TechnionFaculty cur_faculty=UNKNOWN,temp_faculty,
             cust_faculty = customer_get_faculty(cust);
-
     for(int i = 0; i < setGetSize(escape->CompanySet); i++) {
         temp_min = company_recommended_rooms(comp, num_ppl, skill,
                                              &temp_room_id, &day, &hour);
         temp_faculty = company_get_faculty(comp);
-
-        //If The result is valid and first, update.
         if(temp_min >= 0) {
-            if (cur_min == -1) {
+            if (cur_min == -1) {  //If The result is valid and first, update.
                 UPDATE_MIN();
             }
-                //Sort by primary criteria
-            else if(temp_min < cur_min) {
+            else if(temp_min < cur_min) { //Sort by primary criteria
                 UPDATE_MIN();
             }
-                //Sort by secondary criteria
-            else if(temp_min == cur_min) {
+            else if(temp_min == cur_min) {   //Sort by secondary criteria
                 if(absolut(temp_faculty - cust_faculty) <
-                   absolut(cur_faculty - cust_faculty)) {
+                        absolut(cur_faculty - cust_faculty)) {
                     UPDATE_MIN();
                 }
-                    //Sort by the last criteria
                 else if(absolut(temp_faculty - cust_faculty) ==
                         absolut(cur_faculty - cust_faculty))  {
                     if(temp_faculty < cur_faculty) {
@@ -868,10 +861,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         if(orders_num > 0) {
             for(int j = 0; j < orders_num; j++) {
                 ord = customer_get_order(cust, j);
-
-                //Make an array from orders for today
-                if(order_get_day(ord) == 0)
-                {
+                if(order_get_day(ord) == 0) {
                     sortedord[counter] = ord;
                     faculty = order_get_faculty(ord);
                     price = calculate_price(ord, escape);
@@ -896,10 +886,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         return code;
     }
     order_sort(sortedord, escape, prices, counter);
-
     //Print the sorted array of orders
     print_day(escape, counter, sortedord, prices);
-
     escape->days++;
     free(sortedord);
     free(prices);
