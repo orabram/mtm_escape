@@ -73,6 +73,28 @@ static int cust_compare(SetElement cust1, SetElement cust2)
     return strcmp(customer_get_email(cust1), customer_get_email(cust2));
 }
 
+MtmErrorCode escape_room_day_passed(EscapeTechnion escape)
+{
+    if(escape == NULL)
+    {
+        return MTM_NULL_PARAMETER;
+    }
+    MtmErrorCode code;
+    Company comp = setGetFirst(escape->CompanySet);
+    for(int i = 0; i < setGetSize(escape->CompanySet); i++)
+    {
+        code = company_day_passed(comp);
+        {
+            if(code != MTM_SUCCESS)
+            {
+                return code;
+            }
+        }
+        comp = setGetNext(escape->CompanySet);
+    }
+    return MTM_SUCCESS;
+}
+
 
 static char* time_int_to_chr(int day, int hour)
 {
@@ -681,11 +703,6 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                 else
                 {
                     order_day_passed(ord);
-                    //room = find_escape_room(escape->CompanySet,
-                                            //order_get_id(ord),
-                                            //order_get_faculty(ord));
-                    //escape_ord = escape_room_
-                    //order_day_passed(escape_room_ord);
                 }
             }
         }
