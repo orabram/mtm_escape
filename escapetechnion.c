@@ -79,7 +79,12 @@ static int cust_compare(SetElement cust1, SetElement cust2)
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
-
+    if (day < 10) {
+        sprintf(chrtime, "0%d-%d", day, hour);
+    }
+    else {
+        sprintf(chrtime, "%d-%d", day, hour);
+    }
     return chrtime;
 }
 
@@ -110,7 +115,7 @@ static Customer find_customer_in_set(Set set, char* email)   /**TO MOVE **/
     char* temp_email;
     cust = setGetFirst(set);
     //Run through the set and look for a match.
-    for(int i = 0; setGetSize(set); i++) {
+    for(int i = 0; i < setGetSize(set); i++) {
         temp_email = customer_get_email(cust);
         //If the two emails are identical, that means we've got a match.
         if (!strcmp(temp_email, email)) {
@@ -274,9 +279,9 @@ static void print_day(EscapeTechnion escape, int num_of_events,
                       customer_get_skill(cust), customer_get_faculty(cust),
                       escape_room_get_email(room), order_get_faculty(orders[i]),
                       order_get_id(orders[i]), order_get_hour(orders[i]),
-                      escape_room_get_difficulty(room), order_get_num_ppl(orders[i]),
-                      prices[i]);
-        order_remove(orders[i]);
+                      escape_room_get_difficulty(room),
+                      order_get_num_ppl(orders[i]), prices[i]);
+        remove_order(orders[i], escape);
     }
     mtmPrintDayFooter(escape->output_channel, escape->days);
 }
@@ -377,8 +382,10 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
 
 MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email)
 {
-    if(escape == NULL || check_email(email))
-    {
+    if(escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    if (!check_email(email)) {
         return MTM_INVALID_PARAMETER;
     }
     Company tempcomp = find_company_in_set(escape->CompanySet, email);
@@ -400,6 +407,9 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
                                      int id, int price, int num_ppl,
                                      char* working_hrs, int difficulty)
 {
+    if (escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
     EscapeRoom room = create_escape_room();
     if(room == NULL)
     {
@@ -442,6 +452,9 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
 MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
                                         TechnionFaculty faculty, int id)
 {
+    if (escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
     if(faculty >= UNKNOWN || id < 0)
     {
         return MTM_INVALID_PARAMETER;
@@ -469,6 +482,9 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty,
                                          int skill_level)
 {
+    if (escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
     Customer cust = create_customer();
     if(cust == NULL)
     {
@@ -498,8 +514,10 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
 
 MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
 {
-    if(escape == NULL || !check_email(email))
-    {
+    if(escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    if (!check_email(email)) {
         return MTM_INVALID_PARAMETER;
     }
     Customer cust = find_customer_in_set(escape->CustomersSet, email);
@@ -513,8 +531,7 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
         remove_order(ord, escape);
     }
     escape->orders_num -= customer_get_orders_num(cust);
-    customer_destroy(cust);
-    setRemove(escape->CustomersSet, email);
+    setRemove(escape->CustomersSet, cust);
     //setRemove(escape->CustomerEmailsSet, email);
     return MTM_SUCCESS;
 }
@@ -523,6 +540,9 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty, int id,
                                          char* time, int num_ppl)
 {
+    if (escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
     MtmErrorCode code;
     Order ord = create_order();
     if (ord == NULL) {
@@ -566,7 +586,10 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                                              int num_ppl)
 {
-    if(escape == NULL || !check_email(email) || num_ppl <= 0) {
+    if(escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    if (!check_email(email) || num_ppl <= 0) {
         return MTM_INVALID_PARAMETER;
     }
     Customer cust = find_customer_in_set(escape->CustomersSet, email);
@@ -620,6 +643,9 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
 
 MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
 {
+    if (escape == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
     Customer cust = setGetFirst(escape->CustomersSet);
     TechnionFaculty faculty;
     Order* sortedord = malloc(sizeof(*sortedord) * (escape->orders_num));
@@ -650,7 +676,6 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     }
                     escape->faculties[faculty] += price;
                     prices[counter] = price;
-                    remove_order(ord, escape);
                     escape->orders_num--;
                 }
                 else
