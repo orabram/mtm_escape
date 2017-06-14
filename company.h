@@ -72,24 +72,95 @@ MtmErrorCode company_add_room(Company comp, EscapeRoom escape);
  */
 MtmErrorCode company_remove_room(Company comp, int id);
 
-//Returns the company email into the given variable.
+/**
+ * Receives a company and returns its email address.
+ *
+ * @param comp: The company containing the email we wish to return.
+ * @return
+ * NULL if either comp or comp's email are equal to NULL.
+ * An email address otherwise.
+ */
 char* company_get_email(Company comp);
 
+/**
+ * Receives a company and returns its faculty.
+ *
+ * @param comp: The company containing the faculty we wish to return.
+ * @return
+ * UNKNOWN if comp is equal to NULL.
+ * Company's faculty otherwise.
+ */
 TechnionFaculty company_get_faculty(Company comp);
 
+/**
+ * Receives a company and returns the number of rooms it has.
+ *
+ * @param comp: The company containing the rooms.
+ * @return
+ * -1 if comp is equal to NULL.
+ * Company's room num otherwise.
+ */
 int company_get_room_num(Company comp);
 
+/**
+ * Receives a company and returns a room with a given id.
+ *
+ * @param comp: The company containing the room we wish to return.
+ * @param id: The id of the room in the faculty. Must be a positive integer.
+ * @return
+ * NULL if comp is equal to NULL, id is lower than 0 or if the room doesn't
+ * exist.
+ * The room will be returned otherwise.
+ */
 EscapeRoom company_get_room(Company comp, int id);
 
+/**
+ * Receives a company and room id and check if the room exists in this company.
+ * @param comp: The company contating the rooms.
+ * @param id: The id of the room in the faculty. Must be a positive integer.
+ * @return
+ * false if comp is NULL, id is lower than 0 or if the room doesn't exist.
+ * true otherwise.
+ */
 bool company_room_exists(Company comp, int id);
 
+/**
+ * Receives a company, the amount of people making a reservation, the skill of
+ * the maker, and three pointers. Returns the most recommended room in the
+ * company, and stores the day and  the hour in which the room will be free
+ * next and the id of the given room.
+ * @param comp: The company containing the rooms.
+ * @param num_ppl: The number of people in the reservation. Must be a positive
+ * integer.
+ * @param skill: The skill level of the customer. Must be an integer between
+ * 1 to 10.
+ * @param id: int* in which we store the id of the chosen room.
+ * @param day: int* in which we store the days until the reservation.
+ * @param hour: int* in which we store the hours until the reservation.
+ * @return
+ * Returns -1 if comp, id, day or hour are NULL, if any paramater doesn't
+ * match their criteria, if there aren't any rooms or if the
+ * function find_closest_time fails.
+ * Returns the result of the given equation on success.
+ */
 int company_recommended_rooms(Company comp, int num_ppl, int skill,
                               int* id, int* day, int* hour);
 
 //bool company_room_got_orders(Company comp, int id);
-
+/**
+ * Receives company and returns true or false, depends on whether it has
+ * pending orders.
+ * @param comp: The company containing the orders.
+ * @return
+ * false if comp is NULL or if there aren't any orders.
+ * true otherwise.
+ */
 bool company_got_orders(Company comp);
 
+/**
+ * Destroy comp and frees all the memory is has allocated.
+ * @param comp: The company that'll be destroyed.
+ */
 void company_destroy(Company comp);
 
 #endif

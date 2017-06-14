@@ -7,11 +7,20 @@
 #include "company.h"
 
 struct company {
-    char* email;
-    TechnionFaculty faculty;
-    Set escape_room_set;
+    char* email;    //The email of the company
+    TechnionFaculty faculty;    //The faculty of the company.
+    Set escape_room_set;    //The set which contains all the escape rooms in
+                            //the company.
 };
 
+/**
+ * Receives a SetElement and copies it.
+ *
+ * @param room: the SetElement we wish to clone.
+ * @return
+ * Returns Null if room is NULL or if a memory allocation problem occurred.
+ * Otherwise, the result of escape_room_copy(room)
+ */
 static SetElement copy_room(SetElement room)
 {
     EscapeRoom copy = create_escape_room();
@@ -25,11 +34,26 @@ static SetElement copy_room(SetElement room)
     return copy;
 }
 
+/**
+ * Receives a SetElement and frees it.
+ *
+ * @param room: The SetElement we wish to free.
+ */
 static void destroy_room(SetElement room)
 {
     escape_room_destroy(room);
 }
 
+/**
+ * Receives two SetElements and compares their ids.
+ *
+ * @param room1: The first SetElement we wish to compare.
+ * @param room2: The second SetElement we wish to compare.
+ * @return
+ * If the id of room1 is bigger than room2's id, it returns a positive value.
+ * If the id of room1 is equal to room2's id, it returns 0.
+ * If the id of room1 is smaller than room2's id, it returns a negative value.
+ */
 static int compare_room(SetElement room1, SetElement room2)
 {
     EscapeRoom r1 = (EscapeRoom)room1, r2 = (EscapeRoom)room2;
@@ -185,8 +209,11 @@ bool company_room_exists(Company comp, int id)
 int company_recommended_rooms(Company comp, int num_ppl, int skill,
                               int* id, int* day, int* hour)
 {
-    assert (!(comp == NULL || num_ppl < 0 || skill <= 0 || skill > 10 ||
-              id == NULL || day == NULL || hour == NULL));
+    if(comp == NULL || num_ppl < 0 || skill <= 0 || skill > 10 ||
+              id == NULL || day == NULL || hour == NULL)
+    {
+        return -1;
+    }
     int temp_res, result = -1;
     EscapeRoom room = setGetFirst(comp->escape_room_set);
     EscapeRoom best_room = room;
