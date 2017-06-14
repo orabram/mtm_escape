@@ -13,10 +13,6 @@
 #define ILLEGAL_PRICE -1
 #define FACULTIES_NUM UNKNOWN
 
-<<<<<<< HEAD
-
-=======
->>>>>>> origin/master
 struct escapetechnion{
     Set CompanySet;
     Set CustomersSet;
@@ -125,18 +121,6 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
 }
 
 /**
-<<<<<<< HEAD
-=======
- * Converts the day and the hour, received as integers, to a string in
- * format "xx-yy", where "xx" is the day and "yy" is the hour.
- *
- * @param day: The day to convert
- * @param hour: The hour to convert
- * @return
- * The converted string
- */
-/**
->>>>>>> origin/master
  * Returns the absolute value of a number.
  * @param x: an integer.
  * @return
@@ -151,7 +135,6 @@ static int absolut(int x)
     return x;
 }
 
-<<<<<<< HEAD
 /**
  * Converts the day and the hour, received as integers, to a string in
  * format "xx-yy", where "xx" is the day and "yy" is the hour.
@@ -161,9 +144,6 @@ static int absolut(int x)
  * @return
  * The converted string
  */
-=======
-
->>>>>>> origin/master
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
@@ -846,7 +826,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                 }
                     //Sort by the last criteria
                 else if(absolut(temp_faculty - cust_faculty) ==
-                        absolut(cur_faculty - cur_faculty))  {
+                        absolut(cur_faculty - cust_faculty))  {
                     if(temp_faculty < cur_faculty) {
                         UPDATE_MIN();
                     }

@@ -173,6 +173,7 @@ MtmErrorCode company_remove_room(Company comp, int id)
             setRemove(comp->escape_room_set, room);
             return MTM_SUCCESS;
         }
+        room = setGetNext(comp->escape_room_set);
     }
     return MTM_ID_DOES_NOT_EXIST;
 }
