@@ -73,7 +73,7 @@ static int cust_compare(SetElement cust1, SetElement cust2)
     return strcmp(customer_get_email(cust1), customer_get_email(cust2));
 }
 
-MtmErrorCode escape_room_day_passed(EscapeTechnion escape)
+MtmErrorCode escaperoom_day_passed(EscapeTechnion escape)
 {
     if(escape == NULL)
     {
@@ -675,9 +675,9 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         return MTM_OUT_OF_MEMORY;
     }
     int orders_num, counter = 0, price;
-    //EscapeRoom room;
+    MtmErrorCode code;
     int* prices = malloc(sizeof(int) * escape->orders_num);
-    Order ord; //escape_ord;
+    Order ord;
     for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
     {
         orders_num = customer_get_orders_num(cust);
@@ -706,6 +706,11 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
             }
         }
         cust = setGetNext(escape->CustomersSet);
+    }
+    code = escaperoom_day_passed(escape);
+    if(code != MTM_SUCCESS)
+    {
+        return code;
     }
     order_sort(sortedord, escape, prices, counter);
     print_day(escape, counter, sortedord, prices);
