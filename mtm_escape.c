@@ -18,27 +18,21 @@ int programArguments(int argc, char** argv, FILE** input_channel,
         mtmPrintErrorMessage(stderr, MTM_INVALID_COMMAND_LINE_PARAMETERS);
         exit(0);
     }
-    //If there aren't any parameters, use the default input and output channels.
-    if(argc == 1)
-    {
-        *input_channel = stdin;
-        *output_channel = stdout;
-    }
     if(argc == 5)
     {
-        if(!strcmp(argv[1],"i"))
+        if(!strcmp(argv[1],"-i"))
         {
-            *input_channel = fopen(argv[3], "r");
-            if(strcmp(argv[3],"o") != 0)
+            *input_channel = fopen(argv[2], "r");
+            if(strcmp(argv[3],"-o") != 0)
             {
                 mtmPrintErrorMessage(stderr,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
                 return 0;
             }
-            *output_channel = fopen(argv[5], "w");
+            *output_channel = fopen(argv[4], "w");
         }
-        else if(!strcmp(argv[1],"o")) {
-            if (strcmp(argv[3], "i") != 0) {
+        else if(!strcmp(argv[1],"-o")) {
+            if (strcmp(argv[3], "-i") != 0) {
                 mtmPrintErrorMessage(stderr,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
                 return 0;
@@ -62,12 +56,12 @@ int programArguments(int argc, char** argv, FILE** input_channel,
 
     if(argc == 3)
     {
-        if(!strcmp(argv[1],"i"))
+        if(!strcmp(argv[1],"-i"))
         {
             *input_channel = fopen(argv[2], "r");
             *output_channel = stdout;
         }
-        else if(!strcmp(argv[1],"o"))
+        else if(!strcmp(argv[1],"-o"))
         {
             *output_channel = fopen(argv[2], "w");
             *input_channel = stdin;
@@ -209,8 +203,14 @@ MtmErrorCode parseInput(EscapeTechnion escape, char* input)
 
 int main(int argc, char** argv){
 
-    FILE* input_channel;
-    FILE* output_channel;
+    //If there aren't any parameters, use the default input and output channels.
+    FILE* input_channel = stdin;
+    FILE* output_channel = stdout;
+    printf("%d\n", argc);
+    for(int i = 0; i < argc; i++)
+    {
+        printf("%s\n", argv[i]);
+    }
     int worked = programArguments(argc, argv, &input_channel, &output_channel);
     if(!worked)
     {
@@ -238,6 +238,7 @@ int main(int argc, char** argv){
             if(code != MTM_SUCCESS)
             {
                 mtmPrintErrorMessage(stderr, code);
+                printf(input);
                 if(code == MTM_OUT_OF_MEMORY)
                 {
                     return 0;
