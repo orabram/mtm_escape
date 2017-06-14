@@ -485,14 +485,15 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
     {
         return MTM_OUT_OF_MEMORY;
     }
-    if (find_company_in_set(escape->CompanySet, email) != NULL) {
-        return MTM_EMAIL_ALREADY_EXISTS;
-    }
     MtmErrorCode code = initialize_customer(cust, email, faculty, skill_level);
     if(code != MTM_SUCCESS)
     {
         customer_destroy(cust);
         return code;
+    }
+    if (find_company_in_set(escape->CompanySet, email) != NULL) {
+        customer_destroy(cust);
+        return MTM_EMAIL_ALREADY_EXISTS;
     }
     SetResult result = setAdd(escape->CustomersSet, cust);
     customer_destroy(cust);

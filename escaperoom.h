@@ -136,21 +136,48 @@ int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
 MtmErrorCode escape_room_find_closest_time(EscapeRoom room,int *day,int *hour);
 
 /**
- * Adds the requested order into the room.
+ * Adds a copy of the requested order into the room.
  *
  * @param room: The room which the order is added to.
- * @param order: 
+ * @param order: The requested order to be added into the room
  * @return
+ * MTM_NULL_PARAMETER if the room or the order is NULL
+ * MTM_INVALID_PARAMETER if the time of the order is beyond the working hours
+ *                       of the room
+ * MTM_RESERVATION_EXISTS if a reservation for the same time already exists
+ *                        in this room.
+ * MTM_OUT_OF_MEMORY if the allocation of the copy of the order failed
+ * MTM_SUCCESS otherwise
  */
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order);
 
-//Removes an order.
+/**
+ * Removes the requested order from the room.
+ *
+ * @param room: The room which the order is removed from.
+ * @param order: The requested order to be removed.
+ * @return
+ * MTM_NULL_PARAMETER if if the room or the order is NULL
+ * MTM_ROOM_NOT_AVAILABLE if such order does not exist in this room
+ * MTM_SUCCESS otherwise
+ */
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order);
 
-//Returns True if a reservation for this room exists, and False otherwise.
+/**
+ * Checks if the room has any orders currently booked.
+ *
+ * @param room: The checked room
+ * @return
+ * True if the room has at least one order
+ * False otherwise
+ */
 bool escape_room_order_exists(EscapeRoom room);
 
-//Destroys the room.
+/**
+ * Deallocates the room and all its fields.
+ *
+ * @param room: The room to destroy
+ */
 void escape_room_destroy(EscapeRoom room);
 
 #endif

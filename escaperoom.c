@@ -16,17 +16,39 @@ struct escaperoom {
     Set OrdersSet;
 };
 
+/**
+ * Creates a copy of the order and returns it.
+ *
+ * @param order: The order to copy
+ * @return
+ * Return value of order_copy function
+ */
 static SetElement copy_order(SetElement order)
 {
     Order ord = order_copy(order);
     return ord;
 }
 
+/**
+ * Deallocates the order.
+ *
+ * @param order: The order to destroy
+ */
 static void destroy_order(SetElement order)
 {
     order_remove(order);
 }
 
+/**
+ * Compares between two orders by their times of booking.
+ *
+ * @param ord1: First order to compare
+ * @param ord2: Second order to compare
+ * @return
+ * 1 if ord1 is set for later than ord2
+ * 0 if both orders are set for the same time
+ * -1 if ord2 is set for later than ord1
+ */
 static int compare_order(SetElement ord1, SetElement ord2)
 {
     if (order_compare_time(ord1, ord2)) {
@@ -38,7 +60,15 @@ static int compare_order(SetElement ord1, SetElement ord2)
     return -1;
 }
 
-//Returns true if the email is legal, false otherwise.
+/**
+ * Checks if the e-mail is valid.
+ * A valid e-mail is any string containing the '@' character.
+ *
+ * @param email: The e-mail to check
+ * @return
+ * True if the e-mail is valid
+ * False otherwise
+ */
 static bool check_email(char* email)
 {
     if(!strstr(email, "@"))
@@ -48,9 +78,15 @@ static bool check_email(char* email)
     return true;
 }
 
-/** An auxiliary function for setting the working hours of the room
- * It receives working hours in a string format and sets the opening hour and
- * closing hour fields accordingly
+/** An auxiliary function for setting the working hours of the room.
+ *  Receives working hours in a string format and sets the opening hour and
+ *  closing hour fields respectively
+ *
+ * @param room: The room on which the function operates
+ * @param hrs: Working hours of the room in a string format
+ * @return
+ * MTM_INVALID_PARAMETER if hrs is NULL
+ * MTM_SUCCESS otherwise
  */
 static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
 {
@@ -67,15 +103,25 @@ static MtmErrorCode set_working_hrs(EscapeRoom room, char *hrs)
     return MTM_SUCCESS;
 }
 
+/**
+ * Checks if a reservation for the same time already exists in this room.
+ *
+ * @param room: The checked room.
+ * @param order: The checked order.
+ * @return
+ * True if such order exists
+ * False otherwise
+ */
 static bool escape_room_colliding_times(EscapeRoom room, Order order)
 {
     if (room == NULL || order == NULL) {
         return false;
     }
-    int order_time = order_get_hour(order);
+    int order_day = order_get_day(order), order_hour = order_get_hour(order);
     Order ord = setGetFirst(room->OrdersSet);
     for (int i = 0; i < setGetSize(room->OrdersSet); i++) {
-        if (order_get_hour(ord) == order_time) {
+        if (order_get_day(ord) == order_day &&
+                order_get_hour(ord) == order_hour) {
             return true;
         }
         ord = setGetNext(room->OrdersSet);
@@ -83,6 +129,7 @@ static bool escape_room_colliding_times(EscapeRoom room, Order order)
     return false;
 }
 
+//Creates a new EscapeRoom and returns it
 EscapeRoom create_escape_room()
 {
     EscapeRoom room = malloc(sizeof(*room));
@@ -100,8 +147,7 @@ EscapeRoom create_escape_room()
     return room;
 }
 
-
-
+//Initializes the given room with the given parameters
 MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
                                     int price, int num_ppl, char *working_hrs,
                                     int difficulty)
@@ -131,6 +177,7 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
     return MTM_SUCCESS;
 }
 
+//Creates a copy for the room and returns it in the dedicated parameter
 MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room)
 {
     if (new_room == NULL || original_room == NULL) {
@@ -244,12 +291,12 @@ MtmErrorCode escape_room_add_order(EscapeRoom room, Order order)
     if (room == NULL || order == NULL) {
         return MTM_NULL_PARAMETER;
     }
-    if (escape_room_colliding_times(room, order)) {
-        return MTM_RESERVATION_EXISTS;
-    }
     int order_time = order_get_hour(order);
     if (order_time < room->open_hour || order_time >= room->close_hour) {
-        return MTM_INVALID_PARAMETER;
+        return MTM_ROOM_NOT_AVAILABLE;
+    }
+    if (escape_room_colliding_times(room, order)) {
+        return MTM_ROOM_NOT_AVAILABLE;
     }
     if (setAdd(room->OrdersSet, order) == SET_OUT_OF_MEMORY) {
         return MTM_OUT_OF_MEMORY;
