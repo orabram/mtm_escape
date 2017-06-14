@@ -13,18 +13,6 @@
 #define ILLEGAL_PRICE -1
 #define FACULTIES_NUM UNKNOWN
 
-<<<<<<< HEAD
-=======
-/**
- * Used in report_day function
- */
-#define UPDATE_MIN() \
-    cur_min = temp_min; \
-    cur_faculty = temp_faculty; \
-    min_room_id = temp_room_id; \
-    cur_hour = hour; \
-    cur_day = day; \
->>>>>>> origin/master
 
 struct escapetechnion{
     Set CompanySet;
@@ -132,18 +120,7 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
     }
     return MTM_SUCCESS;
 }
-<<<<<<< HEAD
 
-/**
- * Converts the day and the hour, received as integers, to a string in
- * format "xx-yy", where "xx" is the day and "yy" is the hour.
- *
- * @param day: The day to convert
- * @param hour: The hour to convert
- * @return
- * The converted string
- */
-=======
 /**
  * Returns the absolute value of a number.
  * @param x: an integer.
@@ -158,7 +135,16 @@ static int absolut(int x)
     }
     return x;
 }
->>>>>>> origin/master
+
+/**
+ * Converts the day and the hour, received as integers, to a string in
+ * format "xx-yy", where "xx" is the day and "yy" is the hour.
+ *
+ * @param day: The day to convert
+ * @param hour: The hour to convert
+ * @return
+ * The converted string
+ */
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
@@ -781,14 +767,13 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
     return MTM_SUCCESS;
 }
 
-/* Macro used in escapetechnion_recommended_room function
- * Updates the temporary values to find the minimal result of calculation,
- * and save the faculty and ID of the room responsible for that result.
- */
 #define UPDATE_MIN() \
     cur_min = temp_min; \
     cur_faculty = temp_faculty; \
     min_room_id = temp_room_id; \
+    cur_hour = hour; \
+    cur_day = day; \
+
 
 /* Finds the most recommended room for a customer and books it
  * as soon as possible
@@ -837,14 +822,9 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                    absolut(cur_faculty - cust_faculty)) {
                     UPDATE_MIN();
                 }
-<<<<<<< HEAD
                     //Sort by the last criteria
-                else if(fabs(temp_faculty - cust_faculty) ==
-                        fabs(cur_faculty - cur_faculty))  {
-=======
                 else if(absolut(temp_faculty - cust_faculty) ==
                         absolut(cur_faculty - cur_faculty))  {
->>>>>>> origin/master
                     if(temp_faculty < cur_faculty) {
                         UPDATE_MIN();
                     }
@@ -892,7 +872,6 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     sortedord[counter] = ord;
                     faculty = order_get_faculty(ord);
                     price = calculate_price(ord, escape);
-
                     //Make a discount if the customer is at his faculty
                     if(faculty == customer_get_faculty(cust)) {
                         price *= 0.75;
@@ -901,13 +880,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     prices[counter] = price;
                     counter++;
                 }
-<<<<<<< HEAD
-                else {
-=======
                 else
                 {
-                    order_day_passed(ord);;
->>>>>>> origin/master
                     order_day_passed(ord);
                 }
             }

@@ -2,7 +2,6 @@
 #include "mtm_ex3.h"
 #include <string.h>
 int main(){
-    /*
     EscapeTechnion escape = create_escapetechnion();
     MtmErrorCode code = escapetechnion_set_output_channel(escape, stdout);
     code = escapetechnion_add_company(escape, "company1@gmail", 0);
@@ -49,10 +48,7 @@ int main(){
     escapetechnion_reportbest(escape);
     code = escapetechnion_reportday(escape);
     code = escapetechnion_recommended_room(escape, "3@", 6);
-    code = escapetechnion_reportday(escape);*/
-    char* point = "std@@dhad";
-    point = strstr(strstr(point, "@") + 1, "@");
-    printf("%s\n", point);
+    code = escapetechnion_reportday(escape);
 
-
+    return code;
 }
