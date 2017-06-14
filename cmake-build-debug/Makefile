@@ -230,6 +230,33 @@ escapetechnion.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.s
 .PHONY : escapetechnion.c.s
 
+mtmescapetests.obj: mtmescapetests.c.obj
+
+.PHONY : mtmescapetests.obj
+
+# target to build an object file
+mtmescapetests.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj
+.PHONY : mtmescapetests.c.obj
+
+mtmescapetests.i: mtmescapetests.c.i
+
+.PHONY : mtmescapetests.i
+
+# target to preprocess a source file
+mtmescapetests.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtmescapetests.c.i
+.PHONY : mtmescapetests.c.i
+
+mtmescapetests.s: mtmescapetests.c.s
+
+.PHONY : mtmescapetests.s
+
+# target to generate assembly for a file
+mtmescapetests.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtmescapetests.c.s
+.PHONY : mtmescapetests.c.s
+
 order.obj: order.c.obj
 
 .PHONY : order.obj
@@ -278,6 +305,9 @@ help:
 	@echo ... escapetechnion.obj
 	@echo ... escapetechnion.i
 	@echo ... escapetechnion.s
+	@echo ... mtmescapetests.obj
+	@echo ... mtmescapetests.i
+	@echo ... mtmescapetests.s
 	@echo ... order.obj
 	@echo ... order.i
 	@echo ... order.s

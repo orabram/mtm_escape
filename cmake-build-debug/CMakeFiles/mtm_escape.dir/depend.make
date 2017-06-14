@@ -31,15 +31,15 @@ CMakeFiles/mtm_escape.dir/escapetechnion.c.obj: ../mtm_ex3.h
 CMakeFiles/mtm_escape.dir/escapetechnion.c.obj: ../order.h
 CMakeFiles/mtm_escape.dir/escapetechnion.c.obj: ../set.h
 
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../company.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../customer.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../escaperoom.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../escapetechnion.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../escapetechnion_tests.c
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../list.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../mtm_ex3.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../order.h
-CMakeFiles/mtm_escape.dir/escapetechnion_tests.c.obj: ../set.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../company.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../customer.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../escaperoom.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../escapetechnion.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../list.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../mtm_ex3.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../mtmescapetests.c
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../order.h
+CMakeFiles/mtm_escape.dir/mtmescapetests.c.obj: ../set.h
 
 CMakeFiles/mtm_escape.dir/order.c.obj: ../mtm_ex3.h
 CMakeFiles/mtm_escape.dir/order.c.obj: ../order.c

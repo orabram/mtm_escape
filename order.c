@@ -83,7 +83,12 @@ static bool check_time(char* time)
  */
 static bool check_email(char* email)
 {
-    if(!strstr(email, "@"))
+    if(!strstr(email, "@")) //Checks if email contains at least 1 @.
+    {
+        return false;
+    }
+    if(strstr(strstr(email, "@") + 1, "@")) //Checks if email contains more
+                                            // than one @.
     {
         return false;
     }

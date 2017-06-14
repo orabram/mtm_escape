@@ -8,12 +8,23 @@
 #include "customer.h"
 #include "order.h"
 #include "escaperoom.h"
-#include <math.h>
 #include "set.h"
 
 #define ILLEGAL_PRICE -1
 #define FACULTIES_NUM UNKNOWN
 
+<<<<<<< HEAD
+=======
+/**
+ * Used in report_day function
+ */
+#define UPDATE_MIN() \
+    cur_min = temp_min; \
+    cur_faculty = temp_faculty; \
+    min_room_id = temp_room_id; \
+    cur_hour = hour; \
+    cur_day = day; \
+>>>>>>> origin/master
 
 struct escapetechnion{
     Set CompanySet;
@@ -121,6 +132,7 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
     }
     return MTM_SUCCESS;
 }
+<<<<<<< HEAD
 
 /**
  * Converts the day and the hour, received as integers, to a string in
@@ -131,6 +143,22 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
  * @return
  * The converted string
  */
+=======
+/**
+ * Returns the absolute value of a number.
+ * @param x: an integer.
+ * @return
+ * Returns the absolute value of x;
+ */
+static int absolut(int x)
+{
+    if(x < 0)
+    {
+        return -x;
+    }
+    return x;
+}
+>>>>>>> origin/master
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
@@ -364,11 +392,17 @@ static Company find_company_in_set(Set set, char* email)
  */
 static bool check_email(char* email)
 {
-    if(email == NULL || !strstr(email, "@"))
+    if(!strstr(email, "@")) //Checks if email contains at least 1 @.
+    {
+        return false;
+    }
+    if(strstr(strstr(email, "@") + 1, "@")) //Checks if email contains more
+        // than one @.
     {
         return false;
     }
     return true;
+}
 }
 
 /**
@@ -546,7 +580,7 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
 //Removes company from the system
 MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email)
 {
-    if(escape == NULL) {
+    if(escape == NULL || email == NULL) {
         return MTM_NULL_PARAMETER;
     }
     if (!check_email(email)) {
@@ -677,7 +711,7 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
 //Removes customer from the system
 MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
 {
-    if(escape == NULL) {
+    if(escape == NULL || email == NULL) {
         return MTM_NULL_PARAMETER;
     }
     if (!check_email(email)) {
@@ -763,7 +797,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                                              int num_ppl)
 {
-    if(escape == NULL) {
+    if(escape == NULL || email == NULL) {
         return MTM_NULL_PARAMETER;
     }
     if (!check_email(email) || num_ppl <= 0) {
@@ -779,7 +813,8 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     }
     Company comp = setGetFirst(escape->CompanySet);
     int cur_min = -1, temp_min, skill = customer_get_skill(cust),
-            min_room_id = 0, temp_room_id = 0, day = 0, hour = 0;
+            min_room_id = 0, temp_room_id = 0, day = 0, hour = 0, cur_day = 0,
+            cur_hour = 0;
     TechnionFaculty cur_faculty = UNKNOWN, temp_faculty,
             cust_faculty = customer_get_faculty(cust);
 
@@ -799,13 +834,18 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
             }
                 //Sort by secondary criteria
             else if(temp_min == cur_min) {
-                if(fabs(temp_faculty - cust_faculty) <
-                   fabs(cur_faculty - cust_faculty)) {
+                if(absolut(temp_faculty - cust_faculty) <
+                   absolut(cur_faculty - cust_faculty)) {
                     UPDATE_MIN();
                 }
+<<<<<<< HEAD
                     //Sort by the last criteria
                 else if(fabs(temp_faculty - cust_faculty) ==
                         fabs(cur_faculty - cur_faculty))  {
+=======
+                else if(absolut(temp_faculty - cust_faculty) ==
+                        absolut(cur_faculty - cur_faculty))  {
+>>>>>>> origin/master
                     if(temp_faculty < cur_faculty) {
                         UPDATE_MIN();
                     }
@@ -819,7 +859,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
         }
         comp = setGetNext(escape->CompanySet);
     }
-    char* chrtime = time_int_to_chr(day, hour);
+    char* chrtime = time_int_to_chr(cur_day, cur_hour);
     MtmErrorCode res = escapetechnion_create_order(escape, email, cur_faculty
             , min_room_id, chrtime, num_ppl);
     free(chrtime);
@@ -862,7 +902,13 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                     prices[counter] = price;
                     counter++;
                 }
+<<<<<<< HEAD
                 else {
+=======
+                else
+                {
+                    order_day_passed(ord);;
+>>>>>>> origin/master
                     order_day_passed(ord);
                 }
             }
