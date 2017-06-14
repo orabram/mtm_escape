@@ -78,7 +78,7 @@ int programArguments(int argc, char** argv, FILE** input_channel,
  * to which type of line we got.
  *
  * @param output_channel:
- * @param input: A char* containing the input. Its maximus size is 250;
+ * @param input: A char* containing the input. Its maximum size is 250;
  * @return 0 if the line is empty, -1 is the line is an annotation and 1 if the
  * line is a legal order.
  */
@@ -185,8 +185,8 @@ MtmErrorCode parseInput(EscapeTechnion escape, char* input)
 
     if(!strcmp(command, "room"))
     {
-        return room_orders(escape, email, id, price, working_hrs, difficulty, faculty,
-                    num_ppl, subcommand);
+        return room_orders(escape, email, id, price, working_hrs, difficulty,
+                           faculty, num_ppl, subcommand);
     }
     if(!strcmp(command, "escaper"))
     {
@@ -201,6 +201,7 @@ MtmErrorCode parseInput(EscapeTechnion escape, char* input)
     return MTM_SUCCESS;
 }
 
+<<<<<<< HEAD
 int main(int argc, char** argv){
 
     //If there aren't any parameters, use the default input and output channels.
@@ -211,6 +212,12 @@ int main(int argc, char** argv){
     {
         printf("%s\n", argv[i]);
     }
+=======
+int main(int argc, char** argv)
+{
+    FILE* input_channel;
+    FILE* output_channel;
+>>>>>>> origin/master
     int worked = programArguments(argc, argv, &input_channel, &output_channel);
     if(!worked)
     {
@@ -219,6 +226,7 @@ int main(int argc, char** argv){
     EscapeTechnion escape = create_escapetechnion();
     if(escape == NULL)
     {
+        escapetechnion_destroy(escape);
         mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
         return 0;
     }
@@ -228,6 +236,8 @@ int main(int argc, char** argv){
     if(input == NULL)
     {
         mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
+        escapetechnion_destroy(escape);
+        free(input);
         return 0;
     }
     while(fgets(input, MAX_LEN, input_channel) != NULL)
@@ -241,10 +251,11 @@ int main(int argc, char** argv){
                 printf(input);
                 if(code == MTM_OUT_OF_MEMORY)
                 {
+                    escapetechnion_destroy(escape);
+                    free(input);
                     return 0;
                 }
             }
         }
     }
-
 }
