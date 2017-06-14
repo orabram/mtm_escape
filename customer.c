@@ -84,7 +84,6 @@ static bool check_email(char* email)
     }
     return true;
 }
-}
 
 /**
  * Receives a faculty and checks if it's legal(between 0 and unknown);

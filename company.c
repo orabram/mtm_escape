@@ -82,7 +82,6 @@ static bool check_email(char* email)
     }
     return true;
 }
-}
 
 //Creates a company and returns it; Initializes it with default values.
 Company create_company()
@@ -210,7 +209,7 @@ int company_get_room_num(Company comp)
  */
 EscapeRoom company_get_room(Company comp, int id)
 {
-    if (comp == NULL || id < 0) {
+    if (comp == NULL || id <= 0) {
         return NULL;
     }
     EscapeRoom temp_room = setGetFirst(comp->escape_room_set);

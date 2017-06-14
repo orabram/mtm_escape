@@ -105,7 +105,7 @@ static bool check_email(char* email)
  */
 static bool check_id(int id)
 {
-    if(id < 0)
+    if(id <= 0)
     {
         return false;
     }

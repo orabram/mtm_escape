@@ -82,7 +82,6 @@ static bool check_email(char* email)
     }
     return true;
 }
-}
 
 /** An auxiliary function for setting the working hours of the room.
  *  Receives working hours in a string format and sets the opening hour and
@@ -161,7 +160,7 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
     if (room == NULL ) {
         return MTM_NULL_PARAMETER;
     }
-    if ( id < 0 || price % 4 != 0 || price <= 0 || num_ppl <= 0
+    if ( id <= 0 || price % 4 != 0 || price <= 0 || num_ppl <= 0
          || difficulty < 1 || difficulty > 10) {
         return MTM_INVALID_PARAMETER;
     }

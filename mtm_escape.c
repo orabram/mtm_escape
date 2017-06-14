@@ -11,11 +11,11 @@
 #define DELIM " \t\n"
 
 int programArguments(int argc, char** argv, FILE** input_channel,
-                      FILE** output_channel)
+                      FILE** output_channel, FILE* err)
 {
     if(argc != 1 && argc != 3 && argc != 5)
     {
-        mtmPrintErrorMessage(stderr, MTM_INVALID_COMMAND_LINE_PARAMETERS);
+        mtmPrintErrorMessage(err, MTM_INVALID_COMMAND_LINE_PARAMETERS);
         exit(0);
     }
     if(argc == 5)
@@ -25,7 +25,7 @@ int programArguments(int argc, char** argv, FILE** input_channel,
             *input_channel = fopen(argv[2], "r");
             if(strcmp(argv[3],"-o") != 0)
             {
-                mtmPrintErrorMessage(stderr,
+                mtmPrintErrorMessage(err,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
                 return 0;
             }
@@ -33,7 +33,7 @@ int programArguments(int argc, char** argv, FILE** input_channel,
         }
         else if(!strcmp(argv[1],"-o")) {
             if (strcmp(argv[3], "-i") != 0) {
-                mtmPrintErrorMessage(stderr,
+                mtmPrintErrorMessage(err,
                                      MTM_INVALID_COMMAND_LINE_PARAMETERS);
                 return 0;
             }
@@ -42,13 +42,13 @@ int programArguments(int argc, char** argv, FILE** input_channel,
         }
         else
         {
-            mtmPrintErrorMessage(stderr,
+            mtmPrintErrorMessage(err,
                                  MTM_INVALID_COMMAND_LINE_PARAMETERS);
             return 0;
         }
         if(*input_channel == NULL || *output_channel == NULL)
         {
-            mtmPrintErrorMessage(stderr, MTM_CANNOT_OPEN_FILE);
+            mtmPrintErrorMessage(err, MTM_CANNOT_OPEN_FILE);
             return 0;
         }
 
@@ -68,7 +68,7 @@ int programArguments(int argc, char** argv, FILE** input_channel,
         }
         else
         {
-            mtmPrintErrorMessage(stderr, MTM_INVALID_COMMAND_LINE_PARAMETERS);
+            mtmPrintErrorMessage(err, MTM_INVALID_COMMAND_LINE_PARAMETERS);
             return 0;
         }
     }
@@ -202,7 +202,7 @@ MtmErrorCode parseInput(EscapeTechnion escape, char* input)
 }
 
 void close_program(FILE* input_channel, FILE* output_channel,
-                   EscapeTechnion escape, char* input)
+                   EscapeTechnion escape, char* input, FILE* err)
 {
     if(input_channel != stdin)
     {
@@ -212,6 +212,7 @@ void close_program(FILE* input_channel, FILE* output_channel,
     {
         fclose(output_channel);
     }
+    fclose(err);
     escapetechnion_destroy(escape);
     free(input);
 }
@@ -221,16 +222,17 @@ int main(int argc, char** argv) {
     //If there aren't any parameters, use the default input and output channels.
     FILE *input_channel = stdin;
     FILE *output_channel = stdout;
+    FILE *err = fopen("mtm.err", "w");
     int worked = programArguments(argc, argv, &input_channel,
-                                  &output_channel);
+                                  &output_channel, err);
     if (!worked) {
         return 0;
     }
     EscapeTechnion escape = create_escapetechnion();
     if (escape == NULL) {
-        close_program(input_channel, output_channel, escape, NULL); //Input
+        close_program(input_channel, output_channel, escape, NULL, err); //Input
         // isn't defined, so we send NULL instead
-        mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
+        mtmPrintErrorMessage(err, MTM_OUT_OF_MEMORY);
         return 0;
     }
     escapetechnion_set_output_channel(escape, output_channel);
@@ -238,21 +240,22 @@ int main(int argc, char** argv) {
     char *input = malloc(
             MAX_LEN);  //The maximum length of a line is MAX_LEN.
     if (input == NULL) {
-        mtmPrintErrorMessage(stderr, MTM_OUT_OF_MEMORY);
-        close_program(input_channel, output_channel, escape, input);
+        mtmPrintErrorMessage(err, MTM_OUT_OF_MEMORY);
+        close_program(input_channel, output_channel, escape, input, err);
         return 0;
     }
     while (fgets(input, MAX_LEN, input_channel) != NULL) {
         if (sortInput(input) == 1) {
             code = parseInput(escape, input);
             if (code != MTM_SUCCESS) {
-                mtmPrintErrorMessage(stderr, code);
+                mtmPrintErrorMessage(err, code);
                 if (code == MTM_OUT_OF_MEMORY) {
-                    close_program(input_channel, output_channel, escape, input);
+                    close_program(input_channel, output_channel, escape,
+                                  input, err);
                     return 0;
                 }
             }
         }
     }
-    close_program(input_channel, output_channel, escape, input);
+    close_program(input_channel, output_channel, escape, input, err);
 }

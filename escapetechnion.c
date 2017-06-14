@@ -403,7 +403,6 @@ static bool check_email(char* email)
     }
     return true;
 }
-}
 
 /**
  * Receives an Order and an EscapeTechnion object and calculates the price
@@ -650,7 +649,7 @@ MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
     if (escape == NULL) {
         return MTM_NULL_PARAMETER;
     }
-    if(faculty >= UNKNOWN || id < 0)
+    if(faculty >= UNKNOWN || id <= 0)
     {
         return MTM_INVALID_PARAMETER;
     }
