@@ -677,12 +677,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                 }
                 else
                 {
-                    order_day_passed(ord);
-                    //room = find_escape_room(escape->CompanySet,
-                                            //order_get_id(ord),
-                                            //order_get_faculty(ord));
-                    //escape_ord = escape_room_
-                    //order_day_passed(escape_room_ord);
+                    order_day_passed(ord);;
                 }
             }
         }
@@ -698,7 +693,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
 void escapetechnion_reportbest(EscapeTechnion escape)
 {
     int no1 = -1, no2 = -1, no3 = -1;
-    int id1, id2, id3, temp, sum = 0;
+    int id1 = 0, id2 = 0, id3 = 0, temp = 0, sum = 0;
     for(int i = 0; i < FACULTIES_NUM; i++)
     {
         if(escape->faculties[i] > no1)

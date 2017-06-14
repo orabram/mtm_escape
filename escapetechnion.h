@@ -10,19 +10,19 @@
 typedef struct escapetechnion *EscapeTechnion;
 
 /**
- * Creates a new instance of EscapeTechnion and returns it
+ * Creates a new instance of EscapeTechnion system and returns it
  *
  * @return
  * NULL if memory allocation problem occurred
- * The new instance of EscapeTechnion otherwise
+ * The new instance of EscapeTechnion system otherwise
  */
 EscapeTechnion create_escapetechnion();
 
 /**
- * Sets an output channel for escapetechnion
+ * Sets an output channel for the system
  * (In order to print all its messages)
  *
- * @param escape: The escapetechnion object for which the channel is set
+ * @param escape: The system for which the channel is set
  * @param output_channel: The output channel to set
  * @return
  * MTM_NULL_PARAMETER if one of the parameters is NULL
@@ -32,9 +32,9 @@ MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
                                                FILE* output_channel);
 
 /**
- * Adds a company with the given e-mail and faculty to escapetechnion
+ * Adds a company with the given e-mail and faculty to the system
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param email: The e-mail of the new company
  * @param faculty: The faculty which the company belongs to
  * @return
@@ -47,9 +47,9 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape,
                                         char* email, TechnionFaculty faculty);
 
 /**
- * Removes the company with the given e-mail from the escapetechnion object
+ * Removes the company with the given e-mail from the system
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param email: The e-mail of the company to remove
  * @return
  * MTM_NULL_PARAMETER if escape is NULL
@@ -64,7 +64,7 @@ MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email);
  * Creates a room for a company with the given e-mail with the given parameters
  * and adds it into it.
  *
- * @param escape: The escapetechnion object in which the room will be created
+ * @param escape: The system in which the room will be created
  * @param email: The e-mail of the company of the room
  * @param id: The ID of the room
  * @param price: The price for a visit in the room per person
@@ -86,7 +86,7 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
  * Removes a room from its company, determined by company's faculty and room's
  * ID.
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param faculty: The faculty which the room belongs to
  * @param id: The ID of the room
  * @return
@@ -101,9 +101,9 @@ MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
                                         TechnionFaculty faculty, int id);
 
 /**
- * Adds a customer with the given values to escapetechnion
+ * Adds a customer with the given values to the system
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param email: The customer's e-mail
  * @param faculty: The customer's faculty
  * @param skill_level: The customer's skill level
@@ -119,9 +119,9 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
                                          int skill_level);
 
 /**
- * Removes the customer with the given e-mail from the escapetechnion objcect
+ * Removes the customer with the given e-mail from the system
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param email: The e-mail of the customer to remove
  * @return
  * MTM_NULL_PARAMETER if escape is NULL
@@ -135,7 +135,7 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email);
  * Creates order for a customer at a room with the given identifying values,
  * and initializes it with another given values
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param email: The customer's e-mail
  * @param faculty: The faculty of the room for which the order is created
  * @param id: The ID of the room for which the order is created
@@ -160,7 +160,7 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
  * Finds the most recommended room for a client with the given e-mail for the
  * given number of people, and books a reservation at it as soon as possible
  *
- * @param escape: The escapetechnion object
+ * @param escape: The system
  * @param email: The e-mail of the customer
  * @param num_ppl: The number of people for which the recommendation and
  *                 reservation apply
@@ -178,7 +178,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
  * The function also advances the day of the system by 1, and removes all the
  * orders of the recent day passed.
  *
- * @param escape: The escapetechnion object on which the function operates
+ * @param escape: The system on which the function operates
  * @return
  * MTM_NULL_PARAMETER if escape is NULL
  * MTM_OUT_OF_MEMORY if memory allocation problem occurred
@@ -186,8 +186,18 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
  */
 MtmErrorCode escapetechnion_reportday(EscapeTechnion escape);
 
+/**
+ * Prints a report of the faculties that earned the most revenue until yet.
+ *
+ * @param escape: The system on which the report is made
+ */
 void escapetechnion_reportbest(EscapeTechnion escape);
 
+/**
+ * Deallocates the system and all its fields
+ *
+ * @param escape: The system to destroy
+ */
 void escapetechnion_destroy(EscapeTechnion escape);
 
 #endif
