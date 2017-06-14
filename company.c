@@ -274,6 +274,20 @@ bool company_got_orders(Company comp)
     return false;
 }
 
+MtmErrorCode company_day_passed(Company comp)
+{
+    if (comp == NULL) {
+        return MTM_NULL_PARAMETER;
+    }
+    int room_num = setGetSize(comp->escape_room_set);
+    EscapeRoom room = setGetFirst(comp->escape_room_set);
+    for (int i = 0; i < room_num; i++) {
+        escape_room_day_passed(room);
+        room = setGetNext(comp->escape_room_set);
+    }
+    return MTM_SUCCESS;
+}
+
 //Destroys the company.
 void company_destroy(Company comp)
 {

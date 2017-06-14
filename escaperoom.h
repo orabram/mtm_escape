@@ -174,6 +174,16 @@ MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order);
 bool escape_room_order_exists(EscapeRoom room);
 
 /**
+ * Updates the time of all the orders of the room after a day passed
+ *
+ * @param room: The updated room
+ * @return
+ * MTM_NULL_PARAMETER if the room is NULL
+ * MTM_SUCCESS otherwise
+ */
+MtmErrorCode escape_room_day_passed(EscapeRoom room);
+
+/**
  * Deallocates the room and all its fields.
  *
  * @param room: The room to destroy

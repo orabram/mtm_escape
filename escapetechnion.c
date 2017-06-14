@@ -421,7 +421,6 @@ MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email)
         return MTM_RESERVATION_EXISTS;
     }
     setRemove(escape->CompanySet, tempcomp);
-    //setRemove(escape->CompanyEmailsSet, email);
     return MTM_SUCCESS;
 
 }

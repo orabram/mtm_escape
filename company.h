@@ -158,6 +158,15 @@ int company_recommended_rooms(Company comp, int num_ppl, int skill,
 bool company_got_orders(Company comp);
 
 /**
+ * Updates the rooms of the company after a day passed
+ *
+ * @param comp: The company to update
+ * @return
+ * MTM_NULL_PARAMETER if the sent company is NULL
+ * MTM_SUCCESS otherwise.
+ */
+MtmErrorCode company_day_passed(Company comp);
+/**
  * Destroy comp and frees all the memory is has allocated.
  * @param comp: The company that'll be destroyed.
  */
