@@ -9,9 +9,23 @@
 
 typedef struct escapetechnion *EscapeTechnion;
 
-
+/**
+ * Creates a new instance of EscapeTechnion and returns it
+ *
+ * @return
+ * NULL if memory allocation problem occurred.
+ * The new instance of EscapeTechnion otherwise.
+ */
 EscapeTechnion create_escapetechnion();
 
+/**
+ * Sets an output channel for escapetechnion
+ * (In order to print all its messages)
+ *
+ * @param escape:  
+ * @param output_channel
+ * @return
+ */
 MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
                                                FILE* output_channel);
 

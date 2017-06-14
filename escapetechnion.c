@@ -561,16 +561,16 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
         order_remove(ord);
         return MTM_ID_DOES_NOT_EXIST;
     }
-    code = escape_room_add_order(room, ord);
+    code = customer_add_order(ord, cust);
     if(code != MTM_SUCCESS)
     {
         order_remove(ord);
         return code;
     }
-    code = customer_add_order(ord, cust);
+    code = escape_room_add_order(room, ord);
     if(code != MTM_SUCCESS)
     {
-        escape_room_remove_order(room, ord);
+        customer_remove_order(ord, cust);
         order_remove(ord);
         return code;
     }
@@ -652,6 +652,7 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
         return MTM_OUT_OF_MEMORY;
     }
     int orders_num, counter = 0, price;
+    EscapeRoom room;
     int* prices = malloc(sizeof(int) * escape->orders_num);
     Order ord;
     for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
@@ -679,6 +680,10 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
                 else
                 {
                     order_day_passed(ord);
+                    room = find_escape_room(escape->CompanySet,
+                                            order_get_id(ord),
+                                            order_get_faculty(ord));
+                    escape_room_remove_order(room, ord);
                 }
             }
         }

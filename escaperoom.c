@@ -177,7 +177,7 @@ MtmErrorCode initialize_escape_room(EscapeRoom room, char *email, int id,
     return MTM_SUCCESS;
 }
 
-//Creates a copy for the room and returns it in the dedicated parameter
+//Creates a copy for the room and returns it in the dedicated parameter.
 MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room)
 {
     if (new_room == NULL || original_room == NULL) {
@@ -187,11 +187,19 @@ MtmErrorCode escape_room_copy(EscapeRoom new_room, EscapeRoom original_room)
     MtmErrorCode code = initialize_escape_room(new_room, original_room->email
             , original_room->id, original_room->price, original_room->num_ppl
             , room_work, original_room->difficulty);
+
+    //The result of get_room_working_hrs is dynamically allocated, so after use
+    // it should be deallocated
     free(room_work);
+
     if (code == MTM_OUT_OF_MEMORY) {
         return MTM_OUT_OF_MEMORY;
     }
+    //A set of orders is created upon creation of new_room. Now it should point
+    //to the copy of the set of the original room, so the previous one should
+    //be freed
     setDestroy(new_room->OrdersSet);
+
     new_room->OrdersSet = setCopy(original_room->OrdersSet);
     if (new_room->OrdersSet == NULL) {
         return MTM_OUT_OF_MEMORY;
@@ -246,6 +254,7 @@ int escape_room_get_difficulty(EscapeRoom room)
     return room->difficulty;
 }
 
+//Calculetes the recommended value accrording to the formula
 int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
                                             int num_ppl)
 {
@@ -256,23 +265,32 @@ int escape_room_calculate_recommended_value(EscapeRoom room, int skill_level,
            ((room->difficulty - skill_level)*(room->difficulty - skill_level));
 }
 
+//Finds the soonest time when the room will be available
 MtmErrorCode escape_room_find_closest_time(EscapeRoom room, int *day, int *hour)
 {
     if (room == NULL) {
         return MTM_NULL_PARAMETER;
     }
-    int free_day = 0, free_hour = room->open_hour,
-            order_count = setGetSize(room->OrdersSet), i;
-    while (order_count > 0) {
+    int free_day = 0, free_hour = room->open_hour, i;
+
+    /* Check for all legal times, starting from the soonest, if there is an
+     * order booked for this time. As the number of orders is finite, the loop
+     * will run until a hour after all the orders is reached at most.
+     */
+    while (true) {
+        //Check all the orders in the set for their time of booking
+        //If
         Order order = setGetFirst(room->OrdersSet);
         for (i = 0; i < setGetSize(room->OrdersSet); i++) {
+
+            //If you've found an order for this time, exit the loop.
             if (order_get_day(order) == free_day &&
                 order_get_hour(order) == free_hour) {
-                order_count--;
                 free_hour++;
                 break;
             }
         }
+        //If the loop reached its end, then no order is booked for this time
         if (i == setGetSize(room->OrdersSet)) {
             break;
         }
@@ -286,6 +304,7 @@ MtmErrorCode escape_room_find_closest_time(EscapeRoom room, int *day, int *hour)
     return MTM_SUCCESS;
 }
 
+//Adds an order to the room.
 MtmErrorCode escape_room_add_order(EscapeRoom room, Order order)
 {
     if (room == NULL || order == NULL) {
@@ -304,6 +323,7 @@ MtmErrorCode escape_room_add_order(EscapeRoom room, Order order)
     return MTM_SUCCESS;
 }
 
+//Removes the order from the room.
 MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order)
 {
     if (room == NULL || order == NULL) {
@@ -315,6 +335,7 @@ MtmErrorCode escape_room_remove_order(EscapeRoom room, Order order)
     return MTM_SUCCESS;
 }
 
+//Checks if at least one order exists in the room
 bool escape_room_order_exists(EscapeRoom room)
 {
     if (room == NULL) {
@@ -326,6 +347,7 @@ bool escape_room_order_exists(EscapeRoom room)
     return false;
 }
 
+//Destroys the room
 void escape_room_destroy(EscapeRoom room)
 {
     if (room == NULL) {

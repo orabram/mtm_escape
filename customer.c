@@ -208,7 +208,11 @@ MtmErrorCode customer_add_order(Order ord, Customer cust)
     SetResult result = setAdd(cust->OrderSet, ord);
     if(result == SET_ITEM_ALREADY_EXISTS)
     {
-        return MTM_RESERVATION_EXISTS;
+        return MTM_CLIENT_IN_ROOM;
+    }
+    if (result == SET_OUT_OF_MEMORY)
+    {
+        return MTM_OUT_OF_MEMORY;
     }
     cust->orders_num++;
     return MTM_SUCCESS;
