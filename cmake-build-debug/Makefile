@@ -176,6 +176,33 @@ customer.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer.c.s
 .PHONY : customer.c.s
 
+customer_test.obj: customer_test.c.obj
+
+.PHONY : customer_test.obj
+
+# target to build an object file
+customer_test.c.obj:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer_test.c.obj
+.PHONY : customer_test.c.obj
+
+customer_test.i: customer_test.c.i
+
+.PHONY : customer_test.i
+
+# target to preprocess a source file
+customer_test.c.i:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer_test.c.i
+.PHONY : customer_test.c.i
+
+customer_test.s: customer_test.c.s
+
+.PHONY : customer_test.s
+
+# target to generate assembly for a file
+customer_test.c.s:
+	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/customer_test.c.s
+.PHONY : customer_test.c.s
+
 escaperoom.obj: escaperoom.c.obj
 
 .PHONY : escaperoom.obj
@@ -230,33 +257,6 @@ escapetechnion.c.s:
 	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/escapetechnion.c.s
 .PHONY : escapetechnion.c.s
 
-mtm_escape.obj: mtm_escape.c.obj
-
-.PHONY : mtm_escape.obj
-
-# target to build an object file
-mtm_escape.c.obj:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.obj
-.PHONY : mtm_escape.c.obj
-
-mtm_escape.i: mtm_escape.c.i
-
-.PHONY : mtm_escape.i
-
-# target to preprocess a source file
-mtm_escape.c.i:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.i
-.PHONY : mtm_escape.c.i
-
-mtm_escape.s: mtm_escape.c.s
-
-.PHONY : mtm_escape.s
-
-# target to generate assembly for a file
-mtm_escape.c.s:
-	$(MAKE) -f CMakeFiles\mtm_escape.dir\build.make CMakeFiles/mtm_escape.dir/mtm_escape.c.s
-.PHONY : mtm_escape.c.s
-
 order.obj: order.c.obj
 
 .PHONY : order.obj
@@ -299,15 +299,15 @@ help:
 	@echo ... customer.obj
 	@echo ... customer.i
 	@echo ... customer.s
+	@echo ... customer_test.obj
+	@echo ... customer_test.i
+	@echo ... customer_test.s
 	@echo ... escaperoom.obj
 	@echo ... escaperoom.i
 	@echo ... escaperoom.s
 	@echo ... escapetechnion.obj
 	@echo ... escapetechnion.i
 	@echo ... escapetechnion.s
-	@echo ... mtm_escape.obj
-	@echo ... mtm_escape.i
-	@echo ... mtm_escape.s
 	@echo ... order.obj
 	@echo ... order.i
 	@echo ... order.s

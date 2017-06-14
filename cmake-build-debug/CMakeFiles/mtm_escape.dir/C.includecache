@@ -64,6 +64,22 @@ C:/Users/USER/CLionProjects/mtm_escape/order.h
 escaperoom.h
 C:/Users/USER/CLionProjects/mtm_escape/escaperoom.h
 
+C:/Users/USER/CLionProjects/mtm_escape/customer_test.c
+stdio.h
+-
+stdlib.h
+-
+order.h
+C:/Users/USER/CLionProjects/mtm_escape/order.h
+customer.h
+C:/Users/USER/CLionProjects/mtm_escape/customer.h
+assert.h
+-
+string.h
+-
+test_utilities.h
+C:/Users/USER/CLionProjects/mtm_escape/test_utilities.h
+
 C:/Users/USER/CLionProjects/mtm_escape/escaperoom.c
 stdio.h
 -
@@ -126,20 +142,6 @@ C:/Users/USER/CLionProjects/mtm_escape/list.h
 stdbool.h
 -
 
-C:/Users/USER/CLionProjects/mtm_escape/mtm_escape.c
-stdio.h
--
-stdlib.h
--
-escapetechnion.h
-C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.h
-mtm_ex3.h
-C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
-string.h
--
-unistd.h
--
-
 C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
 stdio.h
 -
@@ -164,5 +166,13 @@ C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
 
 C:/Users/USER/CLionProjects/mtm_escape/set.h
 stdbool.h
+-
+
+C:/Users/USER/CLionProjects/mtm_escape/test_utilities.h
+stdbool.h
+-
+assert.h
+-
+stdio.h
 -
 

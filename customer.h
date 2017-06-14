@@ -51,9 +51,6 @@ MtmErrorCode initialize_customer(Customer cust, char* email,
  */
 Customer customer_copy(Customer cust);
 
-int customer_compare(Customer cust1, Customer cust2);
-
-
 /**
  * Receives a Customer object and returns his email address.
  *

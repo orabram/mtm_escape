@@ -15,6 +15,14 @@ CMakeFiles/mtm_escape.dir/customer.c.obj
  C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
  C:/Users/USER/CLionProjects/mtm_escape/order.h
  C:/Users/USER/CLionProjects/mtm_escape/set.h
+CMakeFiles/mtm_escape.dir/customer_test.c.obj
+ C:/Users/USER/CLionProjects/mtm_escape/customer.h
+ C:/Users/USER/CLionProjects/mtm_escape/customer_test.c
+ C:/Users/USER/CLionProjects/mtm_escape/escaperoom.h
+ C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
+ C:/Users/USER/CLionProjects/mtm_escape/order.h
+ C:/Users/USER/CLionProjects/mtm_escape/set.h
+ C:/Users/USER/CLionProjects/mtm_escape/test_utilities.h
 CMakeFiles/mtm_escape.dir/escaperoom.c.obj
  C:/Users/USER/CLionProjects/mtm_escape/escaperoom.c
  C:/Users/USER/CLionProjects/mtm_escape/escaperoom.h
@@ -28,16 +36,6 @@ CMakeFiles/mtm_escape.dir/escapetechnion.c.obj
  C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.c
  C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.h
  C:/Users/USER/CLionProjects/mtm_escape/list.h
- C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
- C:/Users/USER/CLionProjects/mtm_escape/order.h
- C:/Users/USER/CLionProjects/mtm_escape/set.h
-CMakeFiles/mtm_escape.dir/mtm_escape.c.obj
- C:/Users/USER/CLionProjects/mtm_escape/company.h
- C:/Users/USER/CLionProjects/mtm_escape/customer.h
- C:/Users/USER/CLionProjects/mtm_escape/escaperoom.h
- C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.h
- C:/Users/USER/CLionProjects/mtm_escape/list.h
- C:/Users/USER/CLionProjects/mtm_escape/mtm_escape.c
  C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
  C:/Users/USER/CLionProjects/mtm_escape/order.h
  C:/Users/USER/CLionProjects/mtm_escape/set.h

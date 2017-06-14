@@ -1,7 +1,119 @@
 #include "escapetechnion.h"
 #include "mtm_ex3.h"
 #include <string.h>
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct node_t* Node;
+struct node_t {
+    int n;
+    Node next;
+};
+
+Node copyNode(Node node)
+{
+    Node new_node = malloc(sizeof(struct node_t));
+    if(new_node == NULL)
+    {
+        return NULL;
+    }
+    new_node->n = node->n;
+    if(node->next != NULL)
+    {
+        new_node->next = copyNode(node->next);
+    }
+    return new_node;
+}
+
+Node mergaeNodes(Node head1, Node head2)
+{
+    Node node = head1->next;
+    while(node != NULL)
+    {
+        node = node->next;
+    }
+    node->next = head2;
+    return head1;
+}
+
+Node concatLists(Node head1, Node head2, bool *(check)(int))
+{
+    Node copy1 = copyNode(head1);
+    Node copy2 = copyNode(head2);
+    if(copy1 == NULL || copy2 == NULL)
+    {
+        return NULL;
+    }
+    copy1 = mergaeNodes(copy2);
+    Node node = copy1, temp_node;
+    while(node != NULL)
+    {
+        if(!check)
+        {
+            temp_node = node->next;
+            if(temp_node == NULL)
+            {
+                node = NULL;
+                return copy1;
+            }
+            node->next = node->next->next;
+            temp_node->next - NULL;
+            //destroyList(temp_node);
+        }
+    }
+
+}
+
+
+int comp(void* a, void* b)
+{
+    int a1 = *(int*)a;
+    int b1 = *(int*)b;
+    return a1 - b1;
+}
+/**
+ * Receives an object, its size, a sorted array, its size and a comparison
+ * function, and returns the location of the object in the array.
+ * @param item: The item we're trying to find in the array. Must be void*.
+ * @param size: Its size. Needed to go through the array. Must be size_t.
+ * @param arr: The sorted array we're searching through. Must be void*.
+ * @param len: The length of the array. Most be size_t.
+ * @param compare: A comparison function that receives two objects, and returns
+ * the following:
+ * A positive value if the object a is bigger than object b.
+ * Zero is they're equal.
+ * A negative value if object b is bigger than object a.
+ * @return
+ * -1 if the item isn't in the array.
+ * The item's location in the array otherwise.
+ */
+int binaryFind(void *item, size_t size, void *arr, size_t len, int (*compare)(void *, void *))
+{
+    int left = 0;
+    int right = len - 1;
+    int middle, comparison;
+    char* array = arr;
+    while (left <= right) {
+        middle = (left + right)/2;
+        comparison = compare(array + middle * size, item);
+        if (comparison > 0)
+            right = middle - 1;
+        else if (comparison < 0)
+            left = middle + 1;
+        else
+            return middle;
+    }
+    return -1;
+}
 int main(){
+    int arr[7] = {1, 3, 5, 7, 9, 11, 13};
+    int search = 3;
+    printf("%d\n", binaryFind(&search, sizeof(int), arr, 7, comp));
+    search = 2;
+    printf("%d\n", binaryFind(&search, sizeof(int), arr, 7, comp));
+    search = 13;
+    printf("%d\n", binaryFind(&search, sizeof(int), arr, 7, comp));
+    /*
     EscapeTechnion escape = create_escapetechnion();
     MtmErrorCode code = escapetechnion_set_output_channel(escape, stdout);
     code = escapetechnion_add_company(escape, "company1@gmail", 0);
@@ -50,5 +162,7 @@ int main(){
     code = escapetechnion_recommended_room(escape, "3@", 6);
     code = escapetechnion_reportday(escape);
 
-    return code;
+    return code;*/
+
+
 }
