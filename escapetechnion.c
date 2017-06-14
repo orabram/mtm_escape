@@ -1,4 +1,3 @@
-
 #include <stdio.h>
 #include <stdlib.h>
 #include <assert.h>
@@ -12,17 +11,8 @@
 #include <math.h>
 #include "set.h"
 
-
 #define ILLEGAL_PRICE -1
 #define FACULTIES_NUM UNKNOWN
-
-/**
- * Used in report_day function
- */
-#define UPDATE_MIN() \
-    cur_min = temp_min; \
-    cur_faculty = temp_faculty; \
-    min_room_id = temp_room_id; \
 
 
 struct escapetechnion{
@@ -34,46 +24,85 @@ struct escapetechnion{
     FILE* output_channel;
 };
 
-/*This function receives an array of order objects and and EscapeTechnion object
- * and sorts the array according to the value and index of the items.*/
-
-//This is the copy function for the set.
+/**
+ * Receives a SetElement and copies it.
+ *
+ * @param comp: the SetElement we wish to clone.
+ * @return
+ * The result of company_copy function.
+ */
 static SetElement comp_copy(SetElement comp)
 {
     return company_copy(comp);
 }
 
-//This is the free function for the set.
+/**
+ * Receives a SetElement and frees it.
+ *
+ * @param comp: The SetElement we wish to free.
+ */
 static void comp_free(SetElement comp)
 {
     company_destroy(comp);
 }
 
-//This is the compare function for the set.
+/**
+ * Receives two SetElements and compares their e-mails.
+ *
+ * @param comp1: The first SetElement we wish to compare.
+ * @param comp2: The second SetElement we wish to compare.
+ * @return
+ * Result of strcmp function applied on the e-mails of the elements.
+ */
 static int comp_compare(SetElement comp1, SetElement comp2)
 {
     return strcmp(company_get_email(comp1), company_get_email(comp2));
 }
 
-//This is the copy function for the set.
+/**
+ * Receives a SetElement and copies it.
+ *
+ * @param cust: the SetElement we wish to clone.
+ * @return
+ * The result of customer_copy function.
+ */
 static SetElement cust_copy(SetElement cust)
 {
     return customer_copy(cust);
 }
 
-//This is the free function for the set.
+/**
+ * Receives a SetElement and frees it.
+ *
+ * @param comp: The SetElement we wish to free.
+ */
 static void cust_free(SetElement cust)
 {
     customer_destroy(cust);
 }
 
-//This is the compare function for the set.
+/**
+ * Receives two SetElements and compares their e-mails.
+ *
+ * @param cust1: The first SetElement we wish to compare.
+ * @param cust2: The second SetElement we wish to compare.
+ * @return
+ * Result of strcmp function applied on the e-mails of the elements.
+ */
 static int cust_compare(SetElement cust1, SetElement cust2)
 {
     return strcmp(customer_get_email(cust1), customer_get_email(cust2));
 }
 
-static MtmErrorCode escaperoom_day_passed(EscapeTechnion escape)
+/**
+ * Updates all escape rooms in the system after a day passed.
+ *
+ * @param escape: The system
+ * @return
+ * MTM_NULL_PARAMETER if escape is NULL
+ * MTM_SUCCESS otherwise
+ */
+static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
 {
     if(escape == NULL)
     {
@@ -93,6 +122,15 @@ static MtmErrorCode escaperoom_day_passed(EscapeTechnion escape)
     return MTM_SUCCESS;
 }
 
+/**
+ * Converts the day and the hour, received as integers, to a string in
+ * format "xx-yy", where "xx" is the day and "yy" is the hour.
+ *
+ * @param day: The day to convert
+ * @param hour: The hour to convert
+ * @return
+ * The converted string
+ */
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
@@ -105,8 +143,16 @@ static char* time_int_to_chr(int day, int hour)
     return chrtime;
 }
 
-/*Finds and returns an escaperoom object based on the id and faculty given.
- * Returns null if no match has been found.*/
+/**
+ * Finds the escape room using the faculty which it belongs to, and its ID.
+ *
+ * @param set: The set of escape rooms
+ * @param id: The ID of the room
+ * @param faculty: The faculty of the room
+ * @return
+ * NULL if the room not found
+ * The room
+ */
 static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
 {
     Company comp;
@@ -125,15 +171,25 @@ static EscapeRoom find_escape_room(Set set, int id, TechnionFaculty faculty)
     return NULL;
 }
 
-//Will have to merge both find functions further fown the road.
-static Customer find_customer_in_set(Set set, char* email)   /**TO MOVE **/
+/**
+ * Finds the customer in the customers' set using his e-mail
+ *
+ * @param set: The custimers' set
+ * @param email: The customer's e-mail
+ * @return
+ * NULL if the customer not found
+ * The customer
+ */
+static Customer find_customer_in_set(Set set, char* email)
 {
     Customer cust;
     char* temp_email;
     cust = setGetFirst(set);
+
     //Run through the set and look for a match.
     for(int i = 0; i < setGetSize(set); i++) {
         temp_email = customer_get_email(cust);
+
         //If the two emails are identical, that means we've got a match.
         if (!strcmp(temp_email, email)) {
             return cust;
@@ -143,6 +199,16 @@ static Customer find_customer_in_set(Set set, char* email)   /**TO MOVE **/
     return NULL;
 }
 
+/**
+ * Removes the given order from the system.
+ *
+ * @param ord: The order to remove
+ * @param escape: The system
+ * @return
+ * MTM_NULL_PARAMETER if one of the parameters is NULL
+ * MTM_INVALID_PARAMETER if the order not found in the system
+ * MTM_SUCCESS otherwise
+ */
 static MtmErrorCode remove_order(Order ord, EscapeTechnion escape)
 {
     EscapeRoom room = find_escape_room(escape->CompanySet, order_get_id(ord),
@@ -161,7 +227,14 @@ static MtmErrorCode remove_order(Order ord, EscapeTechnion escape)
     }
     return MTM_SUCCESS;
 }
-
+/**
+ * Checks if there is at least one room in the system.
+ *
+ * @param escape: The system
+ * @return
+ * MTM_NO_ROOMS_AVAILABLE if there are no rooms in the system
+ * MTM_SUCCESS if there is at least one room
+ */
 static MtmErrorCode rooms_in_system(EscapeTechnion escape)
 {
     Company comp = setGetFirst(escape->CompanySet);
@@ -175,6 +248,18 @@ static MtmErrorCode rooms_in_system(EscapeTechnion escape)
     return MTM_NO_ROOMS_AVAILABLE;
 }
 
+/**
+ * A generic function for swapping values between two parameters.
+ *
+ * @param x: Parameter 1
+ * @param y: Parameter 2
+ * @param size: The size of the elements in bytes
+ *              (for example: if we want to swap two integers, then
+ *               size = sizeof(int) )
+ * @return
+ * -1 if the swap was unsuccessful
+ * 0 if the swap succeeded
+ */
 static int generic_swap(void *x, void *y, int size)
 {
     void *tmp;
@@ -188,12 +273,25 @@ static int generic_swap(void *x, void *y, int size)
     return 0;
 }
 
+/**
+ * Sorting function for an array of Orders and an array of Orders' prices.
+ *
+ * The primary criteria of sorting is the time of the order.
+ * The secondary criteria is the ID of the faculty.
+ * The last criteria (if there is still equality) is the order's room ID.
+ *
+ * The sorting of prices should conform to the sorting of the orders.
+ *
+ * The sorting is implemented using Bubble Sort algorithm.
+ *
+ * @param sortedord: The array of Orders to sort
+ * @param escape: The system
+ * @param prices: The array of Orders' prices
+ * @param orders_num: Number of Orders and prices in their arrays.
+ */
 static void order_sort(Order* sortedord, EscapeTechnion escape, int* prices,
                        int orders_num)
 {
-    /**
-     * Implemented as Bubble Sort
-     */
     //Order swap;
     for (int i = 0 ; i < ( orders_num - 1 ); i++)
     {
@@ -213,7 +311,7 @@ static void order_sort(Order* sortedord, EscapeTechnion escape, int* prices,
                 if(order_get_faculty(sortedord[j]) >
                    order_get_faculty(sortedord[j+1]))
                 {
-                    generic_swap(sortedord + j, sortedord + j + 1, sizeof(Order));
+                    generic_swap(sortedord + j, sortedord + j+1, sizeof(Order));
                     generic_swap(prices + j, prices + j + 1, sizeof(int));
                 }
                     /*If that's also equal, compare their id in their respective
@@ -233,8 +331,15 @@ static void order_sort(Order* sortedord, EscapeTechnion escape, int* prices,
     }
 }
 
-/*Runs through the Company Set and finds a Company object which matches the
- * email address*/
+/**
+ * Finds the company in set of companies using the given e-mail of the company.
+ *
+ * @param set: Set of companies
+ * @param email: The e-mail of the company
+ * @return
+ * NULL if company not found
+ * The Company
+ */
 static Company find_company_in_set(Set set, char* email)
 {
     Company comp;
@@ -252,9 +357,11 @@ static Company find_company_in_set(Set set, char* email)
     return NULL;
 }
 
-
-/*Checks if the mail address is legal. Returns true or false according to
- * whether or not the email address is legal.*/
+/**
+ *
+ * @param email
+ * @return
+ */
 static bool check_email(char* email)
 {
     if(email == NULL || !strstr(email, "@"))
@@ -264,8 +371,16 @@ static bool check_email(char* email)
     return true;
 }
 
-/*Receives an Order and an EscapeTechnion object and calculates the price
- * of the order. Returns ILLEGAL_PRICE if no room was found.*/
+/**
+ * Receives an Order and an EscapeTechnion object and calculates the price
+ * of the order.
+ *
+ * @param ord: The order to calculate its price
+ * @param escape: The system
+ * @return
+ * ILLEGAL_PRICE if no room was found.
+ * The price of the order
+ */
 static int calculate_price(Order ord, EscapeTechnion escape)
 {
     EscapeRoom room;
@@ -280,6 +395,15 @@ static int calculate_price(Order ord, EscapeTechnion escape)
 
 /*This function prints all the relevant information to the daily business
  * according to mtm_ex3.h*/
+/**
+ * Prints all the relevant information to the daily business
+ * according to mtm_ex3.h
+ *
+ * @param escape: The system
+ * @param num_of_events: Number of events
+ * @param orders: Array of orders
+ * @param prices: Array of orders' prices
+ */
 static void print_day(EscapeTechnion escape, int num_of_events,
                       Order* orders, int* prices)
 {
@@ -305,8 +429,19 @@ static void print_day(EscapeTechnion escape, int num_of_events,
     mtmPrintDayFooter(escape->output_channel, escape->days);
 }
 
-/*This function prints all the relevant information to the daily business
- * according to mtm_ex3.h*/
+/**
+ * This function prints all the relevant information to the daily business
+ * according to mtm_ex3.h
+ *
+ * @param escape: The system
+ * @param sum: The total revenue
+ * @param id1: ID of the 1st winner
+ * @param no1: The revenue of the 1st winner
+ * @param id2: ID of the 2nd winner
+ * @param no2: The revenue of the 2nd winner
+ * @param id3: ID of the 3rd winner
+ * @param no3: The revenue of the 3rd winner
+ */
 static void print_winners(EscapeTechnion escape, int sum, int id1, int no1,
                           int id2, int no2, int id3, int no3)
 {
@@ -318,6 +453,12 @@ static void print_winners(EscapeTechnion escape, int sum, int id1, int no1,
     mtmPrintFacultiesFooter(escape->output_channel);
 }
 
+/**
+ * Resets the array to contain 0 in each cell.
+ *
+ * @param array: The array to reset
+ * @param len: Length of the array
+ */
 static void reset_array(int* array, int len)
 {
     for(int i = 0; i < len; i++)
@@ -356,6 +497,7 @@ EscapeTechnion create_escapetechnion()
     return escape;
 }
 
+//Sets output channel for the system
 MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
                                                FILE* output_channel)
 {
@@ -367,6 +509,7 @@ MtmErrorCode escapetechnion_set_output_channel(EscapeTechnion escape,
 
 }
 
+//Adds company to the system
 MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
                                         TechnionFaculty faculty)
 {
@@ -400,6 +543,7 @@ MtmErrorCode escapetechnion_add_company(EscapeTechnion escape, char* email,
     }
 }
 
+//Removes company from the system
 MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email)
 {
     if(escape == NULL) {
@@ -422,6 +566,7 @@ MtmErrorCode escapetechnion_remove_company(EscapeTechnion escape, char* email)
 
 }
 
+//Adds room to the system
 MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
                                      int id, int price, int num_ppl,
                                      char* working_hrs, int difficulty)
@@ -464,6 +609,7 @@ MtmErrorCode escapetechnion_add_room(EscapeTechnion escape, char* email,
     return code;
 }
 
+//Removes room from the system
 MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
                                         TechnionFaculty faculty, int id)
 {
@@ -493,6 +639,7 @@ MtmErrorCode escapetechnion_remove_room(EscapeTechnion escape,
     return MTM_ID_DOES_NOT_EXIST;
 }
 
+//Adds customer to the system
 MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty,
                                          int skill_level)
@@ -527,6 +674,7 @@ MtmErrorCode escapetechnion_add_customer(EscapeTechnion escape, char* email,
     }
 }
 
+//Removes customer from the system
 MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
 {
     if(escape == NULL) {
@@ -551,6 +699,7 @@ MtmErrorCode escapetechnion_remove_customer(EscapeTechnion escape, char* email)
     return MTM_SUCCESS;
 }
 
+//Creates order of room for a customer in the system
 MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
                                          TechnionFaculty faculty, int id,
                                          char* time, int num_ppl)
@@ -599,6 +748,18 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
     return MTM_SUCCESS;
 }
 
+/* Macro used in escapetechnion_recommended_room function
+ * Updates the temporary values to find the minimal result of calculation,
+ * and save the faculty and ID of the room responsible for that result.
+ */
+#define UPDATE_MIN() \
+    cur_min = temp_min; \
+    cur_faculty = temp_faculty; \
+    min_room_id = temp_room_id; \
+
+/* Finds the most recommended room for a customer and books it
+ * as soon as possible
+ */
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                                              int num_ppl)
 {
@@ -621,22 +782,28 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
             min_room_id = 0, temp_room_id = 0, day = 0, hour = 0;
     TechnionFaculty cur_faculty = UNKNOWN, temp_faculty,
             cust_faculty = customer_get_faculty(cust);
+
     for(int i = 0; i < setGetSize(escape->CompanySet); i++) {
         temp_min = company_recommended_rooms(comp, num_ppl, skill,
                                              &temp_room_id, &day, &hour);
         temp_faculty = company_get_faculty(comp);
+
+        //If The result is valid and first, update.
         if(temp_min >= 0) {
             if (cur_min == -1) {
                 UPDATE_MIN();
             }
+                //Sort by primary criteria
             else if(temp_min < cur_min) {
                 UPDATE_MIN();
             }
+                //Sort by secondary criteria
             else if(temp_min == cur_min) {
                 if(fabs(temp_faculty - cust_faculty) <
                    fabs(cur_faculty - cust_faculty)) {
                     UPDATE_MIN();
                 }
+                    //Sort by the last criteria
                 else if(fabs(temp_faculty - cust_faculty) ==
                         fabs(cur_faculty - cur_faculty))  {
                     if(temp_faculty < cur_faculty) {
@@ -674,46 +841,43 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     int* prices = malloc(sizeof(int) * escape->orders_num);
     Order ord;
     MtmErrorCode code;
-    for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
-    {
+    for(int i = 0; i < setGetSize(escape->CustomersSet); i++) {
         orders_num = customer_get_orders_num(cust);
-        if(orders_num > 0)
-        {
-            for(int j = 0; j < orders_num; j++)
-            {
+        if(orders_num > 0) {
+            for(int j = 0; j < orders_num; j++) {
                 ord = customer_get_order(cust, j);
+
+                //Make an array from orders for today
                 if(order_get_day(ord) == 0)
                 {
                     sortedord[counter] = ord;
                     faculty = order_get_faculty(ord);
                     price = calculate_price(ord, escape);
-                    if(faculty == customer_get_faculty(cust))
-                    {
+
+                    //Make a discount if the customer is at his faculty
+                    if(faculty == customer_get_faculty(cust)) {
                         price *= 0.75;
                     }
                     escape->faculties[faculty] += price;
                     prices[counter] = price;
                     counter++;
                 }
-                else
-                {
-<<<<<<< HEAD
-                    order_day_passed(ord);;
-=======
+                else {
                     order_day_passed(ord);
->>>>>>> origin/master
                 }
             }
         }
         cust = setGetNext(escape->CustomersSet);
     }
-    code = escaperoom_day_passed(escape);
-    if(code != MTM_SUCCESS)
-    {
+    code = escapetechnion_day_passed(escape);
+    if(code != MTM_SUCCESS) {
         return code;
     }
     order_sort(sortedord, escape, prices, counter);
+
+    //Print the sorted array of orders
     print_day(escape, counter, sortedord, prices);
+
     escape->days++;
     free(sortedord);
     free(prices);
@@ -725,6 +889,7 @@ void escapetechnion_reportbest(EscapeTechnion escape)
     int id1 = 0, id2 = 0, id3 = 0, temp = 0, sum = 0;
     for(int i = 0; i < FACULTIES_NUM; i++)
     {
+        //Determine the first three places
         if(escape->faculties[i] > no1)
         {
             no3 = no2;
