@@ -648,14 +648,12 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     Customer cust = setGetFirst(escape->CustomersSet);
     TechnionFaculty faculty;
     Order* sortedord = malloc(sizeof(*sortedord) * (escape->orders_num));
-    if(sortedord == NULL)
-    {
+    if(sortedord == NULL) {
         return MTM_OUT_OF_MEMORY;
     }
     int orders_num, counter = 0, price;
-    //EscapeRoom room;
     int* prices = malloc(sizeof(int) * escape->orders_num);
-    Order ord; //escape_ord;
+    Order ord;
     for(int i = 0; i < setGetSize(escape->CustomersSet); i++)
     {
         orders_num = customer_get_orders_num(cust);

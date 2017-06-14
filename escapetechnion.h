@@ -173,7 +173,17 @@ MtmErrorCode escapetechnion_create_order(EscapeTechnion escape, char* email,
 MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
                                              int num_ppl);
 
-
+/**
+ * Prints a report about all orders tha took place last day.
+ * The function also advances the day of the system by 1, and removes all the
+ * orders of the recent day passed.
+ *
+ * @param escape: The escapetechnion object on which the function operates
+ * @return
+ * MTM_NULL_PARAMETER if escape is NULL
+ * MTM_OUT_OF_MEMORY if memory allocation problem occurred
+ * MTM_SUCCESS otherwise
+ */
 MtmErrorCode escapetechnion_reportday(EscapeTechnion escape);
 
 void escapetechnion_reportbest(EscapeTechnion escape);
