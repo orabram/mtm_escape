@@ -107,8 +107,6 @@ order.h
 C:/Users/USER/CLionProjects/mtm_escape/order.h
 escaperoom.h
 C:/Users/USER/CLionProjects/mtm_escape/escaperoom.h
-math.h
--
 set.h
 C:/Users/USER/CLionProjects/mtm_escape/set.h
 
@@ -137,6 +135,8 @@ escapetechnion.h
 C:/Users/USER/CLionProjects/mtm_escape/escapetechnion.h
 mtm_ex3.h
 C:/Users/USER/CLionProjects/mtm_escape/mtm_ex3.h
+string.h
+-
 
 C:/Users/USER/CLionProjects/mtm_escape/order.c
 order.h
