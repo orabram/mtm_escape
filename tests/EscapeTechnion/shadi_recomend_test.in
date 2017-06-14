@@ -1,0 +1,137 @@
+#day1
+
+#company add <email> <faculty>
+
+company add civil1@ 0
+company add civil2@ 0
+company add civil3@ 0
+company add civil4@ 0
+
+company add mecan1@ 1
+
+company add biotech1@ 4
+company add biotech2@ 4
+company add biotech3@ 4
+
+company add aerosp1@ 5
+company add aerosp2@ 5
+company add aerosp3@ 5
+company add aerosp4@ 5
+company add aerosp5@ 5
+
+company add biomed1@ 17
+company add biomed2@ 17
+
+#adding rooms
+
+#room add <email> <id> <price> <num_ppl> <working_hrs> <difficulty>
+
+room add civil1@ 1 100 3 06-18 7
+room add civil1@ 2 100 3 06-18 7
+room add civil1@ 3 100 5 06-18 7
+room add civil1@ 4 100 3 06-18 4
+room add civil1@ 5 100 3 06-18 3
+
+room add civil2@ 21 100 3 06-18 7
+room add civil2@ 22 100 3 06-18 7
+room add civil2@ 23 100 3 06-18 7
+room add civil2@ 24 100 3 06-18 1
+
+
+room add civil3@ 31 100 3 06-18 7
+room add civil3@ 32 100 3 06-18 7
+room add civil3@ 33 100 5 06-18 7
+room add civil3@ 34 100 3 06-18 4
+room add civil3@ 35 100 3 06-18 3
+
+
+
+room add biotech1@ 1 100 3 06-18 3
+room add biotech1@ 2 100 3 06-18 7
+room add biotech1@ 3 100 3 06-18 7
+
+
+room add aerosp1@ 1 100 3 06-18 3
+room add aerosp1@ 2 100 3 06-18 4
+room add aerosp1@ 3 100 5 06-18 7
+room add aerosp1@ 4 100 3 06-18 1
+
+room add aerosp2@ 11 100 3 06-18 3
+room add aerosp2@ 22 100 3 06-18 4
+room add aerosp2@ 33 100 5 06-18 7
+
+
+room add biomed2@ 11 100 3 06-18 3
+room add biomed2@ 22 100 3 06-18 4
+
+
+room add biomed1@ 1 100 3 06-18 3
+room add biomed1@ 2 100 3 06-18 7
+
+#########################################################
+#adding escapers
+ 
+#escaper add <email> <faculty> <skill_level>
+
+escaper add ecivil1@ 0 9
+escaper add ecivil2@ 0 9
+escaper add ecivil3@ 0 8
+escaper add ecivil4@ 0 8
+escaper add ecivil5@ 0 6
+
+escaper add emecan1@ 1 9
+escaper add emecan2@ 1 9
+escaper add emecan3@ 1 8
+
+
+escaper add eelectr1@ 2 7
+escaper add eelectr2@ 2 1
+escaper add eelectr3@ 2 3
+escaper add eelectr4@ 2 4
+
+escaper add earchet1@ 11 4
+
+escaper add ebiology1@ 10 3
+
+escaper add eeducation1@ 12 3
+
+escaper add ebiotech1@ 4 9
+escaper add ebiotech2@ 4 9
+escaper add ebiotech3@ 4 1
+
+escaper add ebiomed1@ 17 4
+escaper add ebiomed2@ 17 9
+escaper add ebiomed3@ 17 10
+###############################################################
+#will get the first room
+escaper recommend ecivil5@ 2
+escaper recommend eelectr1@ 2
+
+#will get room 4 in civil 
+escaper recommend eelectr4@ 3
+
+#room 5 in civil
+escaper recommend eelectr3@ 3
+
+#room 2 in biomed 
+escaper recommend ebiomed3@ 1
+
+#room 22 in biomed
+escaper recommend ebiomed1@ 3
+
+#room 2 in aero
+escaper recommend earchet1@ 3
+
+#room 1 in aero
+escaper recommend ebiology1@ 3
+
+#room 1 in biomed
+escaper recommend eeducation1@ 3
+
+#room 24 in civil
+escaper recommend eelectr2@ 3
+
+#room 4 in aero 
+escaper recommend ebiotech3@ 3
+
+report day

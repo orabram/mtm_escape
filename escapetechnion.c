@@ -13,7 +13,10 @@
 #define ILLEGAL_PRICE -1
 #define FACULTIES_NUM UNKNOWN
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> origin/master
 struct escapetechnion{
     Set CompanySet;
     Set CustomersSet;
@@ -122,6 +125,18 @@ static MtmErrorCode escapetechnion_day_passed(EscapeTechnion escape)
 }
 
 /**
+<<<<<<< HEAD
+=======
+ * Converts the day and the hour, received as integers, to a string in
+ * format "xx-yy", where "xx" is the day and "yy" is the hour.
+ *
+ * @param day: The day to convert
+ * @param hour: The hour to convert
+ * @return
+ * The converted string
+ */
+/**
+>>>>>>> origin/master
  * Returns the absolute value of a number.
  * @param x: an integer.
  * @return
@@ -136,6 +151,7 @@ static int absolut(int x)
     return x;
 }
 
+<<<<<<< HEAD
 /**
  * Converts the day and the hour, received as integers, to a string in
  * format "xx-yy", where "xx" is the day and "yy" is the hour.
@@ -145,6 +161,9 @@ static int absolut(int x)
  * @return
  * The converted string
  */
+=======
+
+>>>>>>> origin/master
 static char* time_int_to_chr(int day, int hour)
 {
     char* chrtime = malloc(6);
@@ -372,9 +391,12 @@ static Company find_company_in_set(Set set, char* email)
 }
 
 /**
+ * Checks if the e-mail is valid (contains exactly one '@' character)
  *
- * @param email
+ * @param email: The e-mail to check
  * @return
+ * True if it is valid
+ * False otherwise
  */
 static bool check_email(char* email)
 {
@@ -845,6 +867,7 @@ MtmErrorCode escapetechnion_recommended_room(EscapeTechnion escape, char* email,
     return res;
 }
 
+//Report the last day's orders and revenue
 MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
 {
     if (escape == NULL) {
@@ -902,6 +925,8 @@ MtmErrorCode escapetechnion_reportday(EscapeTechnion escape)
     free(prices);
     return MTM_SUCCESS;
 }
+
+//Report the most lucrative three faculties
 void escapetechnion_reportbest(EscapeTechnion escape)
 {
     int no1 = -1, no2 = -1, no3 = -1;
@@ -947,6 +972,7 @@ void escapetechnion_reportbest(EscapeTechnion escape)
     print_winners(escape, sum, id1, no1, id2, no2, id3, no3);
 }
 
+//Destroys the system
 void escapetechnion_destroy(EscapeTechnion escape)
 {
     if (escape == NULL) {

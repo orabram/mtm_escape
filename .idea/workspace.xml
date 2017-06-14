@@ -12,11 +12,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="3ae7718e-3d59-49f2-866f-b210d3f1ff0e" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects.a" afterPath="$PROJECT_DIR$/cmake-build-debug/CMakeFiles/mtm_escape.dir/objects.a" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/cmake-build-debug/mtm_escape.exe" afterPath="$PROJECT_DIR$/cmake-build-debug/mtm_escape.exe" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/escapetechnion.c" afterPath="$PROJECT_DIR$/escapetechnion.c" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/mtmescapetests.c" afterPath="$PROJECT_DIR$/mtmescapetests.c" />
     </list>
     <ignored path="$PROJECT_DIR$/cmake-build-debug/" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -55,7 +51,7 @@
         <entry file="file://$PROJECT_DIR$/mtm_escape.c">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="215">
-              <caret line="230" column="41" lean-forward="true" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
+              <caret line="230" column="41" lean-forward="false" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
               <folding />
             </state>
           </provider>
@@ -106,8 +102,8 @@
       <file leaf-file-name="escapetechnion.c" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/escapetechnion.c">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="321">
-              <caret line="445" column="29" lean-forward="true" selection-start-line="445" selection-start-column="29" selection-end-line="445" selection-end-column="29" />
+            <state relative-caret-position="8645">
+              <caret line="467" column="29" lean-forward="false" selection-start-line="467" selection-start-column="29" selection-end-line="467" selection-end-column="29" />
               <folding>
                 <element signature="e#0#18#0" expanded="true" />
               </folding>
@@ -477,7 +473,7 @@
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="47962000" />
+    <option name="totallyTimeSpent" value="48574000" />
   </component>
   <component name="ToolWindowManager">
     <frame x="-11" y="-11" width="1942" height="1042" extended-state="6" />
@@ -543,12 +539,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/escapetechnion.c</url>
-          <line>840</line>
+          <line>862</line>
           <option name="timeStamp" value="23" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="com.jetbrains.cidr.execution.debugger.OCBreakpointType">
           <url>file://$PROJECT_DIR$/escapetechnion.c</url>
-          <line>433</line>
+          <line>455</line>
           <option name="timeStamp" value="24" />
         </line-breakpoint>
       </breakpoints>
@@ -962,7 +958,7 @@
     <entry file="file://$PROJECT_DIR$/mtm_escape.c">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="215">
-          <caret line="230" column="41" lean-forward="true" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
+          <caret line="230" column="41" lean-forward="false" selection-start-line="230" selection-start-column="41" selection-end-line="230" selection-end-column="41" />
           <folding />
         </state>
       </provider>
@@ -997,8 +993,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/escapetechnion.c">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="321">
-          <caret line="445" column="29" lean-forward="true" selection-start-line="445" selection-start-column="29" selection-end-line="445" selection-end-column="29" />
+        <state relative-caret-position="8645">
+          <caret line="467" column="29" lean-forward="false" selection-start-line="467" selection-start-column="29" selection-end-line="467" selection-end-column="29" />
           <folding>
             <element signature="e#0#18#0" expanded="true" />
           </folding>
